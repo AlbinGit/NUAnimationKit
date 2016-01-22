@@ -1,0 +1,14 @@
+PODS:
+  - NUAnimationKit (0.1.0)
+
+DEPENDENCIES:
+  - NUAnimationKit (from `../`)
+
+EXTERNAL SOURCES:
+  NUAnimationKit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  NUAnimationKit: b885ed90412108118b89ad29d371e6bd4e27fd20
+
+COCOAPODS: 0.39.0
