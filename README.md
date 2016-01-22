@@ -55,8 +55,9 @@ NUAnimationController *controller = [[NUAnimationController alloc] init];
 }];
 ```
 To achieve chaining in different objects:
+
 <p align="center">
-![Different damping constants and animation times](./Pod/Assets/baseAnimations.gif)
+<img src="./Pod/Assets/baseAnimations.gif"/>
 </p>
 
 NUAnimationKit also allows you to set animation options on creation:
@@ -77,8 +78,9 @@ controller addAnimation:^{
 Where `NUSpringAnimationNaturalDuration ` is a constant that will automatically calculate the optimal spring animation duration based on physical properties like *mass* and *elastic constant*.
 
 Like so:
+
 <p align="center">
-![Different damping constants and animation times](./Pod/Assets/parallelSprings.gif)
+<img src="./Pod/Assets/parallelSprings.gif"/>
 </p>
 
 And also adds support for progress-based blocks, for properties that may not be directly animatable:
@@ -91,8 +93,9 @@ And also adds support for progress-based blocks, for properties that may not be 
 });
 ```
 Like setting a string value:
+
 <p align="center">
-![Different damping constants and animation times](./Pod/Assets/stringAnimation.gif)
+<img src="./Pod/Assets/stringAnimation.gif"/>
 </p>
 
 ## Installation
