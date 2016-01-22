@@ -38,6 +38,13 @@
     return self;
 }
 
+- (void)setType:(NUAnimationType)type {
+    _type = type;
+    if (type == NUAnimationTypeSpringy) {
+        self.options = [[NUSpringAnimationOptions alloc] initWithOptions:self.options];
+    }
+}
+
 + (instancetype) animationBlockWithType: (NUAnimationType)type
                              andOptions: (NUAnimationOptions *)options
                                andDelay: (NSTimeInterval)delay
@@ -66,59 +73,6 @@
 
 - (void)animationWillBegin {
     
-}
-
-//Convenience methods
-- (NUBaseAnimationBlock * (^)(NUAnimationType))withType {
-    return ^NUBaseAnimationBlock*(NUAnimationType type) {
-        self.type = type;
-        if (type == NUAnimationTypeSpringy) {
-            self.options = [[NUSpringAnimationOptions alloc] init];
-        }
-        return self;
-    };
-}
-
-- (NUBaseAnimationBlock * (^)(UIViewAnimationOptions))withAnimationOption {
-    return ^NUBaseAnimationBlock*(UIViewAnimationOptions option) {
-        self.options.options = option;
-        return self;
-    };
-}
-
-- (NUBaseAnimationBlock * (^)(UIViewAnimationCurve))withCurve {
-    return ^NUBaseAnimationBlock*(UIViewAnimationCurve curve) {
-        self.options.curve = curve;
-        return self;
-    };
-}
-
-- (NUBaseAnimationBlock * (^)(NSTimeInterval))withDuration {
-    return ^NUBaseAnimationBlock*(NSTimeInterval duration) {
-        self.options.duration = duration;
-        return self;
-    };
-}
-
-- (NUBaseAnimationBlock * (^)(NUAnimationOptions *))withOptions {
-    return ^NUBaseAnimationBlock*(NUAnimationOptions *options) {
-        self.options = options;
-        return self;
-    };
-}
-
-- (NUBaseAnimationBlock * (^)(NSTimeInterval))withDelay {
-    return ^NUBaseAnimationBlock*(NSTimeInterval delay) {
-        self.delay = delay;
-        return self;
-    };
-}
-
-- (NUBaseAnimationBlock * (^)(NUCompletionBlock))andThen {
-    return ^NUBaseAnimationBlock*(NUCompletionBlock completion) {
-        self.completionBlock = completion;
-        return self;
-    };
 }
 
 @end

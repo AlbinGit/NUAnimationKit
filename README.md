@@ -37,38 +37,63 @@ Chaining of UIView animations requires the use of completion handler blocks to c
 ```
 Which isn't a particularly elegant solution, and is hard to read.
 
-###This approach
-This library creates a wrapper around the chaining of UIView animations using a simple syntax:
+###Enter NUAnimationKit
+This library creates a wrapper around UIView animations that facilitates chaining via a simple syntax:
 
 ```objc
 NUAnimationController *controller = [[NUAnimationController alloc] init];
 
 [controller addAnimation:^{
-    [animationView1 setFrame:CGRectMake(10, 100, 200, 200)];
+    //First stage of animations
 }].andThen(^{
-	//Executes after the block is done
-    self.view.backgroundColor = [UIColor greenColor];
+	//Executes once after the block is done, no animations here.
 });
 
 //Chains next animation
 [controller addAnimation:^{
-    [animationView2 setFrame:CGRectMake(10, 300, 200, 200)];
+    //Second stage of animations
 }];
 ```
+To achieve chaining in different objects:
+<p align="center">
+![Different damping constants and animation times](./Pod/Assets/baseAnimations.gif)
+</p>
 
 NUAnimationKit also allows you to set animation options on creation:
 
 ```objc
 [controller addAnimation:^{
-    label.frame = CGRectMake(200, 500, 200, 20);
-}].withDuration(2)
+    //Animations
+}].withDelay(0.1).withDuration(0.3).withCurve(UIViewAnimationCurveEaseInOut);
 ```
 
-## Usage
+And spring-based animations:
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+```objc
+controller addAnimation:^{
+    //Springy
+}].withType(NUAnimationTypeSpringy).withDuration(NUSpringAnimationNaturalDuration)
+```
+Where `NUSpringAnimationNaturalDuration ` is a constant that will automatically calculate the optimal spring animation duration based on physical properties like *mass* and *elastic constant*.
 
-## Requirements
+Like so:
+<p align="center">
+![Different damping constants and animation times](./Pod/Assets/parallelSprings.gif)
+</p>
+
+And also adds support for progress-based blocks, for properties that may not be directly animatable:
+
+```objc
+[controller addAnimation:^{
+    //Main animation
+}].alongSideBlock(^(CGFloat progress){
+    progressLabel.text = [NSString stringWithFormat:@"%f", progress];
+});
+```
+Like setting a string value:
+<p align="center">
+![Different damping constants and animation times](./Pod/Assets/stringAnimation.gif)
+</p>
 
 ## Installation
 
@@ -79,9 +104,41 @@ it, simply add the following line to your Podfile:
 pod "NUAnimationKit"
 ```
 
+## Usage
+To use the library, simply:
+
+- Install the pod by adding `pod "NUAnimationKit"` to your podfile
+- Import `NUAnimationController.h`
+- Create an animation controller: `NUAnimationController *controller = [[NUAnimationController alloc] init];`
+- Add animation blocks:
+
+```objc
+controller addAnimation:^{
+    //Springy
+}].withType(NUAnimationTypeSpringy).withDuration(NUSpringAnimationNaturalDuration)
+```
+- Start the animation: 
+
+```
+[controller startAnimationChain]
+```
+or
+
+```objc
+[controller startAnimationChainWithCompletionBlock:^{
+//Optional completion block
+}];
+```
+
+- Profit
+
+## Requirements
+Built for iOS 8.0 and above.
+
 ## Author
 
-Victor Maraccini, vgm.maraccini@gmail.com
+Victor Maraccini, 
+victor.maraccini@nubank.com.br
 
 ## License
 

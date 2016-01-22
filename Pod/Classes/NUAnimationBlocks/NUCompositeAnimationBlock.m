@@ -27,6 +27,7 @@
                                andDelay: (NSTimeInterval)delay
                           andAnimations: (NUSimpleAnimationBlock)animations
                      andCompletionBlock: (NUCompletionBlock)completionBlock
+                         inParallelWith:(NUBaseAnimationBlock *)parallelBlock
                        animateAlongside: (NUProgressAnimationBlock)progressBlock {
     
     NUCompositeAnimationBlock *result = [[NUCompositeAnimationBlock alloc] init];
@@ -36,6 +37,7 @@
         result.delay = delay;
         result.animationBlock = animations;
         result.completionBlock = completionBlock;
+        result.parallelBlock = parallelBlock;
         result.progressBlock = progressBlock;
     }
     return result;
@@ -68,6 +70,8 @@
         }
     };
 }
+
+#pragma mark - Convenience methods
 
 - (NUCompositeAnimationBlock * (^)(NUProgressAnimationBlock))alongSideBlock {
     return ^NUCompositeAnimationBlock*(NUProgressAnimationBlock block) {
@@ -119,10 +123,36 @@
         return self;
     };
 }
+
 - (NUCompositeAnimationBlock * (^)(NUAnimationOptions *))withOptions {
     return ^NUCompositeAnimationBlock*(NUAnimationOptions *options) {
         self.options = options;
         return self;
+    };
+}
+
+- (NUCompositeAnimationBlock * (^)(CGFloat))withInitialVelocity {
+    NSAssert(self.type == NUAnimationTypeSpringy, @"This can only be set in springy animations.");
+    return ^NUCompositeAnimationBlock*(CGFloat velocity) {
+        ((NUSpringAnimationOptions *)self.options).initialVelocity = velocity;
+        return self;
+    };
+}
+
+- (NUCompositeAnimationBlock * (^)(CGFloat))withDamping {
+    NSAssert(self.type == NUAnimationTypeSpringy, @"This can only be set in springy animations.");
+    return ^NUCompositeAnimationBlock*(CGFloat damping) {
+        ((NUSpringAnimationOptions *)self.options).damping = damping;
+        return self;
+    };
+}
+
+- (NUCompositeAnimationBlock * (^)(NUSimpleAnimationBlock))inParallelWith {
+    return ^NUCompositeAnimationBlock*(NUSimpleAnimationBlock block) {
+        NUCompositeAnimationBlock *result = [[NUCompositeAnimationBlock alloc] init];
+        result.animationBlock = block;
+        self.parallelBlock = result;
+        return result;
     };
 }
 

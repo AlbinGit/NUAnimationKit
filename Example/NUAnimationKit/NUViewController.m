@@ -10,7 +10,7 @@
 #import "NUAnimationController.h"
 
 @interface NUViewController ()
-
+@property (nonatomic, strong) UILabel *completionLabel;
 @end
 
 @implementation NUViewController
@@ -18,49 +18,56 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UILabel *animationView1 = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 100, 100)];
-    animationView1.text = @"NU";
+    UIView *animationView1 = [[UIView alloc] initWithFrame:CGRectMake(0, 100, 100, 100)];
+    animationView1.backgroundColor = [UIColor redColor];
     
-    UILabel *animationView2= [[UILabel alloc] initWithFrame:CGRectMake(60, 0, 100, 100)];
-    animationView2.text = @"Animation";
+    UIView *animationView2= [[UIView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+    animationView2.backgroundColor = [UIColor greenColor];
     
-    UILabel *animationView3 = [[UILabel alloc] initWithFrame:CGRectMake(150, 0, 100, 100)];
-    animationView3.text = @"Kit";
+    UIView *animationView3 = [[UIView alloc] initWithFrame:CGRectMake(200, 100, 100, 100)];
+    animationView3.backgroundColor = [UIColor blueColor];
     
-    UILabel *completionLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 600, 300, 20)];
-    completionLabel.text = @"Working on it";
-    UILabel *progressLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 600, 300, 20)];
+    self.completionLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 300, 300, 20)];
+    self.completionLabel.text = @"Not started";
+    
+    UILabel *progressLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 300, 300, 20)];
+    progressLabel.text = [NSString stringWithFormat:@"%f", 0.0f];
     
     [self.view addSubview:animationView1];
     [self.view addSubview:animationView2];
     [self.view addSubview:animationView3];
-    [self.view addSubview:completionLabel];
+    [self.view addSubview:self.completionLabel];
     [self.view addSubview:progressLabel];
     
-    NUAnimationController *controller = [[NUAnimationController alloc] init];
+    self.controller = [[NUAnimationController alloc] init];
     
-    [controller addAnimation:^{
-        [animationView1 setFrame:CGRectMake(30, 100, 100, 100)];
+    [self.controller addAnimation:^{
+        frameSetY(animationView1.frame, 400);
+        animationView1.backgroundColor = [UIColor grayColor];
     }].withAnimationOption(UIViewAnimationOptionTransitionCrossDissolve)
     .andThen(^{
-        completionLabel.text = @"Almost there";
+        self.completionLabel.text = @"Working on it";
     });
     
-    [controller addAnimation:^{
-        [animationView2 setFrame:CGRectMake(60, 100, 100, 100)];
+    [self.controller addAnimation:^{
+        frameSetY(animationView2.frame, 400);
     }].withDelay(0.1).withDuration(0.3).withCurve(UIViewAnimationCurveEaseInOut);
     
-    [controller addAnimation:^{
-        animationView3.frame = CGRectMake(150, 100, 100, 100);
+    [self.controller addAnimation:^{
+        frameSetY(animationView3.frame, 400);
     }].withType(NUAnimationTypeSpringy).withDuration(NUSpringAnimationNaturalDuration).
     alongSideBlock(^(CGFloat progress){
         progressLabel.text = [NSString stringWithFormat:@"%f", progress];
     });
     
-    [controller startAnimationChainWithCompletionBlock:^{
-        completionLabel.text = @"All done";
+}
+
+- (void)startAnimation {
+    [self.controller startAnimationChainWithCompletionBlock:^{
+        self.completionLabel.text = @"All done";
     }];
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

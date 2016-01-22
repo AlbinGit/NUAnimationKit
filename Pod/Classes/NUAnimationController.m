@@ -22,7 +22,10 @@ _Pragma("clang diagnostic pop")
 
 @property (nonatomic, copy) void (^completionBlock)();
 @property (nonatomic, strong) NSMutableArray *animationBlocks;
+@property (nonatomic, readwrite) NSTimeInterval totalAnimationTime;
+@property (nonatomic, readwrite) int animationStep;
 @property (nonatomic, readwrite) BOOL animationRunning;
+@property (nonatomic, readwrite) BOOL animationCancelled;
 
 @end
 
@@ -33,6 +36,7 @@ _Pragma("clang diagnostic pop")
     self = [super init];
     if (self) {
         _animationBlocks = [[NSMutableArray alloc] init];
+        _totalAnimationTime = 0;
     }
     return self;
 }
@@ -41,14 +45,19 @@ _Pragma("clang diagnostic pop")
 
 - (NUBaseAnimationBlock *)addAnimationBlock:(NUBaseAnimationBlock *)block {
     [self.animationBlocks addObject:block];
+    _totalAnimationTime += block.options.duration;
     return block;
 }
 
 - (void)startAnimationChainWithCompletionBlock:(void (^)())completionBlock {
+    _animationCancelled = false;
+    _animationStep = 0;
     if (self.animationRunning) {
         //Animation cannot be started multiple times.
         return;
     }
+    
+    self.animationRunning = true;
     
     self.completionBlock = completionBlock;
     [self startNextAnimation];
@@ -66,16 +75,36 @@ _Pragma("clang diagnostic pop")
     return result;
 }
 
+- (void)cancelAnimations {
+    _animationCancelled = true;
+}
+
 #pragma mark - Private
 
 - (void)startNextAnimation {
-    if (self.animationBlocks.count == 0) {
-        self.completionBlock();
+    if (self.animationBlocks.count == _animationStep) {
+        if (self.completionBlock) {
+            self.completionBlock();
+        }
+        
         [self cleanUp];
         return;
     }
     
-    NUBaseAnimationBlock *block = [self.animationBlocks firstObject];
+    NUBaseAnimationBlock *block = self.animationBlocks[_animationStep++];
+    [self startBlock:block isParallel:false];
+    
+}
+
+- (void)startBlock:(NUBaseAnimationBlock *)block isParallel: (BOOL)isParallel {
+    
+    if ([block isKindOfClass:[NUCompositeAnimationBlock class]]) {
+        NUCompositeAnimationBlock *composite = (NUCompositeAnimationBlock *)block;
+        if (composite.parallelBlock) {
+            [self startBlock:composite.parallelBlock isParallel:true];
+        }
+    }
+    
     if (block.type == NUAnimationTypeDefault) {
         [UIView animateWithDuration:block.options.duration
                               delay:block.delay
@@ -85,13 +114,13 @@ _Pragma("clang diagnostic pop")
                              block.animationBlock();
                          }
                          completion:^(BOOL finished) {
-                             if (finished) {
+                             if (finished || _animationCancelled) {
                                  if (block.completionBlock) {
                                      block.completionBlock();
                                  }
-                                 
-                                 [self.animationBlocks removeObjectAtIndex:0];
-                                 [self startNextAnimation];
+                                 if (!_animationCancelled && !isParallel) {
+                                     [self startNextAnimation];
+                                 }
                              }
                          }];
     } else if (block.type == NUAnimationTypeSpringy) {
@@ -106,17 +135,16 @@ _Pragma("clang diagnostic pop")
                              block.animationBlock();
                          }
                          completion:^(BOOL finished) {
-                             if (finished) {
+                             if (finished || _animationCancelled) {
                                  if (block.completionBlock) {
                                      block.completionBlock();
                                  }
-                                 
-                                 [self.animationBlocks removeObjectAtIndex:0];
-                                 [self startNextAnimation];
+                                 if (!_animationCancelled && !isParallel) {
+                                     [self startNextAnimation];
+                                 }
                              }
                          }];
     }
-    
 }
 
 - (void)cleanUp {

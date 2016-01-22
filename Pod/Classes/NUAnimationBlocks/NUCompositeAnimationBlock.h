@@ -16,8 +16,10 @@
                                andDelay: (NSTimeInterval)delay
                           andAnimations: (NUSimpleAnimationBlock)animations
                      andCompletionBlock: (NUCompletionBlock)completionBlock
+                         inParallelWith: (NUBaseAnimationBlock *)parallelBlock
                        animateAlongside: (NUProgressAnimationBlock)progressBlock;
 
+@property (nonatomic, strong) NUBaseAnimationBlock *parallelBlock;
 
 - (NUCompositeAnimationBlock * (^)(NUAnimationType))withType;
 - (NUCompositeAnimationBlock * (^)(NSTimeInterval))withDelay;
@@ -32,7 +34,14 @@
 - (NUCompositeAnimationBlock * (^)(NSTimeInterval))withDuration;
 - (NUCompositeAnimationBlock * (^)(NUAnimationOptions *))withOptions;
 
+//  Springy options
+- (NUCompositeAnimationBlock * (^)(CGFloat))withDamping;
+- (NUCompositeAnimationBlock * (^)(CGFloat))withInitialVelocity;
+
 //Progress
 - (NUCompositeAnimationBlock * (^)(NUProgressAnimationBlock))alongSideBlock;
+
+//Parallel
+- (NUCompositeAnimationBlock * (^)(NUSimpleAnimationBlock))inParallelWith;
 
 @end

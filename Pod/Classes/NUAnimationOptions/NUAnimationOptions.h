@@ -32,6 +32,8 @@ extern NSTimeInterval NUSpringAnimationNaturalDuration;
 @property (nonatomic, readwrite) CGFloat damping;
 @property (nonatomic, readwrite) CGFloat initialVelocity;
 
+- (instancetype)initWithOptions: (NUAnimationOptions *)options;
+
 + (instancetype) animationWithDuration:(NSTimeInterval)duration
                             andOptions:(UIViewAnimationOptions)options
                               andCurve:(UIViewAnimationCurve)curve

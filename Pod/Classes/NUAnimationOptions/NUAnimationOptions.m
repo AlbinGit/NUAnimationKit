@@ -40,6 +40,8 @@
 
 @implementation NUSpringAnimationOptions
 
+//Wow, such physics: https://en.wikipedia.org/wiki/Settling_time
+//very mechanics: https://en.wikipedia.org/wiki/Mechanical_resonance
 #define naturalConstant 1.0f/(2.0f*M_PI)
 #define settleTolerance 0.1f
 #define springConstant 1000.0f //N/m
@@ -52,10 +54,25 @@ double NUSpringAnimationNaturalDuration = -1;
 {
     self = [super init];
     if (self) {
-        self.damping = 0.5;
-        self.initialVelocity = 0;
+        [self initialize];
     }
     return self;
+}
+
+- (instancetype)initWithOptions: (NUAnimationOptions *)options {
+    self = [super init];
+    if (self) {
+        [self initialize];
+        self.options = options.options;
+        self.duration = options.duration;
+        self.curve = options.curve;
+    }
+    return self;
+}
+
+- (void)initialize {
+    self.damping = 0.5;
+    self.initialVelocity = 0;
 }
 
 - (NSTimeInterval)naturalTimeInterval {

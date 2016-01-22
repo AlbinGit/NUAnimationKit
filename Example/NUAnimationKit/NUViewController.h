@@ -7,7 +7,8 @@
 //
 
 @import UIKit;
+#import "NUBaseExampleViewController.h"
 
-@interface NUViewController : UIViewController
+@interface NUViewController : NUBaseExampleViewController
 
 @end

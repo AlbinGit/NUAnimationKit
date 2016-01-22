@@ -23,6 +23,9 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		9F6A305E2837AAE34C191123 /* Pods_NUAnimationKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C8A907C5E530939B8719FC9 /* Pods_NUAnimationKit_Tests.framework */; };
+		D45B60B51C52ACCB0074A7A0 /* NUSpringAnimationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D45B60B41C52ACCB0074A7A0 /* NUSpringAnimationsViewController.m */; };
+		D45B60B71C52B3420074A7A0 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D45B60B61C52B3420074A7A0 /* Launch Screen.storyboard */; };
+		D45B60BD1C52B4A50074A7A0 /* NUBaseExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D45B60BC1C52B4A50074A7A0 /* NUBaseExampleViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +66,11 @@
 		9581498B9CFFA273D5728C4E /* NUAnimationKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = NUAnimationKit.podspec; path = ../NUAnimationKit.podspec; sourceTree = "<group>"; };
 		99345F8D0E7392B493F30A66 /* Pods-NUAnimationKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NUAnimationKit_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NUAnimationKit_Tests/Pods-NUAnimationKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		9D95C910C8DE0A78421BDA2E /* Pods-NUAnimationKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NUAnimationKit_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-NUAnimationKit_Example/Pods-NUAnimationKit_Example.release.xcconfig"; sourceTree = "<group>"; };
+		D45B60B31C52ACCB0074A7A0 /* NUSpringAnimationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUSpringAnimationsViewController.h; sourceTree = "<group>"; };
+		D45B60B41C52ACCB0074A7A0 /* NUSpringAnimationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUSpringAnimationsViewController.m; sourceTree = "<group>"; };
+		D45B60B61C52B3420074A7A0 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		D45B60BB1C52B4A50074A7A0 /* NUBaseExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUBaseExampleViewController.h; sourceTree = "<group>"; };
+		D45B60BC1C52B4A50074A7A0 /* NUBaseExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUBaseExampleViewController.m; sourceTree = "<group>"; };
 		D9625224FF189263F1FDB602 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		F8D932AACE9E6406FA1706E0 /* Pods-NUAnimationKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NUAnimationKit_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NUAnimationKit_Example/Pods-NUAnimationKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -141,12 +149,12 @@
 		6003F593195388D20070C39A /* Example for NUAnimationKit */ = {
 			isa = PBXGroup;
 			children = (
+				D45B60B81C52B3D70074A7A0 /* ViewControllers */,
 				6003F59C195388D20070C39A /* NUAppDelegate.h */,
 				6003F59D195388D20070C39A /* NUAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
-				6003F5A5195388D20070C39A /* NUViewController.h */,
-				6003F5A6195388D20070C39A /* NUViewController.m */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
+				D45B60B61C52B3420074A7A0 /* Launch Screen.storyboard */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
 			name = "Example for NUAnimationKit";
@@ -191,6 +199,35 @@
 				61304629477DE447501CD507 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		D45B60B81C52B3D70074A7A0 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D45B60BA1C52B3ED0074A7A0 /* Spring */,
+				D45B60B91C52B3E60074A7A0 /* Chain */,
+				D45B60BB1C52B4A50074A7A0 /* NUBaseExampleViewController.h */,
+				D45B60BC1C52B4A50074A7A0 /* NUBaseExampleViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		D45B60B91C52B3E60074A7A0 /* Chain */ = {
+			isa = PBXGroup;
+			children = (
+				6003F5A5195388D20070C39A /* NUViewController.h */,
+				6003F5A6195388D20070C39A /* NUViewController.m */,
+			);
+			name = Chain;
+			sourceTree = "<group>";
+		};
+		D45B60BA1C52B3ED0074A7A0 /* Spring */ = {
+			isa = PBXGroup;
+			children = (
+				D45B60B31C52ACCB0074A7A0 /* NUSpringAnimationsViewController.h */,
+				D45B60B41C52ACCB0074A7A0 /* NUSpringAnimationsViewController.m */,
+			);
+			name = Spring;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,6 +315,7 @@
 			files = (
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
+				D45B60B71C52B3420074A7A0 /* Launch Screen.storyboard in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -391,8 +429,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* NUAppDelegate.m in Sources */,
+				D45B60B51C52ACCB0074A7A0 /* NUSpringAnimationsViewController.m in Sources */,
 				6003F5A7195388D20070C39A /* NUViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				D45B60BD1C52B4A50074A7A0 /* NUBaseExampleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,7 +507,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -500,7 +540,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -512,7 +552,6 @@
 			baseConfigurationReference = F8D932AACE9E6406FA1706E0 /* Pods-NUAnimationKit_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NUAnimationKit/NUAnimationKit-Prefix.pch";
 				INFOPLIST_FILE = "NUAnimationKit/NUAnimationKit-Info.plist";
@@ -529,7 +568,6 @@
 			baseConfigurationReference = 9D95C910C8DE0A78421BDA2E /* Pods-NUAnimationKit_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NUAnimationKit/NUAnimationKit-Prefix.pch";
 				INFOPLIST_FILE = "NUAnimationKit/NUAnimationKit-Info.plist";
