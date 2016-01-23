@@ -9,15 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface NUAnimationOptions : NSObject
-{
-@protected
+@interface NUAnimationOptions : NSObject {
     NSTimeInterval _duration;
 }
 
-@property (nonatomic, readwrite) NSTimeInterval duration;
-@property (nonatomic, readwrite) UIViewAnimationOptions options;
-@property (nonatomic, readwrite) UIViewAnimationCurve curve;
+@property NSTimeInterval duration;
+@property UIViewAnimationOptions options;
+@property UIViewAnimationCurve curve;
 
 + (instancetype) animationWithDuration: (NSTimeInterval)duration
                             andOptions: (UIViewAnimationOptions)options
@@ -29,15 +27,15 @@
 
 extern NSTimeInterval NUSpringAnimationNaturalDuration;
 
-@property (nonatomic, readwrite) CGFloat damping;
-@property (nonatomic, readwrite) CGFloat initialVelocity;
+@property CGFloat damping;
+@property CGFloat initialVelocity;
 
 - (instancetype)initWithOptions: (NUAnimationOptions *)options;
 
-+ (instancetype) animationWithDuration:(NSTimeInterval)duration
-                            andOptions:(UIViewAnimationOptions)options
-                              andCurve:(UIViewAnimationCurve)curve
-                            andDamping:(CGFloat)damping
++ (instancetype) animationWithDuration: (NSTimeInterval)duration
+                            andOptions: (UIViewAnimationOptions)options
+                              andCurve: (UIViewAnimationCurve)curve
+                            andDamping: (CGFloat)damping
                     andInitialVelocity: (CGFloat)initialVelocity;
 
 @end

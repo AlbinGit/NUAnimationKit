@@ -7,6 +7,7 @@
 //
 
 #import "NUAnimationOptions.h"
+#import "NUAnimationDefaults.h"
 
 @implementation NUAnimationOptions
 
@@ -14,9 +15,9 @@
 {
     self = [super init];
     if (self) {
-        self.duration = 0.5;
-        self.options = 0;
-        self.curve = UIViewAnimationCurveLinear;
+        self.duration = [[NUAnimationDefaults sharedDefaults] defaultDuration];
+        self.options = [[NUAnimationDefaults sharedDefaults] defaultOptions];
+        self.curve = [[NUAnimationDefaults sharedDefaults] defaultCurve];
     }
     return self;
 }
@@ -71,8 +72,8 @@ double NUSpringAnimationNaturalDuration = -1;
 }
 
 - (void)initialize {
-    self.damping = 0.5;
-    self.initialVelocity = 0;
+    self.damping = [[NUAnimationDefaults sharedDefaults] defaultDamping];
+    self.initialVelocity = [[NUAnimationDefaults sharedDefaults] defaultInitialVelocity];
 }
 
 - (NSTimeInterval)naturalTimeInterval {
