@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.animationView = [[UIView alloc] initWithFrame:CGRectMake(0, 50, 100, 100)];
+    self.animationView = [[UIView alloc] initWithFrame:CGRectMake(0, 70, 100, 100)];
     self.animationView.backgroundColor = [UIColor redColor];
     
     //Damping
@@ -94,7 +94,7 @@
 }
 
 - (void)startAnimation {
-    self.animationView.frame = CGRectMake(0, 50, 100, 100);
+    [self.animationView setFrameX:70];
     self.startButton.enabled = false;
     
     [self.controller removeAllAnimations];
