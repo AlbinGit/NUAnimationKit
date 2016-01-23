@@ -8,7 +8,7 @@
         <!--Animation chains-->
         <scene sceneID="wQg-tq-qST">
             <objects>
-                <viewController title="Animation chains" id="whP-gf-Uak" customClass="NUViewController" sceneMemberID="viewController">
+                <viewController title="Animation chains" id="whP-gf-Uak" customClass="NUChainAnimationsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uEw-UM-LJ8"/>
                         <viewControllerLayoutGuide type="bottom" id="Mvr-aV-6Um"/>
@@ -48,7 +48,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -71,7 +71,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -82,6 +82,29 @@
                                             <segue destination="Pp9-Xf-Bt6" kind="show" id="frV-cZ-mFf"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="cPX-L4-lH8" style="IBUITableViewCellStyleDefault" id="xvM-Dr-anx">
+                                        <rect key="frame" x="0.0" y="152" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xvM-Dr-anx" id="tbA-Go-gyw">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Spring playground" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cPX-L4-lH8">
+                                                    <rect key="frame" x="15" y="0.0" width="570" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <animations/>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                        <connections>
+                                            <segue destination="G57-Hk-fyJ" kind="show" id="Ahe-TM-TxD"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -90,11 +113,11 @@
                             <outlet property="delegate" destination="XoR-1r-WzW" id="xw9-6c-ngy"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="HD5-iz-h5c"/>
+                    <navigationItem key="navigationItem" title="NUAnimationKit - Examples" id="HD5-iz-h5c"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mz4-xI-n5c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-63" y="476"/>
+            <point key="canvasLocation" x="-64" y="476"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ijo-H4-CPm">
@@ -131,6 +154,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UhT-Mx-AU4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="935" y="1283"/>
+        </scene>
+        <!--Spring playground-->
+        <scene sceneID="8EN-Yr-YzH">
+            <objects>
+                <viewController title="Spring playground" id="G57-Hk-fyJ" customClass="NUSpringPlaygroundViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="w0w-sl-Kwt"/>
+                        <viewControllerLayoutGuide type="bottom" id="zbD-mq-lBG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RB3-S2-k2a">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uq9-62-w68" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="935" y="2007"/>
         </scene>
     </scenes>
 </document>

@@ -1,5 +1,5 @@
 //
-//  NUViewController.h
+//  NUChainAnimationsViewController.h
 //  NUAnimationKit
 //
 //  Created by Victor on 01/22/2016.
@@ -9,6 +9,6 @@
 @import UIKit;
 #import "NUBaseExampleViewController.h"
 
-@interface NUViewController : NUBaseExampleViewController
+@interface NUChainAnimationsViewController : NUBaseExampleViewController
 
 @end

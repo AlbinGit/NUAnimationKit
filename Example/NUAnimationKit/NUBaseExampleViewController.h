@@ -14,4 +14,6 @@
 - (void)startAnimation;
 @property (nonatomic, strong) NUAnimationController *controller;
 
+@property (nonatomic, weak) UIButton *startButton;
+
 @end

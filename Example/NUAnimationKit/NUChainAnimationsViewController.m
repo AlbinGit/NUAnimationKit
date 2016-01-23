@@ -1,19 +1,19 @@
 //
-//  NUViewController.m
+//  NUChainAnimationsViewController.m
 //  NUAnimationKit
 //
 //  Created by Victor on 01/22/2016.
 //  Copyright (c) 2016 Victor. All rights reserved.
 //
 
-#import "NUViewController.h"
+#import "NUChainAnimationsViewController.h"
 #import "NUAnimationController.h"
 
-@interface NUViewController ()
+@interface NUChainAnimationsViewController ()
 @property (nonatomic, strong) UILabel *completionLabel;
 @end
 
-@implementation NUViewController
+@implementation NUChainAnimationsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,10 +39,8 @@
     [self.view addSubview:self.completionLabel];
     [self.view addSubview:progressLabel];
     
-    self.controller = [[NUAnimationController alloc] init];
-    
     [self.controller addAnimation:^{
-        frameSetY(animationView1.frame, 400);
+        [animationView1 setFrameY:400];
         animationView1.backgroundColor = [UIColor grayColor];
     }].withAnimationOption(UIViewAnimationOptionTransitionCrossDissolve)
     .andThen(^{
@@ -50,11 +48,11 @@
     });
     
     [self.controller addAnimation:^{
-        frameSetY(animationView2.frame, 400);
+        [animationView2 setFrameY:400];
     }].withDelay(0.1).withDuration(0.3).withCurve(UIViewAnimationCurveEaseInOut);
     
     [self.controller addAnimation:^{
-        frameSetY(animationView3.frame, 400);
+        [animationView3 setFrameY:400];
     }].withType(NUAnimationTypeSpringy).withDuration(NUSpringAnimationNaturalDuration).
     alongSideBlock(^(CGFloat progress){
         progressLabel.text = [NSString stringWithFormat:@"%f", progress];

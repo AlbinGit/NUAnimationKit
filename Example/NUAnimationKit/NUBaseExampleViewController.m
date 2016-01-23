@@ -8,15 +8,12 @@
 
 #import "NUBaseExampleViewController.h"
 
-@interface NUBaseExampleViewController ()
-@property (nonatomic, weak) UIButton *startButton;
-@end
-
 @implementation NUBaseExampleViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.startButton];
+    self.controller = [[NUAnimationController alloc] init];
 }
 
 - (void)startAnimation {
@@ -40,5 +37,8 @@
     return btn;
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    self.controller = nil;
+}
 
 @end

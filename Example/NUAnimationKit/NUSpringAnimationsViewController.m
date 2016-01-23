@@ -17,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
     UIView *animationView1 = [[UIView alloc] initWithFrame:CGRectMake(0, 100, 100, 100)];
     animationView1.backgroundColor = [UIColor redColor];
     UILabel *duration1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, 100, 100)];
@@ -41,10 +41,8 @@
     [self.view addSubview:duration2];
     [self.view addSubview:duration3];
     
-    self.controller = [[NUAnimationController alloc] init];
-    
     [self.controller addAnimation:^{
-        frameSetY(animationView1.frame, 300);
+        [animationView1 setFrameY: 300];
     }].withType(NUAnimationTypeSpringy).withDuration(NUSpringAnimationNaturalDuration).
     alongSideBlock(^(CGFloat progress){
         duration1.text = [NSString stringWithFormat:@"Damp = 0.1\n%f\n", progress];
@@ -53,7 +51,7 @@
         duration1.text = [NSString stringWithFormat:@"Damp = 0.1\n%f\n%f",1.0f, -[self.startDate timeIntervalSinceNow]];
     }).
     inParallelWith(^{
-        frameSetY(animationView2.frame, 300);
+        [animationView2 setFrameY:300];
     }).withType(NUAnimationTypeSpringy).withDuration(NUSpringAnimationNaturalDuration).
     alongSideBlock(^(CGFloat progress){
         duration2.text = [NSString stringWithFormat:@"Damp = 0.3\n%f\n", progress];
@@ -62,12 +60,12 @@
         duration2.text = [NSString stringWithFormat:@"Damp = 0.3\n%f\n%f", 1.0f, -[self.startDate timeIntervalSinceNow]];
     }).
     inParallelWith(^{
-        frameSetY(animationView3.frame, 300);
+        [animationView3 setFrameY:300];
     }).withType(NUAnimationTypeSpringy).withDuration(NUSpringAnimationNaturalDuration).
     alongSideBlock(^(CGFloat progress){
         duration3.text = [NSString stringWithFormat:@"Damp = 0.7\n%f\n", progress];
     }).
-    withDamping(0.7).andThen(^{
+    withDamping(0.6).andThen(^{
         duration3.text = [NSString stringWithFormat:@"Damp = 0.7\n%f\n%f", 1.0f, -[self.startDate timeIntervalSinceNow]];
     });
 
