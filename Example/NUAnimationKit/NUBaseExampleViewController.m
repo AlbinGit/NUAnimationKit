@@ -38,6 +38,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillAppear:animated];
     self.controller = nil;
 }
 
