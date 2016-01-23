@@ -24,7 +24,6 @@
 - (NUCompositeAnimationBlock * (^)(NUAnimationType))withType;
 - (NUCompositeAnimationBlock * (^)(NSTimeInterval))withDelay;
 
-
 //Completion
 - (NUCompositeAnimationBlock * (^)(NUCompletionBlock))andThen;
 

@@ -62,7 +62,9 @@
 }
 
 - (void)setCompletionBlock:(NUCompletionBlock)completionBlock {
+    __weak typeof(self) weakself = self;
     super.completionBlock = ^() {
+        __strong typeof(self) self = weakself;
         [self cleanUp];
         
         if (completionBlock) {
@@ -74,14 +76,18 @@
 #pragma mark - Convenience methods
 
 - (NUCompositeAnimationBlock * (^)(NUProgressAnimationBlock))alongSideBlock {
+    __weak typeof(self) weakself = self;
     return ^NUCompositeAnimationBlock*(NUProgressAnimationBlock block) {
+        __strong typeof(self) self = weakself;
         self.progressBlock = block;
         return self;
     };
 }
 
 - (NUCompositeAnimationBlock * (^)(NUAnimationType))withType {
+    __weak typeof(self) weakself = self;
     return ^NUCompositeAnimationBlock*(NUAnimationType type) {
+        __strong typeof(self) self = weakself;
         self.type = type;
         if (type == NUAnimationTypeSpringy) {
             self.options = [[NUSpringAnimationOptions alloc] init];
@@ -91,64 +97,82 @@
 }
 
 - (NUCompositeAnimationBlock * (^)(NSTimeInterval))withDelay {
+    __weak typeof(self) weakself = self;
     return ^NUCompositeAnimationBlock*(NSTimeInterval delay) {
+        __strong typeof(self) self = weakself;
         self.delay = delay;
         return self;
     };
 }
 - (NUCompositeAnimationBlock * (^)(NUCompletionBlock))andThen {
+    __weak typeof(self) weakself = self;
     return ^NUCompositeAnimationBlock*(NUCompletionBlock completion) {
+        __strong typeof(self) self = weakself;
         self.completionBlock = completion;
         return self;
     };
 }
 
 - (NUCompositeAnimationBlock * (^)(UIViewAnimationCurve))withCurve {
+    __weak typeof(self) weakself = self;
     return ^NUCompositeAnimationBlock*(UIViewAnimationCurve curve) {
+        __strong typeof(self) self = weakself;
         self.options.curve = curve;
         return self;
     };
 }
 
 - (NUCompositeAnimationBlock * (^)(UIViewAnimationOptions))withAnimationOption {
+    __weak typeof(self) weakself = self;
     return ^NUCompositeAnimationBlock*(UIViewAnimationOptions options) {
+        __strong typeof(self) self = weakself;
         self.options.options = options;
         return self;
     };
 }
 
 - (NUCompositeAnimationBlock * (^)(NSTimeInterval))withDuration {
+    __weak typeof(self) weakself = self;
     return ^NUCompositeAnimationBlock*(NSTimeInterval duration) {
+        __strong typeof(self) self = weakself;
         self.options.duration = duration;
         return self;
     };
 }
 
 - (NUCompositeAnimationBlock * (^)(NUAnimationOptions *))withOptions {
+    __weak typeof(self) weakself = self;
     return ^NUCompositeAnimationBlock*(NUAnimationOptions *options) {
+        __strong typeof(self) self = weakself;
         self.options = options;
         return self;
     };
 }
 
 - (NUCompositeAnimationBlock * (^)(CGFloat))withInitialVelocity {
+    __weak typeof(self) weakself = self;
     NSAssert(self.type == NUAnimationTypeSpringy, @"This can only be set in springy animations.");
     return ^NUCompositeAnimationBlock*(CGFloat velocity) {
+        __strong typeof(self) self = weakself;
         ((NUSpringAnimationOptions *)self.options).initialVelocity = velocity;
         return self;
     };
 }
 
 - (NUCompositeAnimationBlock * (^)(CGFloat))withDamping {
+    __weak typeof(self) weakself = self;
     NSAssert(self.type == NUAnimationTypeSpringy, @"This can only be set in springy animations.");
     return ^NUCompositeAnimationBlock*(CGFloat damping) {
+        __strong typeof(self) self = weakself;
         ((NUSpringAnimationOptions *)self.options).damping = damping;
         return self;
     };
 }
 
 - (NUCompositeAnimationBlock * (^)(NUSimpleAnimationBlock))inParallelWith {
+    __weak typeof(self) weakself = self;
     return ^NUCompositeAnimationBlock*(NUSimpleAnimationBlock block) {
+        __strong typeof(self) self = weakself;
         NUCompositeAnimationBlock *result = [[NUCompositeAnimationBlock alloc] init];
         result.animationBlock = block;
         self.parallelBlock = result;
