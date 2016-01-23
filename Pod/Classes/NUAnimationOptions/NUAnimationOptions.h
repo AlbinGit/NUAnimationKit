@@ -38,4 +38,6 @@ extern NSTimeInterval NUSpringAnimationNaturalDuration;
                             andDamping: (CGFloat)damping
                     andInitialVelocity: (CGFloat)initialVelocity;
 
+- (NSTimeInterval)naturalTimeInterval;
+
 @end

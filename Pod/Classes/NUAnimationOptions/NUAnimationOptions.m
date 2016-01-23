@@ -37,17 +37,20 @@
 
 @interface NUSpringAnimationOptions()
 @property (nonatomic, readwrite) NSTimeInterval naturalTimeInterval;
+
+//Physics-related
+@property double settleTolerance;
+@property double springMass;
+@property double springConstant;
+
 @end
 
 @implementation NUSpringAnimationOptions
 
 //Wow, such physics: https://en.wikipedia.org/wiki/Settling_time
 //very mechanics: https://en.wikipedia.org/wiki/Mechanical_resonance
-#define naturalConstant 1.0f/(2.0f*M_PI)
-#define settleTolerance 0.1f
-#define springConstant 1000.0f //N/m
-#define mass 1.0f //kg
-#define naturalFrequency naturalConstant*sqrt(springConstant/mass)
+#define NUGetNaturalFrequency(spring, mass) 1.0f/(2.0f*M_PI)*sqrt(spring/mass)
+#define settleTolerance 0.1f //Based on empirical UI tests
 
 double NUSpringAnimationNaturalDuration = -1;
 
@@ -74,13 +77,15 @@ double NUSpringAnimationNaturalDuration = -1;
 - (void)initialize {
     self.damping = [[NUAnimationDefaults sharedDefaults] defaultDamping];
     self.initialVelocity = [[NUAnimationDefaults sharedDefaults] defaultInitialVelocity];
+    self.springMass = [[NUAnimationDefaults sharedDefaults] defaultSpringMass];
+    self.springConstant = [[NUAnimationDefaults sharedDefaults] defaultSpringConstant];
 }
 
 - (NSTimeInterval)naturalTimeInterval {
     if (_naturalTimeInterval) {
         return _naturalTimeInterval;
     }
-    _naturalTimeInterval = -log(settleTolerance)/(self.damping*naturalFrequency);
+    _naturalTimeInterval = -log(settleTolerance)/(self.damping*NUGetNaturalFrequency(self.springConstant, self.springMass));
     return _naturalTimeInterval;
 }
 
