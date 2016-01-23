@@ -6,15 +6,15 @@
 //  Copyright © 2016 Victor Gabriel Maraccini. All rights reserved.
 //
 
-#import "NUCompositeAnimationBlock.h"
+#import "NUCompositeAnimation.h"
 #import "UIView+NUAnimationAdditions.h"
 
 @interface NUAnimationController : NSObject
 
 @property (nonatomic, readonly) BOOL animationCancelled;
 
-- (NUBaseAnimationBlock *)addAnimationBlock:(NUBaseAnimationBlock *)block;
-- (void)removeAnimation: (NUBaseAnimationBlock *)animation;
+- (NUBaseAnimation *)addAnimationBlock:(NUBaseAnimation *)block;
+- (void)removeAnimation: (NUBaseAnimation *)animation;
 - (void)removeAllAnimations;
 
 - (NSArray *)animations;
@@ -24,7 +24,7 @@
 - (void)startAnimationChain;
 
 //Convenience methods
-- (NUCompositeAnimationBlock *)addAnimation: (NUSimpleAnimationBlock)animations;
+- (NUCompositeAnimation *)addAnimation: (NUSimpleAnimationBlock)animations;
 
 - (void)cancelAnimations;
 

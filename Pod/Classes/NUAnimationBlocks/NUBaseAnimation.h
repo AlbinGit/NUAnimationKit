@@ -1,5 +1,5 @@
 //
-//  NUBaseAnimationBlock.h
+//  NUBaseAnimation.h
 //  NUAnimationKit
 //
 //  Created by Victor Maraccini on 1/22/16.
@@ -23,7 +23,7 @@ typedef NS_ENUM(NSInteger, NUAnimationType) {
 };
 
 //Base class
-@interface NUBaseAnimationBlock : NSObject
+@interface NUBaseAnimation : NSObject
 
 @property (nonatomic) NUAnimationType type;
 @property NUAnimationOptions *options;

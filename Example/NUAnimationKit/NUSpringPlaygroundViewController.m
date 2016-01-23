@@ -100,7 +100,7 @@
     [self.controller removeAllAnimations];
     
     __weak typeof(self) weakself = self;
-    NUBaseAnimationBlock *block =
+    NUBaseAnimation *animation =
     [self.controller addAnimation:^{
         __strong typeof(self) self = weakself;
         [self.animationView setFrameX:150];
@@ -110,7 +110,7 @@
     
     if (self.durationSwitch.on) {
         self.naturalDurationLabel.text = [NSString stringWithFormat:@"Natural duration: %f",
-                                          block.options.duration];
+                                          animation.options.duration];
     }
     
     [self.controller startAnimationChainWithCompletionBlock:^{

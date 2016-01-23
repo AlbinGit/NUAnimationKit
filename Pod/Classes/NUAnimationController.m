@@ -35,7 +35,7 @@
 #pragma mark - Public methods
 
 ///Adds an animation block to the chain
-- (NUBaseAnimationBlock *)addAnimationBlock:(NUBaseAnimationBlock *)block {
+- (NUBaseAnimation *)addAnimationBlock:(NUBaseAnimation *)block {
     [self.animationBlocks addObject:block];
     _totalAnimationTime += block.options.duration;
     return block;
@@ -62,8 +62,8 @@
 }
 
 ///Adds an animation block to the chain.
-- (NUCompositeAnimationBlock *)addAnimation: (NUSimpleAnimationBlock)animation {
-    NUCompositeAnimationBlock *result = [[NUCompositeAnimationBlock alloc] init];
+- (NUCompositeAnimation *)addAnimation: (NUSimpleAnimationBlock)animation {
+    NUCompositeAnimation *result = [[NUCompositeAnimation alloc] init];
     result.animationBlock = animation;
     [self addAnimationBlock:result];
     return result;
@@ -78,7 +78,7 @@
 }
 
 ///Removes an animation block
-- (void)removeAnimation: (NUBaseAnimationBlock *)animation {
+- (void)removeAnimation: (NUBaseAnimation *)animation {
     [self.animationBlocks removeObject:animation];
 }
 
@@ -104,15 +104,15 @@
         return;
     }
     
-    NUBaseAnimationBlock *block = self.animationBlocks[_animationStep++];
+    NUBaseAnimation *block = self.animationBlocks[_animationStep++];
     [self startBlock:block isParallel:false];
     
 }
 
-- (void)startBlock:(NUBaseAnimationBlock *)block isParallel: (BOOL)isParallel {
+- (void)startBlock:(NUBaseAnimation *)block isParallel: (BOOL)isParallel {
     __weak typeof(self) weakself = self;
-    if ([block isKindOfClass:[NUCompositeAnimationBlock class]]) {
-        NUCompositeAnimationBlock *composite = (NUCompositeAnimationBlock *)block;
+    if ([block isKindOfClass:[NUCompositeAnimation class]]) {
+        NUCompositeAnimation *composite = (NUCompositeAnimation *)block;
         if (composite.parallelBlock) {
             [self startBlock:composite.parallelBlock isParallel:true];
         }

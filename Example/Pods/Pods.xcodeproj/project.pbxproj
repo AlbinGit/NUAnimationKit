@@ -7,30 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		14D5259F57446AB6E5E83EEB1ED4D7AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
-		36F0598D5C9549F6CB58C14763757093 /* NUAnimationOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = C67B28A5CF56AEC62A660698A107D861 /* NUAnimationOptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		38AEF7A883EAE0B1A17957E22B1F04D2 /* NUBaseAnimationBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = B4BAB7B518CC2B6F0C1E0CCF37A0804A /* NUBaseAnimationBlock.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		437DBD2EAF10D124FE7A0CCEE4527FD5 /* NUAnimationOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E5BB48F5476EC32ED3DAA360456D57 /* NUAnimationOptions.m */; };
-		6FD7FC3F12B9ED4EB2F1CAED4D369D00 /* NUCompositeAnimationBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B95F2AE58B39FE2A0A4C75D5701FAF3 /* NUCompositeAnimationBlock.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05775A2022974B3137A6495C4855FB6A /* NUCompositeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 03612954DCF73ED9E3492B4C1437E543 /* NUCompositeAnimation.m */; };
+		0D757A43C5C16C29A28DE7753744801E /* NUAnimationOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 23A1EF5E24DE0107A548BDECFBD61CD2 /* NUAnimationOptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1AFFA8D3833B2F247ECCF62F386F77F5 /* NUAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9535F7EB6E03EFDCF1593B46FE34E0C /* NUAnimationController.m */; };
+		40C85F160FA4E80C6741718712647DE2 /* UIView+NUAnimationAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A51A0D644FC8B59901D800B4539A72E /* UIView+NUAnimationAdditions.m */; };
+		461802060AA3D268601DDB1F572A6640 /* NUBaseAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BCCA50AB878C191FC62CD1FC60DB5F /* NUBaseAnimation.m */; };
+		5E5F18DDD43F814BA5767B4A630DC4E9 /* NUAnimationKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 182E88CBE5A43CDE919D61B3F4E369DB /* NUAnimationKit-dummy.m */; };
+		5F4803F8A080DCA9BAD2C055589E475F /* NUAnimationDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DADA8A40AE6DAA5CA41E44E91DD8A92 /* NUAnimationDefaults.m */; };
+		77C0B3ECF187B77425ABCFC303CF06EB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
+		7A81D6A4D6520DF024023B754F2344EF /* NUAnimationKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8508A3737EF0DE27B7D49F4981639799 /* NUAnimationKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		828B98A27C20F79DDB83F7BED1F31DBB /* Pods-NUAnimationKit_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D3CA4E459DC694DB7D91C2AC9C28E2AE /* Pods-NUAnimationKit_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8B8267B0397A727FFFEDC11C5E5AA28E /* NUBaseAnimationBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0121DC6E304260311A2A43CA3D1BB4 /* NUBaseAnimationBlock.m */; };
 		928EBE1B18A0C26C44B0E3FE4DDBF0C2 /* Pods-NUAnimationKit_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B58293B4CA85F0EB78F4A6EFECB319A /* Pods-NUAnimationKit_Tests-dummy.m */; };
 		9BA620DB72A0632B126B5F991B1C341F /* Pods-NUAnimationKit_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 604F36DE3EA39BF6F8BBA2CE8E3CF8EB /* Pods-NUAnimationKit_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9DEA4BEC4D69135959D9EDC7CFEA5C80 /* NUAnimationKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 182E88CBE5A43CDE919D61B3F4E369DB /* NUAnimationKit-dummy.m */; };
+		A676E2A0CE4AED0D75F430631917F738 /* NUCompositeAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 8AFB8B006298974B1F46F7E51BDCD7E8 /* NUCompositeAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AAC3812A8A254E03DFAA9BDE833B31AD /* Pods-NUAnimationKit_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C6B913E54055383E1BAC6F3FCF197E /* Pods-NUAnimationKit_Example-dummy.m */; };
+		B5B0AFF83D89A27C7AA932FC0DD5976B /* NUAnimationDefaults.h in Headers */ = {isa = PBXBuildFile; fileRef = 90F711F4F21EFCA9D770646A24CE6669 /* NUAnimationDefaults.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5F914ABD970936B20D788DBCDE7FB7A /* NUAnimationKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D5F2C9DF546E0AB608465F0CBF8EF94A /* NUAnimationKit.bundle */; };
 		BBF16D18DB3C80ACD58339FC013081D2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
-		C5854247A531D77E7EA2747A9B1B5B52 /* NUAnimationKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8508A3737EF0DE27B7D49F4981639799 /* NUAnimationKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CC3E5D6D4A896B7B216B56E43AA350DD /* NUCompositeAnimationBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC1646BD6906FBB4EB910B3DCC8C3A2 /* NUCompositeAnimationBlock.m */; };
-		D3C55FDEC0AE1B3AF2BD87E8CB32A1E5 /* NUAnimationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74EEA05E3D9A60C6666598DC51A5277C /* NUAnimationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D41B76761C532E05006F0701 /* NUAnimationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E4192F42A0B15C1DDC726C6A41E8ED /* NUAnimationKit.framework */; };
-		D41B767D1C532E10006F0701 /* NUAnimationControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D41B767C1C532E10006F0701 /* NUAnimationControllerTests.m */; };
-		D432BC451C52D34A005709FE /* UIView+NUAnimationAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D432BC431C52D34A005709FE /* UIView+NUAnimationAdditions.m */; };
-		D432BC481C52D8DE005709FE /* UIView+NUAnimationAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = D432BC421C52D34A005709FE /* UIView+NUAnimationAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D432BC561C52FD2A005709FE /* NUAnimationDefaults.h in Headers */ = {isa = PBXBuildFile; fileRef = D432BC541C52FD2A005709FE /* NUAnimationDefaults.h */; };
-		D432BC571C52FD2A005709FE /* NUAnimationDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = D432BC551C52FD2A005709FE /* NUAnimationDefaults.m */; };
-		F150F9D1C64C98A0DC239F58326B5519 /* NUAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D544996FD2ECB223ED9DCBB4332AC257 /* NUAnimationController.m */; };
+		C5F0CD33E370FB51413A15C63A7AEF93 /* NUAnimationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E649AFB71F158750C7E8BE1CBCFCD47 /* NUAnimationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C6EFBDA420E4E7CD4C5CC4C3E8F94BDF /* NUBaseAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 878DC482E6F65EDDFFFEF4C2D3588D4C /* NUBaseAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFFB2AC40656C70A88F8C334C523EFC7 /* NUAnimationOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7501938C7E53A5EC853E1F04770CF8D3 /* NUAnimationOptions.m */; };
 		F41EF526525BE6D343AC5A440344BFA2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
-		FDCB9737A415EFDE8AEC08BB487DE6D6 /* NUAnimationKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D5F2C9DF546E0AB608465F0CBF8EF94A /* NUAnimationKit.bundle */; };
+		F81AE7E4ED0290AE0EB4213C39A5BA9D /* UIView+NUAnimationAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2787076190A8D6B1FC8C856DDCDC99E3 /* UIView+NUAnimationAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,41 +36,35 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C2A77FCC887F554F63D3FC97C0BB148F;
+			remoteGlobalIDString = EB9F9F646F4FB83D249E9DF782E308F9;
 			remoteInfo = NUAnimationKit;
 		};
 		6B2DC469A6404DD990A5D898D4158F3C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C2A77FCC887F554F63D3FC97C0BB148F;
+			remoteGlobalIDString = EB9F9F646F4FB83D249E9DF782E308F9;
 			remoteInfo = NUAnimationKit;
 		};
-		9E7FAE7C684B3302DA29B9BE5818C51F /* PBXContainerItemProxy */ = {
+		C73B56A030B8B8EEA6B9AF0952223944 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8F3B4170FD9EFF7A6EAF7C66A165CC3D;
+			remoteGlobalIDString = 0ED65C275205B0A348A3333D349997E3;
 			remoteInfo = "NUAnimationKit-NUAnimationKit";
-		};
-		D41B76771C532E05006F0701 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C2A77FCC887F554F63D3FC97C0BB148F;
-			remoteInfo = NUAnimationKit;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		011A345F6DCF3CA4C7C290C39E9BCF25 /* Pods-NUAnimationKit_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NUAnimationKit_Tests-resources.sh"; sourceTree = "<group>"; };
+		03612954DCF73ED9E3492B4C1437E543 /* NUCompositeAnimation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = NUCompositeAnimation.m; sourceTree = "<group>"; };
 		0B4D0C4630E8AEB82222EBF2A4D32DCA /* Pods-NUAnimationKit_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-NUAnimationKit_Tests.modulemap"; sourceTree = "<group>"; };
 		14E4192F42A0B15C1DDC726C6A41E8ED /* NUAnimationKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NUAnimationKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		178A7C1D52CBE9EB893DC26174372F71 /* Pods-NUAnimationKit_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-NUAnimationKit_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		182E88CBE5A43CDE919D61B3F4E369DB /* NUAnimationKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NUAnimationKit-dummy.m"; sourceTree = "<group>"; };
-		1B95F2AE58B39FE2A0A4C75D5701FAF3 /* NUCompositeAnimationBlock.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = NUCompositeAnimationBlock.h; sourceTree = "<group>"; };
-		2C0121DC6E304260311A2A43CA3D1BB4 /* NUBaseAnimationBlock.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = NUBaseAnimationBlock.m; sourceTree = "<group>"; };
-		33E5BB48F5476EC32ED3DAA360456D57 /* NUAnimationOptions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = NUAnimationOptions.m; sourceTree = "<group>"; };
+		23A1EF5E24DE0107A548BDECFBD61CD2 /* NUAnimationOptions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = NUAnimationOptions.h; sourceTree = "<group>"; };
+		2787076190A8D6B1FC8C856DDCDC99E3 /* UIView+NUAnimationAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIView+NUAnimationAdditions.h"; sourceTree = "<group>"; };
+		2E649AFB71F158750C7E8BE1CBCFCD47 /* NUAnimationController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = NUAnimationController.h; sourceTree = "<group>"; };
 		3B4351B5C22186A48E2A12127D539F92 /* Pods-NUAnimationKit_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NUAnimationKit_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		3B58293B4CA85F0EB78F4A6EFECB319A /* Pods-NUAnimationKit_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NUAnimationKit_Tests-dummy.m"; sourceTree = "<group>"; };
 		3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -80,32 +72,28 @@
 		44A145BC2472D4449DC8A7223DB34A7E /* NUAnimationKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NUAnimationKit.xcconfig; sourceTree = "<group>"; };
 		4E3E095403D0D0875CAF151B20591E15 /* Pods-NUAnimationKit_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-NUAnimationKit_Example.modulemap"; sourceTree = "<group>"; };
 		58A42006DF7C42E250747339A16DD4FB /* NUAnimationKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = NUAnimationKit.modulemap; sourceTree = "<group>"; };
+		5A51A0D644FC8B59901D800B4539A72E /* UIView+NUAnimationAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIView+NUAnimationAdditions.m"; sourceTree = "<group>"; };
 		5BFBC07F3749BD3F5D40E2917AF72951 /* Pods-NUAnimationKit_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NUAnimationKit_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		5FF7E6B3DD04A7970957751229FF2EF1 /* Pods-NUAnimationKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NUAnimationKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		604F36DE3EA39BF6F8BBA2CE8E3CF8EB /* Pods-NUAnimationKit_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NUAnimationKit_Example-umbrella.h"; sourceTree = "<group>"; };
 		63FF43FB61EC96C59AAD1C66C458C1B9 /* Pods_NUAnimationKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NUAnimationKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		656C3F954EF8DD8240E8D128B427AFB8 /* NUAnimationKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NUAnimationKit-prefix.pch"; sourceTree = "<group>"; };
-		74EEA05E3D9A60C6666598DC51A5277C /* NUAnimationController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = NUAnimationController.h; sourceTree = "<group>"; };
+		6DADA8A40AE6DAA5CA41E44E91DD8A92 /* NUAnimationDefaults.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = NUAnimationDefaults.m; sourceTree = "<group>"; };
+		70BCCA50AB878C191FC62CD1FC60DB5F /* NUBaseAnimation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = NUBaseAnimation.m; sourceTree = "<group>"; };
+		7501938C7E53A5EC853E1F04770CF8D3 /* NUAnimationOptions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = NUAnimationOptions.m; sourceTree = "<group>"; };
 		8508A3737EF0DE27B7D49F4981639799 /* NUAnimationKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NUAnimationKit-umbrella.h"; sourceTree = "<group>"; };
 		86439A68A8A4A31193BC8CDB05B87378 /* Pods-NUAnimationKit_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NUAnimationKit_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		878DC482E6F65EDDFFFEF4C2D3588D4C /* NUBaseAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = NUBaseAnimation.h; sourceTree = "<group>"; };
+		8AFB8B006298974B1F46F7E51BDCD7E8 /* NUCompositeAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = NUCompositeAnimation.h; sourceTree = "<group>"; };
+		90F711F4F21EFCA9D770646A24CE6669 /* NUAnimationDefaults.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = NUAnimationDefaults.h; sourceTree = "<group>"; };
 		91C6B913E54055383E1BAC6F3FCF197E /* Pods-NUAnimationKit_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NUAnimationKit_Example-dummy.m"; sourceTree = "<group>"; };
-		9DC1646BD6906FBB4EB910B3DCC8C3A2 /* NUCompositeAnimationBlock.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = NUCompositeAnimationBlock.m; sourceTree = "<group>"; };
 		A9EEB3AFE0DE24DC34205C101A164469 /* Pods-NUAnimationKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NUAnimationKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		B4B6DF239E7B2F300CC206CD360E6780 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B4BAB7B518CC2B6F0C1E0CCF37A0804A /* NUBaseAnimationBlock.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = NUBaseAnimationBlock.h; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		C67B28A5CF56AEC62A660698A107D861 /* NUAnimationOptions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = NUAnimationOptions.h; sourceTree = "<group>"; };
 		C699BDCFDDDDF28EDB66CA4198726D72 /* Pods_NUAnimationKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NUAnimationKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9535F7EB6E03EFDCF1593B46FE34E0C /* NUAnimationController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = NUAnimationController.m; sourceTree = "<group>"; };
 		CEF6CFEEF96C22F5375D04002D08C790 /* Pods-NUAnimationKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NUAnimationKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		D3CA4E459DC694DB7D91C2AC9C28E2AE /* Pods-NUAnimationKit_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NUAnimationKit_Tests-umbrella.h"; sourceTree = "<group>"; };
-		D41B76711C532E05006F0701 /* NUAnimationKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NUAnimationKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D41B76751C532E05006F0701 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D41B767C1C532E10006F0701 /* NUAnimationControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUAnimationControllerTests.m; sourceTree = "<group>"; };
-		D432BC421C52D34A005709FE /* UIView+NUAnimationAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+NUAnimationAdditions.h"; path = "Categories/UIView+NUAnimationAdditions.h"; sourceTree = "<group>"; };
-		D432BC431C52D34A005709FE /* UIView+NUAnimationAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+NUAnimationAdditions.m"; path = "Categories/UIView+NUAnimationAdditions.m"; sourceTree = "<group>"; };
-		D432BC541C52FD2A005709FE /* NUAnimationDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUAnimationDefaults.h; path = NUAnimationDefaults/NUAnimationDefaults.h; sourceTree = "<group>"; };
-		D432BC551C52FD2A005709FE /* NUAnimationDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUAnimationDefaults.m; path = NUAnimationDefaults/NUAnimationDefaults.m; sourceTree = "<group>"; };
-		D544996FD2ECB223ED9DCBB4332AC257 /* NUAnimationController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = NUAnimationController.m; sourceTree = "<group>"; };
 		D5F2C9DF546E0AB608465F0CBF8EF94A /* NUAnimationKit.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NUAnimationKit.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBFBEE6864688E98D09978CE99ACE43A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E15EBCA21C2D45FE9F5C094EA13D5E7A /* Pods-NUAnimationKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NUAnimationKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -115,26 +103,26 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2C571DF92244E0CB8829DC9E09E46940 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77C0B3ECF187B77425ABCFC303CF06EB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		484CCA2C6128673B884BEE63E6E147B7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		98C64B91AF5D5136C1C4D1AD76CE3A3B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				F41EF526525BE6D343AC5A440344BFA2 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9AEDC71B2D10F508089CD7D7E2F4AEB4 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AE2B28E710D1C5A74638C8DD43D87276 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				14D5259F57446AB6E5E83EEB1ED4D7AA /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,17 +134,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D41B766E1C532E05006F0701 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D41B76761C532E05006F0701 /* NUAnimationKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0DC7A2AE38DB5536E524369935951671 /* NUAnimationDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				90F711F4F21EFCA9D770646A24CE6669 /* NUAnimationDefaults.h */,
+				6DADA8A40AE6DAA5CA41E44E91DD8A92 /* NUAnimationDefaults.m */,
+			);
+			path = NUAnimationDefaults;
+			sourceTree = "<group>";
+		};
 		1554D115C58BE452A2BAC7C3F1C0FCDE /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,21 +153,19 @@
 				14E4192F42A0B15C1DDC726C6A41E8ED /* NUAnimationKit.framework */,
 				C699BDCFDDDDF28EDB66CA4198726D72 /* Pods_NUAnimationKit_Example.framework */,
 				63FF43FB61EC96C59AAD1C66C458C1B9 /* Pods_NUAnimationKit_Tests.framework */,
-				D41B76711C532E05006F0701 /* NUAnimationKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5DA920F8E802937D3BF39615EA89EA47 /* Classes */ = {
+		5BF1EA71B34603B7C2C88A627C450D12 /* NUAnimationBlocks */ = {
 			isa = PBXGroup;
 			children = (
-				D432BC411C52D32A005709FE /* Categories */,
-				74EEA05E3D9A60C6666598DC51A5277C /* NUAnimationController.h */,
-				D544996FD2ECB223ED9DCBB4332AC257 /* NUAnimationController.m */,
-				757A2009905F50AF708776BFEAB8BB45 /* NUAnimationBlocks */,
-				6A01B3C8C13232F4FDB23D2E965E19CF /* NUAnimationOptions */,
+				878DC482E6F65EDDFFFEF4C2D3588D4C /* NUBaseAnimation.h */,
+				70BCCA50AB878C191FC62CD1FC60DB5F /* NUBaseAnimation.m */,
+				8AFB8B006298974B1F46F7E51BDCD7E8 /* NUCompositeAnimation.h */,
+				03612954DCF73ED9E3492B4C1437E543 /* NUCompositeAnimation.m */,
 			);
-			path = Classes;
+			path = NUAnimationBlocks;
 			sourceTree = "<group>";
 		};
 		6130E3DEC77660BA9D1E492A585D3F19 /* Pods-NUAnimationKit_Example */ = {
@@ -207,25 +194,25 @@
 			name = "Development Pods";
 			sourceTree = "<group>";
 		};
-		6A01B3C8C13232F4FDB23D2E965E19CF /* NUAnimationOptions */ = {
+		6ADD704A9111DFF5D64E57CCB80DD3F0 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				D432BC531C52FD0B005709FE /* NUAnimationDefaults */,
-				C67B28A5CF56AEC62A660698A107D861 /* NUAnimationOptions.h */,
-				33E5BB48F5476EC32ED3DAA360456D57 /* NUAnimationOptions.m */,
+				2787076190A8D6B1FC8C856DDCDC99E3 /* UIView+NUAnimationAdditions.h */,
+				5A51A0D644FC8B59901D800B4539A72E /* UIView+NUAnimationAdditions.m */,
 			);
-			path = NUAnimationOptions;
+			path = Categories;
 			sourceTree = "<group>";
 		};
-		757A2009905F50AF708776BFEAB8BB45 /* NUAnimationBlocks */ = {
+		756954C836508FAF1235CFA5A9927738 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				B4BAB7B518CC2B6F0C1E0CCF37A0804A /* NUBaseAnimationBlock.h */,
-				2C0121DC6E304260311A2A43CA3D1BB4 /* NUBaseAnimationBlock.m */,
-				1B95F2AE58B39FE2A0A4C75D5701FAF3 /* NUCompositeAnimationBlock.h */,
-				9DC1646BD6906FBB4EB910B3DCC8C3A2 /* NUCompositeAnimationBlock.m */,
+				2E649AFB71F158750C7E8BE1CBCFCD47 /* NUAnimationController.h */,
+				C9535F7EB6E03EFDCF1593B46FE34E0C /* NUAnimationController.m */,
+				6ADD704A9111DFF5D64E57CCB80DD3F0 /* Categories */,
+				5BF1EA71B34603B7C2C88A627C450D12 /* NUAnimationBlocks */,
+				9A547CE6BD6EFBC97F2B9EA492D0A716 /* NUAnimationOptions */,
 			);
-			path = NUAnimationBlocks;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -233,7 +220,6 @@
 			children = (
 				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
 				654BD0CB00062478A0B9B758E62C40F4 /* Development Pods */,
-				D41B76721C532E05006F0701 /* NUAnimationKitTests */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
 				1554D115C58BE452A2BAC7C3F1C0FCDE /* Products */,
 				88AEB49A2A6199B29AFDCA1757222961 /* Targets Support Files */,
@@ -267,6 +253,24 @@
 			path = "Target Support Files/Pods-NUAnimationKit_Tests";
 			sourceTree = "<group>";
 		};
+		9A547CE6BD6EFBC97F2B9EA492D0A716 /* NUAnimationOptions */ = {
+			isa = PBXGroup;
+			children = (
+				23A1EF5E24DE0107A548BDECFBD61CD2 /* NUAnimationOptions.h */,
+				7501938C7E53A5EC853E1F04770CF8D3 /* NUAnimationOptions.m */,
+				0DC7A2AE38DB5536E524369935951671 /* NUAnimationDefaults */,
+			);
+			path = NUAnimationOptions;
+			sourceTree = "<group>";
+		};
+		A6A4561F1C8CC4F99B3F03ACC887BC38 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				756954C836508FAF1235CFA5A9927738 /* Classes */,
+			);
+			path = Pod;
+			sourceTree = "<group>";
+		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,46 +290,11 @@
 		D32A2380A7941AFF7E396157AC0C748B /* NUAnimationKit */ = {
 			isa = PBXGroup;
 			children = (
-				DF1944C232307A1CBCD98DB3F459979E /* Pod */,
+				A6A4561F1C8CC4F99B3F03ACC887BC38 /* Pod */,
 				F8A38CD3DC3F65824256281C4EBF9EA0 /* Support Files */,
 			);
 			name = NUAnimationKit;
 			path = ../..;
-			sourceTree = "<group>";
-		};
-		D41B76721C532E05006F0701 /* NUAnimationKitTests */ = {
-			isa = PBXGroup;
-			children = (
-				D41B767C1C532E10006F0701 /* NUAnimationControllerTests.m */,
-				D41B76751C532E05006F0701 /* Info.plist */,
-			);
-			path = NUAnimationKitTests;
-			sourceTree = "<group>";
-		};
-		D432BC411C52D32A005709FE /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				D432BC421C52D34A005709FE /* UIView+NUAnimationAdditions.h */,
-				D432BC431C52D34A005709FE /* UIView+NUAnimationAdditions.m */,
-			);
-			name = Categories;
-			sourceTree = "<group>";
-		};
-		D432BC531C52FD0B005709FE /* NUAnimationDefaults */ = {
-			isa = PBXGroup;
-			children = (
-				D432BC541C52FD2A005709FE /* NUAnimationDefaults.h */,
-				D432BC551C52FD2A005709FE /* NUAnimationDefaults.m */,
-			);
-			name = NUAnimationDefaults;
-			sourceTree = "<group>";
-		};
-		DF1944C232307A1CBCD98DB3F459979E /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				5DA920F8E802937D3BF39615EA89EA47 /* Classes */,
-			);
-			path = Pod;
 			sourceTree = "<group>";
 		};
 		F8A38CD3DC3F65824256281C4EBF9EA0 /* Support Files */ = {
@@ -353,17 +322,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AF5670630AFEF722A23BF622867F39CF /* Headers */ = {
+		79E72BDE32C16AADED31D94FB29BF2A0 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D432BC481C52D8DE005709FE /* UIView+NUAnimationAdditions.h in Headers */,
-				D3C55FDEC0AE1B3AF2BD87E8CB32A1E5 /* NUAnimationController.h in Headers */,
-				C5854247A531D77E7EA2747A9B1B5B52 /* NUAnimationKit-umbrella.h in Headers */,
-				36F0598D5C9549F6CB58C14763757093 /* NUAnimationOptions.h in Headers */,
-				38AEF7A883EAE0B1A17957E22B1F04D2 /* NUBaseAnimationBlock.h in Headers */,
-				6FD7FC3F12B9ED4EB2F1CAED4D369D00 /* NUCompositeAnimationBlock.h in Headers */,
-				D432BC561C52FD2A005709FE /* NUAnimationDefaults.h in Headers */,
+				C5F0CD33E370FB51413A15C63A7AEF93 /* NUAnimationController.h in Headers */,
+				B5B0AFF83D89A27C7AA932FC0DD5976B /* NUAnimationDefaults.h in Headers */,
+				7A81D6A4D6520DF024023B754F2344EF /* NUAnimationKit-umbrella.h in Headers */,
+				0D757A43C5C16C29A28DE7753744801E /* NUAnimationOptions.h in Headers */,
+				C6EFBDA420E4E7CD4C5CC4C3E8F94BDF /* NUBaseAnimation.h in Headers */,
+				A676E2A0CE4AED0D75F430631917F738 /* NUCompositeAnimation.h in Headers */,
+				F81AE7E4ED0290AE0EB4213C39A5BA9D /* UIView+NUAnimationAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +347,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		0ED65C275205B0A348A3333D349997E3 /* NUAnimationKit-NUAnimationKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0171343D68365597CFF08AA6027A59F9 /* Build configuration list for PBXNativeTarget "NUAnimationKit-NUAnimationKit" */;
+			buildPhases = (
+				DA158375B5E3E528C5520F8D0708835F /* Sources */,
+				484CCA2C6128673B884BEE63E6E147B7 /* Frameworks */,
+				5BCC1C6F82241ADCB8F56ABC0FB9DD29 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "NUAnimationKit-NUAnimationKit";
+			productName = "NUAnimationKit-NUAnimationKit";
+			productReference = D5F2C9DF546E0AB608465F0CBF8EF94A /* NUAnimationKit.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 		30A74391C0017DB9ACD8667D508FEAF5 /* Pods-NUAnimationKit_Example */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 96247060524D2397D5619EE2992B641D /* Build configuration list for PBXNativeTarget "Pods-NUAnimationKit_Example" */;
@@ -395,23 +381,6 @@
 			productName = "Pods-NUAnimationKit_Example";
 			productReference = C699BDCFDDDDF28EDB66CA4198726D72 /* Pods_NUAnimationKit_Example.framework */;
 			productType = "com.apple.product-type.framework";
-		};
-		8F3B4170FD9EFF7A6EAF7C66A165CC3D /* NUAnimationKit-NUAnimationKit */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 510F653C1328574AC33DB6F29847AEF9 /* Build configuration list for PBXNativeTarget "NUAnimationKit-NUAnimationKit" */;
-			buildPhases = (
-				B637266B8AD42448BE68CD1A8891B6FB /* Sources */,
-				9AEDC71B2D10F508089CD7D7E2F4AEB4 /* Frameworks */,
-				E58676D73FCBD7DDC7D7549E14950D05 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "NUAnimationKit-NUAnimationKit";
-			productName = "NUAnimationKit-NUAnimationKit";
-			productReference = D5F2C9DF546E0AB608465F0CBF8EF94A /* NUAnimationKit.bundle */;
-			productType = "com.apple.product-type.bundle";
 		};
 		B2AE47AE7BC29A09A9E4C53E5418457A /* Pods-NUAnimationKit_Tests */ = {
 			isa = PBXNativeTarget;
@@ -431,42 +400,24 @@
 			productReference = 63FF43FB61EC96C59AAD1C66C458C1B9 /* Pods_NUAnimationKit_Tests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		C2A77FCC887F554F63D3FC97C0BB148F /* NUAnimationKit */ = {
+		EB9F9F646F4FB83D249E9DF782E308F9 /* NUAnimationKit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F380A413CD49B99D33FCD5B7686731D7 /* Build configuration list for PBXNativeTarget "NUAnimationKit" */;
+			buildConfigurationList = B2D741674D84C3A2397172F2FC3309CC /* Build configuration list for PBXNativeTarget "NUAnimationKit" */;
 			buildPhases = (
-				DBDFC9185FDC53996BA4CF1A5E332E72 /* Sources */,
-				AE2B28E710D1C5A74638C8DD43D87276 /* Frameworks */,
-				D9D1177C39CDC3EEE5027FC4AEA90557 /* Resources */,
-				AF5670630AFEF722A23BF622867F39CF /* Headers */,
+				BB17D62ADAE035F4E1A85CC546C2B328 /* Sources */,
+				2C571DF92244E0CB8829DC9E09E46940 /* Frameworks */,
+				11D2C9DCC527EE58C08495E5DDACC79E /* Resources */,
+				79E72BDE32C16AADED31D94FB29BF2A0 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				37DDFA5341DCC6ECBEFBCF91ED80FEDD /* PBXTargetDependency */,
+				C4761B67852267ABBE74CB96FD240512 /* PBXTargetDependency */,
 			);
 			name = NUAnimationKit;
 			productName = NUAnimationKit;
 			productReference = 14E4192F42A0B15C1DDC726C6A41E8ED /* NUAnimationKit.framework */;
 			productType = "com.apple.product-type.framework";
-		};
-		D41B76701C532E05006F0701 /* NUAnimationKitTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D41B767B1C532E05006F0701 /* Build configuration list for PBXNativeTarget "NUAnimationKitTests" */;
-			buildPhases = (
-				D41B766D1C532E05006F0701 /* Sources */,
-				D41B766E1C532E05006F0701 /* Frameworks */,
-				D41B766F1C532E05006F0701 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D41B76781C532E05006F0701 /* PBXTargetDependency */,
-			);
-			name = NUAnimationKitTests;
-			productName = NUAnimationKitTests;
-			productReference = D41B76711C532E05006F0701 /* NUAnimationKitTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -476,11 +427,6 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
-				TargetAttributes = {
-					D41B76701C532E05006F0701 = {
-						CreatedOnToolsVersion = 7.1.1;
-					};
-				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -494,32 +440,24 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C2A77FCC887F554F63D3FC97C0BB148F /* NUAnimationKit */,
-				8F3B4170FD9EFF7A6EAF7C66A165CC3D /* NUAnimationKit-NUAnimationKit */,
+				EB9F9F646F4FB83D249E9DF782E308F9 /* NUAnimationKit */,
+				0ED65C275205B0A348A3333D349997E3 /* NUAnimationKit-NUAnimationKit */,
 				30A74391C0017DB9ACD8667D508FEAF5 /* Pods-NUAnimationKit_Example */,
 				B2AE47AE7BC29A09A9E4C53E5418457A /* Pods-NUAnimationKit_Tests */,
-				D41B76701C532E05006F0701 /* NUAnimationKitTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		D41B766F1C532E05006F0701 /* Resources */ = {
+		11D2C9DCC527EE58C08495E5DDACC79E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5F914ABD970936B20D788DBCDE7FB7A /* NUAnimationKit.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D9D1177C39CDC3EEE5027FC4AEA90557 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FDCB9737A415EFDE8AEC08BB487DE6D6 /* NUAnimationKit.bundle in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E58676D73FCBD7DDC7D7549E14950D05 /* Resources */ = {
+		5BCC1C6F82241ADCB8F56ABC0FB9DD29 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -537,10 +475,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B637266B8AD42448BE68CD1A8891B6FB /* Sources */ = {
+		BB17D62ADAE035F4E1A85CC546C2B328 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AFFA8D3833B2F247ECCF62F386F77F5 /* NUAnimationController.m in Sources */,
+				5F4803F8A080DCA9BAD2C055589E475F /* NUAnimationDefaults.m in Sources */,
+				5E5F18DDD43F814BA5767B4A630DC4E9 /* NUAnimationKit-dummy.m in Sources */,
+				EFFB2AC40656C70A88F8C334C523EFC7 /* NUAnimationOptions.m in Sources */,
+				461802060AA3D268601DDB1F572A6640 /* NUBaseAnimation.m in Sources */,
+				05775A2022974B3137A6495C4855FB6A /* NUCompositeAnimation.m in Sources */,
+				40C85F160FA4E80C6741718712647DE2 /* UIView+NUAnimationAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,58 +497,38 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D41B766D1C532E05006F0701 /* Sources */ = {
+		DA158375B5E3E528C5520F8D0708835F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D41B767D1C532E10006F0701 /* NUAnimationControllerTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DBDFC9185FDC53996BA4CF1A5E332E72 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D432BC451C52D34A005709FE /* UIView+NUAnimationAdditions.m in Sources */,
-				F150F9D1C64C98A0DC239F58326B5519 /* NUAnimationController.m in Sources */,
-				D432BC571C52FD2A005709FE /* NUAnimationDefaults.m in Sources */,
-				9DEA4BEC4D69135959D9EDC7CFEA5C80 /* NUAnimationKit-dummy.m in Sources */,
-				437DBD2EAF10D124FE7A0CCEE4527FD5 /* NUAnimationOptions.m in Sources */,
-				8B8267B0397A727FFFEDC11C5E5AA28E /* NUBaseAnimationBlock.m in Sources */,
-				CC3E5D6D4A896B7B216B56E43AA350DD /* NUCompositeAnimationBlock.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		37DDFA5341DCC6ECBEFBCF91ED80FEDD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "NUAnimationKit-NUAnimationKit";
-			target = 8F3B4170FD9EFF7A6EAF7C66A165CC3D /* NUAnimationKit-NUAnimationKit */;
-			targetProxy = 9E7FAE7C684B3302DA29B9BE5818C51F /* PBXContainerItemProxy */;
-		};
 		8C0E9D5DFD5F7BB3918B127B4DB88AE1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = NUAnimationKit;
-			target = C2A77FCC887F554F63D3FC97C0BB148F /* NUAnimationKit */;
+			target = EB9F9F646F4FB83D249E9DF782E308F9 /* NUAnimationKit */;
 			targetProxy = 6B2DC469A6404DD990A5D898D4158F3C /* PBXContainerItemProxy */;
 		};
-		D41B76781C532E05006F0701 /* PBXTargetDependency */ = {
+		C4761B67852267ABBE74CB96FD240512 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C2A77FCC887F554F63D3FC97C0BB148F /* NUAnimationKit */;
-			targetProxy = D41B76771C532E05006F0701 /* PBXContainerItemProxy */;
+			name = "NUAnimationKit-NUAnimationKit";
+			target = 0ED65C275205B0A348A3333D349997E3 /* NUAnimationKit-NUAnimationKit */;
+			targetProxy = C73B56A030B8B8EEA6B9AF0952223944 /* PBXContainerItemProxy */;
 		};
 		FE02E6DAEFB43E1E415BDE83470F7CA7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = NUAnimationKit;
-			target = C2A77FCC887F554F63D3FC97C0BB148F /* NUAnimationKit */;
+			target = EB9F9F646F4FB83D249E9DF782E308F9 /* NUAnimationKit */;
 			targetProxy = 21B0FDCEB2858D47A37C0622EF4DA658 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0D8600983817E0C58924FD5C6B405F61 /* Debug */ = {
+		312FCBEEC5D7D328E5EB38A5819B4A54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 44A145BC2472D4449DC8A7223DB34A7E /* NUAnimationKit.xcconfig */;
 			buildSettings = {
@@ -615,11 +540,6 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/NUAnimationKit/NUAnimationKit-prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"\"${PODS_ROOT}/Headers/Private\"",
-					"\"${PODS_ROOT}/Headers/Private/NUAnimationKit\"",
-					"\"${PODS_ROOT}/Headers/Public\"",
-				);
 				INFOPLIST_FILE = "Target Support Files/NUAnimationKit/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -635,7 +555,19 @@
 			};
 			name = Debug;
 		};
-		51D1A3757C85784041D8D701A0B339F1 /* Release */ = {
+		4164C4540FD6F26EB144996B38136527 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 44A145BC2472D4449DC8A7223DB34A7E /* NUAnimationKit.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				PRODUCT_NAME = NUAnimationKit;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		622EB484DC2EC4079B6C0B6B8BF37B98 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 44A145BC2472D4449DC8A7223DB34A7E /* NUAnimationKit.xcconfig */;
 			buildSettings = {
@@ -647,11 +579,6 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/NUAnimationKit/NUAnimationKit-prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"\"${PODS_ROOT}/Headers/Private\"",
-					"\"${PODS_ROOT}/Headers/Private/NUAnimationKit\"",
-					"\"${PODS_ROOT}/Headers/Public\"",
-				);
 				INFOPLIST_FILE = "Target Support Files/NUAnimationKit/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -727,18 +654,6 @@
 			};
 			name = Debug;
 		};
-		951FDFF0B5E2794C77B240201A863A06 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 44A145BC2472D4449DC8A7223DB34A7E /* NUAnimationKit.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				PRODUCT_NAME = NUAnimationKit;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Release;
-		};
 		9D6AA4EB59093EAFBD086756E711498E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E15EBCA21C2D45FE9F5C094EA13D5E7A /* Pods-NUAnimationKit_Example.debug.xcconfig */;
@@ -808,7 +723,7 @@
 			};
 			name = Debug;
 		};
-		B901961E625ACDC93526B91A23CEA9C5 /* Debug */ = {
+		C639AED7EEC6D5AA39FBD63047D1A76A /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 44A145BC2472D4449DC8A7223DB34A7E /* NUAnimationKit.xcconfig */;
 			buildSettings = {
@@ -817,50 +732,6 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
-		};
-		D41B76791C532E05006F0701 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = NUAnimationKitTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = br.com.nubank.NUAnimationKitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-			};
-			name = Debug;
-		};
-		D41B767A1C532E05006F0701 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = NUAnimationKitTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = br.com.nubank.NUAnimationKitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};
@@ -931,20 +802,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0171343D68365597CFF08AA6027A59F9 /* Build configuration list for PBXNativeTarget "NUAnimationKit-NUAnimationKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4164C4540FD6F26EB144996B38136527 /* Debug */,
+				C639AED7EEC6D5AA39FBD63047D1A76A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A70CDAD61F90AC503C7D04CC22DA2923 /* Debug */,
 				FB45FFD90572718D82AB9092B750F0CA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		510F653C1328574AC33DB6F29847AEF9 /* Build configuration list for PBXNativeTarget "NUAnimationKit-NUAnimationKit" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B901961E625ACDC93526B91A23CEA9C5 /* Debug */,
-				951FDFF0B5E2794C77B240201A863A06 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -958,28 +829,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D41B767B1C532E05006F0701 /* Build configuration list for PBXNativeTarget "NUAnimationKitTests" */ = {
+		B2D741674D84C3A2397172F2FC3309CC /* Build configuration list for PBXNativeTarget "NUAnimationKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D41B76791C532E05006F0701 /* Debug */,
-				D41B767A1C532E05006F0701 /* Release */,
+				312FCBEEC5D7D328E5EB38A5819B4A54 /* Debug */,
+				622EB484DC2EC4079B6C0B6B8BF37B98 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D426940256F1ABF265D4700390E9A897 /* Build configuration list for PBXNativeTarget "Pods-NUAnimationKit_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				73FBDB18F0AE7F794275DB3B50273C64 /* Debug */,
 				E16411EC5BAC1EC905B210095DBE2023 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F380A413CD49B99D33FCD5B7686731D7 /* Build configuration list for PBXNativeTarget "NUAnimationKit" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0D8600983817E0C58924FD5C6B405F61 /* Debug */,
-				51D1A3757C85784041D8D701A0B339F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
