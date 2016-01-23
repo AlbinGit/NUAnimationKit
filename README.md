@@ -11,29 +11,32 @@ UIView animation wrapper to facilitate chaining of animation commands.
 Chaining of UIView animations requires the use of completion handler blocks to chain commands together:
 
 ```objc
-[UIView animateWithDuration:1
-                     animations:^
-     {
-         //animations
-     } completion:^(BOOL finished) {
-         if (finished) {
-             [UIView animateWithDuration:1
-                              animations:^
-              {
-                  //Next animation block
-              } completion:^(BOOL finished) {
-                  if (finished) {
-                      [UIView animateWithDuration:1
-                                       animations:^
-                       {
-                           //Next animation block
-                       } completion:^(BOOL finished) {
-                           //And so on..
-                       }];
-                  }
-              }];
-         }
-     }];
+[UIView animateWithDuration:0.5
+                          delay:0
+                        options:0
+                     animations:^{
+                         [animationView1 setFrameY:400];
+                         animationView1.backgroundColor = [UIColor grayColor];
+                     }
+                     completion:^(BOOL finished) {
+                         [UIView animateWithDuration:0.3
+                                               delay:0.1
+                                             options:UIViewAnimationOptionCurveEaseInOut
+                                          animations:^{
+                                              [animationView2 setFrameY:400];
+                                          }
+                                          completion:^(BOOL finished) {
+                                              [UIView animateWithDuration:0.5
+                                                                    delay:0
+                                                   usingSpringWithDamping:0.5
+                                                    initialSpringVelocity:0
+                                                                  options:0
+                                                               animations:^{
+                                                                   [animationView3 setFrameY:400];
+                                                               }
+                                                               completion:nil];
+                                          }];
+                     }];
 ```
 Which isn't a particularly elegant solution, and is hard to read.
 
@@ -43,16 +46,18 @@ This library creates a wrapper around UIView animations that facilitates chainin
 ```objc
 NUAnimationController *controller = [[NUAnimationController alloc] init];
 
-[controller addAnimation:^{
-    //First stage of animations
-}].andThen(^{
-	//Executes once after the block is done, no animations here.
-});
-
-//Chains next animation
-[controller addAnimation:^{
-    //Second stage of animations
-}];
+[self.controller addAnimation:^{
+    [animationView1 setFrameY:400];
+    animationView1.backgroundColor = [UIColor grayColor];
+}].withAnimationOption(UIViewAnimationOptionTransitionCrossDissolve);
+    
+[self.controller addAnimation:^{
+    [animationView2 setFrameY:400];
+}].withDelay(0.1).withDuration(0.3).withCurve(UIViewAnimationCurveEaseInOut);
+    
+[self.controller addAnimation:^{
+    [animationView3 setFrameY:400];
+}].withType(NUAnimationTypeSpringy).withDuration(NUSpringAnimationNaturalDuration);
 ```
 To achieve chaining in different objects:
 
