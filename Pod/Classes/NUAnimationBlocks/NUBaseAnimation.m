@@ -29,8 +29,8 @@
     NSParameterAssert(options);
     self = [super init];
     if (self) {
-        _type = type;
         _options = options;
+        self.type = type;
         _delay = delay;
         _animationBlock = [animations copy];
         _completionBlock = [completionBlock copy];
