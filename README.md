@@ -1,11 +1,6 @@
-# NUAnimationKit
+<img src="./Pod/Assets/logo.png"/>
 
-<!--[![CI Status](http://img.shields.io/travis/Victor/NUAnimationKit.svg?style=flat)](https://travis-ci.org/Victor/NUAnimationKit)
-[![Version](https://img.shields.io/cocoapods/v/NUAnimationKit.svg?style=flat)](http://cocoapods.org/pods/NUAnimationKit)
-[![License](https://img.shields.io/cocoapods/l/NUAnimationKit.svg?style=flat)](http://cocoapods.org/pods/NUAnimationKit)
-[![Platform](https://img.shields.io/cocoapods/p/NUAnimationKit.svg?style=flat)](http://cocoapods.org/pods/NUAnimationKit)
--->
-UIView animation wrapper to facilitate chaining of animation commands.
+####UIView animation wrapper to facilitate chaining of animation commands.
 
 ###Problem
 Chaining of UIView animations requires the use of completion handler blocks to chain commands together:
