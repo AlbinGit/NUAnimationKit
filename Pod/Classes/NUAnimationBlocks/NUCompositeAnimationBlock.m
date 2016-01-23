@@ -36,9 +36,9 @@
         result.options = options;
         result.delay = delay;
         result.animationBlock = animations;
-        result.completionBlock = completionBlock;
-        result.parallelBlock = parallelBlock;
-        result.progressBlock = progressBlock;
+        result.completionBlock = [completionBlock copy];
+        result.parallelBlock = [parallelBlock copy];
+        result.progressBlock = [progressBlock copy];
     }
     return result;
 }

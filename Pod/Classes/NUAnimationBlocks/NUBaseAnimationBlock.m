@@ -32,8 +32,8 @@
         _type = type;
         _options = options;
         _delay = delay;
-        _animationBlock = animations;
-        _completionBlock = completionBlock;
+        _animationBlock = [animations copy];
+        _completionBlock = [completionBlock copy];
     }
     return self;
 }

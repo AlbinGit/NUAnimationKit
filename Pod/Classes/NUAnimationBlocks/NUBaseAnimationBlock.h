@@ -25,7 +25,7 @@ typedef NS_ENUM(NSInteger, NUAnimationType) {
 //Base class
 @interface NUBaseAnimationBlock : NSObject
 
-@property NUAnimationType type;
+@property (nonatomic) NUAnimationType type;
 @property NUAnimationOptions *options;
 @property NSTimeInterval delay;
 @property (nonatomic, copy) NUSimpleAnimationBlock animationBlock;
