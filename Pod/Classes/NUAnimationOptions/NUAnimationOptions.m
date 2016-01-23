@@ -50,7 +50,7 @@
 //Wow, such physics: https://en.wikipedia.org/wiki/Settling_time
 //very mechanics: https://en.wikipedia.org/wiki/Mechanical_resonance
 #define NUGetNaturalFrequency(spring, mass) 1.0f/(2.0f*M_PI)*sqrt(spring/mass)
-#define settleTolerance 0.1f //Based on empirical UI tests
+#define NUSettleTolerance 0.1f //Based on empirical UI tests
 
 double NUSpringAnimationNaturalDuration = -1;
 
@@ -85,7 +85,7 @@ double NUSpringAnimationNaturalDuration = -1;
     if (_naturalTimeInterval) {
         return _naturalTimeInterval;
     }
-    _naturalTimeInterval = -log(settleTolerance)/(self.damping*NUGetNaturalFrequency(self.springConstant, self.springMass));
+    _naturalTimeInterval = -log(NUSettleTolerance)/(self.damping*NUGetNaturalFrequency(self.springConstant, self.springMass));
     return _naturalTimeInterval;
 }
 
