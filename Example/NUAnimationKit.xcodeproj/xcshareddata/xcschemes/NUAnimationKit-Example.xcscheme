@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6003F5AD195388D20070C39A"
+               BlueprintIdentifier = "D41B768B1C53D0FF006F0701"
                BuildableName = "NUAnimationKit_Tests.xctest"
                BlueprintName = "NUAnimationKit_Tests"
                ReferencedContainer = "container:NUAnimationKit.xcodeproj">
