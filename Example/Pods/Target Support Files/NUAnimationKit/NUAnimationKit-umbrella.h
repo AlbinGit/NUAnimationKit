@@ -1,8 +1,8 @@
 #import <UIKit/UIKit.h>
 
 #import "UIView+NUAnimationAdditions.h"
-#import "NUBaseAnimationBlock.h"
-#import "NUCompositeAnimationBlock.h"
+#import "NUBaseAnimation.h"
+#import "NUCompositeAnimation.h"
 #import "NUAnimationController.h"
 #import "NUAnimationDefaults.h"
 #import "NUAnimationOptions.h"

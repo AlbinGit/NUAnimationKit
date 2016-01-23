@@ -1,14 +1,14 @@
 //
-//  NUCompositeAnimationBlock.m
+//  NUCompositeAnimation.m
 //  NUAnimationKit
 //
 //  Created by Victor Maraccini on 1/22/16.
 //  Copyright © 2016 Victor Gabriel Maraccini. All rights reserved.
 //
 
-#import "NUCompositeAnimationBlock.h"
+#import "NUCompositeAnimation.h"
 
-@interface NUCompositeAnimationBlock ()
+@interface NUCompositeAnimation ()
 
 @property (nonatomic, strong) NUProgressAnimationBlock progressBlock;
 
@@ -20,17 +20,17 @@
 
 @end
 
-@implementation NUCompositeAnimationBlock
+@implementation NUCompositeAnimation
 
 + (instancetype) animationBlockWithType: (NUAnimationType)type
                              andOptions: (NUAnimationOptions *)options
                                andDelay: (NSTimeInterval)delay
                           andAnimations: (NUSimpleAnimationBlock)animations
                      andCompletionBlock: (NUCompletionBlock)completionBlock
-                         inParallelWith:(NUBaseAnimationBlock *)parallelBlock
+                         inParallelWith:(NUBaseAnimation *)parallelBlock
                        animateAlongside: (NUProgressAnimationBlock)progressBlock {
     
-    NUCompositeAnimationBlock *result = [[NUCompositeAnimationBlock alloc] init];
+    NUCompositeAnimation *result = [[NUCompositeAnimation alloc] init];
     if (result) {
         result.type = type;
         result.options = options;
@@ -75,18 +75,18 @@
 
 #pragma mark - Convenience methods
 
-- (NUCompositeAnimationBlock * (^)(NUProgressAnimationBlock))alongSideBlock {
+- (NUCompositeAnimation * (^)(NUProgressAnimationBlock))alongSideBlock {
     __weak typeof(self) weakself = self;
-    return ^NUCompositeAnimationBlock*(NUProgressAnimationBlock block) {
+    return ^NUCompositeAnimation*(NUProgressAnimationBlock block) {
         __strong typeof(self) self = weakself;
         self.progressBlock = block;
         return self;
     };
 }
 
-- (NUCompositeAnimationBlock * (^)(NUAnimationType))withType {
+- (NUCompositeAnimation * (^)(NUAnimationType))withType {
     __weak typeof(self) weakself = self;
-    return ^NUCompositeAnimationBlock*(NUAnimationType type) {
+    return ^NUCompositeAnimation*(NUAnimationType type) {
         __strong typeof(self) self = weakself;
         self.type = type;
         if (type == NUAnimationTypeSpringy) {
@@ -96,84 +96,84 @@
     };
 }
 
-- (NUCompositeAnimationBlock * (^)(NSTimeInterval))withDelay {
+- (NUCompositeAnimation * (^)(NSTimeInterval))withDelay {
     __weak typeof(self) weakself = self;
-    return ^NUCompositeAnimationBlock*(NSTimeInterval delay) {
+    return ^NUCompositeAnimation*(NSTimeInterval delay) {
         __strong typeof(self) self = weakself;
         self.delay = delay;
         return self;
     };
 }
-- (NUCompositeAnimationBlock * (^)(NUCompletionBlock))andThen {
+- (NUCompositeAnimation * (^)(NUCompletionBlock))andThen {
     __weak typeof(self) weakself = self;
-    return ^NUCompositeAnimationBlock*(NUCompletionBlock completion) {
+    return ^NUCompositeAnimation*(NUCompletionBlock completion) {
         __strong typeof(self) self = weakself;
         self.completionBlock = completion;
         return self;
     };
 }
 
-- (NUCompositeAnimationBlock * (^)(UIViewAnimationCurve))withCurve {
+- (NUCompositeAnimation * (^)(UIViewAnimationCurve))withCurve {
     __weak typeof(self) weakself = self;
-    return ^NUCompositeAnimationBlock*(UIViewAnimationCurve curve) {
+    return ^NUCompositeAnimation*(UIViewAnimationCurve curve) {
         __strong typeof(self) self = weakself;
         self.options.curve = curve;
         return self;
     };
 }
 
-- (NUCompositeAnimationBlock * (^)(UIViewAnimationOptions))withAnimationOption {
+- (NUCompositeAnimation * (^)(UIViewAnimationOptions))withAnimationOption {
     __weak typeof(self) weakself = self;
-    return ^NUCompositeAnimationBlock*(UIViewAnimationOptions options) {
+    return ^NUCompositeAnimation*(UIViewAnimationOptions options) {
         __strong typeof(self) self = weakself;
         self.options.options = options;
         return self;
     };
 }
 
-- (NUCompositeAnimationBlock * (^)(NSTimeInterval))withDuration {
+- (NUCompositeAnimation * (^)(NSTimeInterval))withDuration {
     __weak typeof(self) weakself = self;
-    return ^NUCompositeAnimationBlock*(NSTimeInterval duration) {
+    return ^NUCompositeAnimation*(NSTimeInterval duration) {
         __strong typeof(self) self = weakself;
         self.options.duration = duration;
         return self;
     };
 }
 
-- (NUCompositeAnimationBlock * (^)(NUAnimationOptions *))withOptions {
+- (NUCompositeAnimation * (^)(NUAnimationOptions *))withOptions {
     __weak typeof(self) weakself = self;
-    return ^NUCompositeAnimationBlock*(NUAnimationOptions *options) {
+    return ^NUCompositeAnimation*(NUAnimationOptions *options) {
         __strong typeof(self) self = weakself;
         self.options = options;
         return self;
     };
 }
 
-- (NUCompositeAnimationBlock * (^)(CGFloat))withInitialVelocity {
+- (NUCompositeAnimation * (^)(CGFloat))withInitialVelocity {
     __weak typeof(self) weakself = self;
     NSAssert(self.type == NUAnimationTypeSpringy, @"This can only be set in springy animations.");
-    return ^NUCompositeAnimationBlock*(CGFloat velocity) {
+    return ^NUCompositeAnimation*(CGFloat velocity) {
         __strong typeof(self) self = weakself;
         ((NUSpringAnimationOptions *)self.options).initialVelocity = velocity;
         return self;
     };
 }
 
-- (NUCompositeAnimationBlock * (^)(CGFloat))withDamping {
+- (NUCompositeAnimation * (^)(CGFloat))withDamping {
     __weak typeof(self) weakself = self;
     NSAssert(self.type == NUAnimationTypeSpringy, @"This can only be set in springy animations.");
-    return ^NUCompositeAnimationBlock*(CGFloat damping) {
+    return ^NUCompositeAnimation*(CGFloat damping) {
         __strong typeof(self) self = weakself;
         ((NUSpringAnimationOptions *)self.options).damping = damping;
         return self;
     };
 }
 
-- (NUCompositeAnimationBlock * (^)(NUSimpleAnimationBlock))inParallelWith {
+- (NUCompositeAnimation * (^)(NUSimpleAnimationBlock))inParallelWith {
     __weak typeof(self) weakself = self;
-    return ^NUCompositeAnimationBlock*(NUSimpleAnimationBlock block) {
+    return ^NUCompositeAnimation*(NUSimpleAnimationBlock block) {
         __strong typeof(self) self = weakself;
-        NUCompositeAnimationBlock *result = [[NUCompositeAnimationBlock alloc] init];
+        NUCompositeAnimation *result = [[NUCompositeAnimation alloc] init];
         result.animationBlock = block;
         self.parallelBlock = result;
         return result;

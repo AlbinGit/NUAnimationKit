@@ -1,14 +1,14 @@
 //
-//  NUBaseAnimationBlock.m
+//  NUBaseAnimation.m
 //  NUAnimationKit
 //
 //  Created by Victor Maraccini on 1/22/16.
 //  Copyright © 2016 Victor Gabriel Maraccini. All rights reserved.
 //
 
-#import "NUBaseAnimationBlock.h"
+#import "NUBaseAnimation.h"
 
-@implementation NUBaseAnimationBlock
+@implementation NUBaseAnimation
 
 - (instancetype)init
 {
@@ -62,7 +62,7 @@
                           andAnimations: (NUSimpleAnimationBlock)animations
                      andCompletionBlock: (NUCompletionBlock)completionBlock {
     
-    NUBaseAnimationBlock *block = [[NUBaseAnimationBlock alloc]initWithType:type
+    NUBaseAnimation *block = [[NUBaseAnimation alloc]initWithType:type
                                                                  andOptions:options
                                                                    andDelay:delay
                                                               andAnimations:animations
