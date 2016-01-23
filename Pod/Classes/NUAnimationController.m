@@ -77,6 +77,21 @@
     }
 }
 
+///Removes an animation block
+- (void)removeAnimation: (NUBaseAnimationBlock *)animation {
+    [self.animationBlocks removeObject:animation];
+}
+
+///Removes all animation blocks
+- (void)removeAllAnimations {
+    self.animationBlocks = [[NSMutableArray alloc] init];
+}
+
+///Gets a copy of the internal animation blocks collection
+- (NSArray *)animations {
+    return [self.animationBlocks copy];
+}
+
 #pragma mark - Private
 
 - (void)startNextAnimation {
@@ -145,14 +160,6 @@
                              }
                          }];
     }
-}
-
-- (void)removeAnimation: (NUBaseAnimationBlock *)animation {
-    [self.animationBlocks removeObject:animation];
-}
-
-- (void)removeAllAnimations {
-    self.animationBlocks = [[NSMutableArray alloc] init];
 }
 
 - (void)cleanUp {
