@@ -22,6 +22,8 @@
 		C5854247A531D77E7EA2747A9B1B5B52 /* NUAnimationKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8508A3737EF0DE27B7D49F4981639799 /* NUAnimationKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CC3E5D6D4A896B7B216B56E43AA350DD /* NUCompositeAnimationBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC1646BD6906FBB4EB910B3DCC8C3A2 /* NUCompositeAnimationBlock.m */; };
 		D3C55FDEC0AE1B3AF2BD87E8CB32A1E5 /* NUAnimationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74EEA05E3D9A60C6666598DC51A5277C /* NUAnimationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D41B76761C532E05006F0701 /* NUAnimationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E4192F42A0B15C1DDC726C6A41E8ED /* NUAnimationKit.framework */; };
+		D41B767D1C532E10006F0701 /* NUAnimationControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D41B767C1C532E10006F0701 /* NUAnimationControllerTests.m */; };
 		D432BC451C52D34A005709FE /* UIView+NUAnimationAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D432BC431C52D34A005709FE /* UIView+NUAnimationAdditions.m */; };
 		D432BC481C52D8DE005709FE /* UIView+NUAnimationAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = D432BC421C52D34A005709FE /* UIView+NUAnimationAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D432BC561C52FD2A005709FE /* NUAnimationDefaults.h in Headers */ = {isa = PBXBuildFile; fileRef = D432BC541C52FD2A005709FE /* NUAnimationDefaults.h */; };
@@ -52,6 +54,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8F3B4170FD9EFF7A6EAF7C66A165CC3D;
 			remoteInfo = "NUAnimationKit-NUAnimationKit";
+		};
+		D41B76771C532E05006F0701 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C2A77FCC887F554F63D3FC97C0BB148F;
+			remoteInfo = NUAnimationKit;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -89,6 +98,9 @@
 		C699BDCFDDDDF28EDB66CA4198726D72 /* Pods_NUAnimationKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NUAnimationKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF6CFEEF96C22F5375D04002D08C790 /* Pods-NUAnimationKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NUAnimationKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		D3CA4E459DC694DB7D91C2AC9C28E2AE /* Pods-NUAnimationKit_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NUAnimationKit_Tests-umbrella.h"; sourceTree = "<group>"; };
+		D41B76711C532E05006F0701 /* NUAnimationKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NUAnimationKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D41B76751C532E05006F0701 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D41B767C1C532E10006F0701 /* NUAnimationControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUAnimationControllerTests.m; sourceTree = "<group>"; };
 		D432BC421C52D34A005709FE /* UIView+NUAnimationAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+NUAnimationAdditions.h"; path = "Categories/UIView+NUAnimationAdditions.h"; sourceTree = "<group>"; };
 		D432BC431C52D34A005709FE /* UIView+NUAnimationAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+NUAnimationAdditions.m"; path = "Categories/UIView+NUAnimationAdditions.m"; sourceTree = "<group>"; };
 		D432BC541C52FD2A005709FE /* NUAnimationDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUAnimationDefaults.h; path = NUAnimationDefaults/NUAnimationDefaults.h; sourceTree = "<group>"; };
@@ -134,6 +146,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D41B766E1C532E05006F0701 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D41B76761C532E05006F0701 /* NUAnimationKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -144,6 +164,7 @@
 				14E4192F42A0B15C1DDC726C6A41E8ED /* NUAnimationKit.framework */,
 				C699BDCFDDDDF28EDB66CA4198726D72 /* Pods_NUAnimationKit_Example.framework */,
 				63FF43FB61EC96C59AAD1C66C458C1B9 /* Pods_NUAnimationKit_Tests.framework */,
+				D41B76711C532E05006F0701 /* NUAnimationKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -212,6 +233,7 @@
 			children = (
 				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
 				654BD0CB00062478A0B9B758E62C40F4 /* Development Pods */,
+				D41B76721C532E05006F0701 /* NUAnimationKitTests */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
 				1554D115C58BE452A2BAC7C3F1C0FCDE /* Products */,
 				88AEB49A2A6199B29AFDCA1757222961 /* Targets Support Files */,
@@ -269,6 +291,15 @@
 			);
 			name = NUAnimationKit;
 			path = ../..;
+			sourceTree = "<group>";
+		};
+		D41B76721C532E05006F0701 /* NUAnimationKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				D41B767C1C532E10006F0701 /* NUAnimationControllerTests.m */,
+				D41B76751C532E05006F0701 /* Info.plist */,
+			);
+			path = NUAnimationKitTests;
 			sourceTree = "<group>";
 		};
 		D432BC411C52D32A005709FE /* Categories */ = {
@@ -419,6 +450,24 @@
 			productReference = 14E4192F42A0B15C1DDC726C6A41E8ED /* NUAnimationKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		D41B76701C532E05006F0701 /* NUAnimationKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D41B767B1C532E05006F0701 /* Build configuration list for PBXNativeTarget "NUAnimationKitTests" */;
+			buildPhases = (
+				D41B766D1C532E05006F0701 /* Sources */,
+				D41B766E1C532E05006F0701 /* Frameworks */,
+				D41B766F1C532E05006F0701 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D41B76781C532E05006F0701 /* PBXTargetDependency */,
+			);
+			name = NUAnimationKitTests;
+			productName = NUAnimationKitTests;
+			productReference = D41B76711C532E05006F0701 /* NUAnimationKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -427,6 +476,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
+				TargetAttributes = {
+					D41B76701C532E05006F0701 = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
+				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -444,11 +498,19 @@
 				8F3B4170FD9EFF7A6EAF7C66A165CC3D /* NUAnimationKit-NUAnimationKit */,
 				30A74391C0017DB9ACD8667D508FEAF5 /* Pods-NUAnimationKit_Example */,
 				B2AE47AE7BC29A09A9E4C53E5418457A /* Pods-NUAnimationKit_Tests */,
+				D41B76701C532E05006F0701 /* NUAnimationKitTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D41B766F1C532E05006F0701 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D9D1177C39CDC3EEE5027FC4AEA90557 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -490,6 +552,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D41B766D1C532E05006F0701 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D41B767D1C532E10006F0701 /* NUAnimationControllerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DBDFC9185FDC53996BA4CF1A5E332E72 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -518,6 +588,11 @@
 			name = NUAnimationKit;
 			target = C2A77FCC887F554F63D3FC97C0BB148F /* NUAnimationKit */;
 			targetProxy = 6B2DC469A6404DD990A5D898D4158F3C /* PBXContainerItemProxy */;
+		};
+		D41B76781C532E05006F0701 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C2A77FCC887F554F63D3FC97C0BB148F /* NUAnimationKit */;
+			targetProxy = D41B76771C532E05006F0701 /* PBXContainerItemProxy */;
 		};
 		FE02E6DAEFB43E1E415BDE83470F7CA7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -745,6 +820,50 @@
 			};
 			name = Debug;
 		};
+		D41B76791C532E05006F0701 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = NUAnimationKitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.nubank.NUAnimationKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		D41B767A1C532E05006F0701 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = NUAnimationKitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.nubank.NUAnimationKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
 		E16411EC5BAC1EC905B210095DBE2023 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CEF6CFEEF96C22F5375D04002D08C790 /* Pods-NUAnimationKit_Tests.release.xcconfig */;
@@ -838,6 +957,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		D41B767B1C532E05006F0701 /* Build configuration list for PBXNativeTarget "NUAnimationKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D41B76791C532E05006F0701 /* Debug */,
+				D41B767A1C532E05006F0701 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		D426940256F1ABF265D4700390E9A897 /* Build configuration list for PBXNativeTarget "Pods-NUAnimationKit_Tests" */ = {
 			isa = XCConfigurationList;

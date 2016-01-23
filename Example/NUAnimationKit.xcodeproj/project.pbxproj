@@ -22,7 +22,6 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		9F6A305E2837AAE34C191123 /* Pods_NUAnimationKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C8A907C5E530939B8719FC9 /* Pods_NUAnimationKit_Tests.framework */; };
-		D432BC4A1C52DD1C005709FE /* NUAnimationControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D432BC491C52DD1C005709FE /* NUAnimationControllerTests.m */; };
 		D432BC4F1C52E4AF005709FE /* NUSpringPlaygroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D432BC4E1C52E4AF005709FE /* NUSpringPlaygroundViewController.m */; };
 		D45B60B51C52ACCB0074A7A0 /* NUSpringAnimationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D45B60B41C52ACCB0074A7A0 /* NUSpringAnimationsViewController.m */; };
 		D45B60B71C52B3420074A7A0 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D45B60B61C52B3420074A7A0 /* Launch Screen.storyboard */; };
@@ -66,7 +65,6 @@
 		9581498B9CFFA273D5728C4E /* NUAnimationKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = NUAnimationKit.podspec; path = ../NUAnimationKit.podspec; sourceTree = "<group>"; };
 		99345F8D0E7392B493F30A66 /* Pods-NUAnimationKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NUAnimationKit_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NUAnimationKit_Tests/Pods-NUAnimationKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		9D95C910C8DE0A78421BDA2E /* Pods-NUAnimationKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NUAnimationKit_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-NUAnimationKit_Example/Pods-NUAnimationKit_Example.release.xcconfig"; sourceTree = "<group>"; };
-		D432BC491C52DD1C005709FE /* NUAnimationControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUAnimationControllerTests.m; sourceTree = "<group>"; };
 		D432BC4D1C52E4AF005709FE /* NUSpringPlaygroundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUSpringPlaygroundViewController.h; sourceTree = "<group>"; };
 		D432BC4E1C52E4AF005709FE /* NUSpringPlaygroundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUSpringPlaygroundViewController.m; sourceTree = "<group>"; };
 		D45B60B31C52ACCB0074A7A0 /* NUSpringAnimationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUSpringAnimationsViewController.h; sourceTree = "<group>"; };
@@ -179,7 +177,6 @@
 			isa = PBXGroup;
 			children = (
 				6003F5B6195388D20070C39A /* Supporting Files */,
-				D432BC491C52DD1C005709FE /* NUAnimationControllerTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -454,7 +451,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D432BC4A1C52DD1C005709FE /* NUAnimationControllerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
