@@ -15,12 +15,47 @@
 @implementation NUCompositeAnimationTests
 
 - (void)testTypeShorthandNotation {
+    
 }
 
 - (void)testOptionShorthandNotation {
     
 }
 
-- (void)testOptionShorthandNotation {
+- (void)testDelayShorthandNotation {
+    
+}
+
+- (void)testCurveShorthandNotation {
+    
+}
+
+- (void)testCompletionShorthandNotation {
+    
+}
+
+- (void)testAnimationOptionShorthandNotation {
+    
+}
+
+- (void)testDurationShorthandNotation {
+    
+}
+
+- (void)testDampingShorthandNotation {
+    
+}
+
+- (void)testInitialVelocityShorthandNotation {
+    
+}
+
+- (void)testAlongsideBlockShorthandNotation {
+    
+}
+
+- (void)testInParallelWithShorthandNotation {
+    
+}
 
 @end

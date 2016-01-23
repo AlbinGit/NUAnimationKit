@@ -57,7 +57,7 @@
                                                            andAnimations:animationBlock];
     
     //Type
-    XCTAssertEqual(animation.type, NUAnimationTypeDefault);
+    XCTAssertEqual(animation.type, NUAnimationTypeSpringy);
     
     //Options
     XCTAssertTrue([animation.options isKindOfClass:[NUAnimationOptions class]]);
