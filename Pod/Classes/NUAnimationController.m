@@ -6,15 +6,6 @@
 //  Copyright © 2016 Victor Gabriel Maraccini. All rights reserved.
 //
 
-
-#define weakify(var) __weak typeof(var) AHKWeak_##var = var;
-
-#define strongify(var) \
-_Pragma("clang diagnostic push") \
-_Pragma("clang diagnostic ignored \"-Wshadow\"") \
-__strong typeof(var) var = AHKWeak_##var; \
-_Pragma("clang diagnostic pop")
-
 #import "NUAnimationController.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -43,12 +34,14 @@ _Pragma("clang diagnostic pop")
 
 #pragma mark - Public methods
 
+///Adds an animation block to the chain
 - (NUBaseAnimationBlock *)addAnimationBlock:(NUBaseAnimationBlock *)block {
     [self.animationBlocks addObject:block];
     _totalAnimationTime += block.options.duration;
     return block;
 }
 
+///Starts animation chain with a completion block
 - (void)startAnimationChainWithCompletionBlock:(void (^)())completionBlock {
     _animationCancelled = false;
     _animationStep = 0;
@@ -63,6 +56,7 @@ _Pragma("clang diagnostic pop")
     [self startNextAnimation];
 }
 
+///Starts animation chain
 - (void)startAnimationChain {
     [self startAnimationChainWithCompletionBlock:nil];
 }
@@ -75,8 +69,12 @@ _Pragma("clang diagnostic pop")
     return result;
 }
 
+///Cancels the animation chain, but does not stop the current animation.
 - (void)cancelAnimations {
     _animationCancelled = true;
+    if (self.completionBlock) {
+        self.completionBlock();
+    }
 }
 
 #pragma mark - Private
@@ -97,7 +95,7 @@ _Pragma("clang diagnostic pop")
 }
 
 - (void)startBlock:(NUBaseAnimationBlock *)block isParallel: (BOOL)isParallel {
-    
+    __weak typeof(self) weakself = self;
     if ([block isKindOfClass:[NUCompositeAnimationBlock class]]) {
         NUCompositeAnimationBlock *composite = (NUCompositeAnimationBlock *)block;
         if (composite.parallelBlock) {
@@ -114,6 +112,7 @@ _Pragma("clang diagnostic pop")
                              block.animationBlock();
                          }
                          completion:^(BOOL finished) {
+                             __strong typeof(self) self = weakself;
                              if (finished || _animationCancelled) {
                                  if (block.completionBlock) {
                                      block.completionBlock();
@@ -135,6 +134,7 @@ _Pragma("clang diagnostic pop")
                              block.animationBlock();
                          }
                          completion:^(BOOL finished) {
+                             __strong typeof(self) self = weakself;
                              if (finished || _animationCancelled) {
                                  if (block.completionBlock) {
                                      block.completionBlock();
@@ -145,6 +145,14 @@ _Pragma("clang diagnostic pop")
                              }
                          }];
     }
+}
+
+- (void)removeAnimation: (NUBaseAnimationBlock *)animation {
+    [self.animationBlocks removeObject:animation];
+}
+
+- (void)removeAllAnimations {
+    self.animationBlocks = [[NSMutableArray alloc] init];
 }
 
 - (void)cleanUp {
