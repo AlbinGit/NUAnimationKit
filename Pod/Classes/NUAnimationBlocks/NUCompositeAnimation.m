@@ -10,8 +10,6 @@
 
 @interface NUCompositeAnimation ()
 
-@property (nonatomic, strong) NUProgressAnimationBlock progressBlock;
-
 @property (nonatomic, strong) CADisplayLink *displayLink;
 @property (nonatomic, readwrite) CFTimeInterval lastTimestamp;
 
@@ -26,7 +24,7 @@
                              andOptions: (NUAnimationOptions *)options
                                andDelay: (NSTimeInterval)delay
                           andAnimations: (NUSimpleAnimationBlock)animations
-                     andCompletionBlock: (NUCompletionBlock)completionBlock
+                     andCompletionBlock: (NUNoArgumentsBlock)completionBlock
                          inParallelWith:(NUBaseAnimation *)parallelBlock
                        animateAlongside: (NUProgressAnimationBlock)progressBlock {
     
@@ -61,16 +59,9 @@
                            forMode:NSDefaultRunLoopMode];
 }
 
-- (void)setCompletionBlock:(NUCompletionBlock)completionBlock {
-    __weak typeof(self) weakself = self;
-    super.completionBlock = ^() {
-        __strong typeof(self) self = weakself;
-        [self cleanUp];
-        
-        if (completionBlock) {
-            completionBlock();
-        }
-    };
+- (void)animationDidFinish {
+    [self cleanUp];
+    [super animationDidFinish];
 }
 
 #pragma mark - Convenience methods
@@ -104,9 +95,19 @@
         return self;
     };
 }
-- (NUCompositeAnimation * (^)(NUCompletionBlock))andThen {
+
+- (NUCompositeAnimation * (^)(NUNoArgumentsBlock))butBefore {
     __weak typeof(self) weakself = self;
-    return ^NUCompositeAnimation*(NUCompletionBlock completion) {
+    return ^NUCompositeAnimation*(NUNoArgumentsBlock initialization) {
+        __strong typeof(self) self = weakself;
+        self.initializationBlock = initialization;
+        return self;
+    };
+}
+
+- (NUCompositeAnimation * (^)(NUNoArgumentsBlock))andThen {
+    __weak typeof(self) weakself = self;
+    return ^NUCompositeAnimation*(NUNoArgumentsBlock completion) {
         __strong typeof(self) self = weakself;
         self.completionBlock = completion;
         return self;
