@@ -112,17 +112,21 @@ To use the library, simply:
 
 - Install the pod by adding `pod "NUAnimationKit"` to your podfile
 - Import `NUAnimationController.h`
-- Create an animation controller: `NUAnimationController *controller = [[NUAnimationController alloc] init];`
+- Create an animation controller: 
+
+```objc
+NUAnimationController *controller = [[NUAnimationController alloc] init];
+```
 - Add animation blocks:
 
 ```objc
-controller addAnimation:^{
+[controller addAnimation:^{
     //Springy
 }].withType(NUAnimationTypeSpringy).withDuration(NUSpringAnimationNaturalDuration)
 ```
 - Start the animation: 
 
-```
+```objc
 [controller startAnimationChain]
 ```
 or
