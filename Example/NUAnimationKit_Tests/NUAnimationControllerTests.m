@@ -22,6 +22,12 @@
     self.controller = [[NUAnimationController alloc] init];
 }
 
+- (void)testCreationShorthandNotation {
+    NUCompositeAnimation *result = [self.controller addAnimation:^{
+    }];
+    XCTAssertTrue([result isKindOfClass:[NUCompositeAnimation class]]);
+}
+
 - (void)testNoAnimations {
     XCTestExpectation *expect = [self expectationWithDescription:@"noAnimations"];
     [self.controller startAnimationChain];

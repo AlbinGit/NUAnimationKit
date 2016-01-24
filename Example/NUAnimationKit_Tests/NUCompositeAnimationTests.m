@@ -7,12 +7,22 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "NUAnimationController.h"
 
 @interface NUCompositeAnimationTests : XCTestCase
+
+@property (nonatomic, strong) NUCompositeAnimation *composite;
 
 @end
 
 @implementation NUCompositeAnimationTests
+
+- (void)setUp {
+    [super setUp];
+    
+    self.composite = [[NUCompositeAnimation alloc] init];
+    
+}
 
 - (void)testTypeShorthandNotation {
     
