@@ -27,8 +27,15 @@
 
 extern NSTimeInterval NUSpringAnimationNaturalDuration;
 
-@property CGFloat damping;
-@property CGFloat initialVelocity;
+
+//Physics-related
+@property (nonatomic) double settleTolerance;
+@property (nonatomic) double springMass;
+@property (nonatomic) double springConstant;
+
+//Animation-related
+@property (nonatomic) CGFloat damping;
+@property (nonatomic) CGFloat initialVelocity;
 
 - (instancetype)initWithOptions: (NUAnimationOptions *)options;
 
@@ -38,6 +45,6 @@ extern NSTimeInterval NUSpringAnimationNaturalDuration;
                             andDamping: (CGFloat)damping
                     andInitialVelocity: (CGFloat)initialVelocity;
 
-- (NSTimeInterval)naturalTimeInterval;
+- (NSTimeInterval)naturalDuration;
 
 @end
