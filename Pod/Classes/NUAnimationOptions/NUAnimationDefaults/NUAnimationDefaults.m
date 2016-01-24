@@ -14,7 +14,7 @@
 
 @implementation NUAnimationDefaults
 
-+ (id)sharedDefaults {
++ (instancetype)sharedDefaults {
     static NUAnimationDefaults *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
