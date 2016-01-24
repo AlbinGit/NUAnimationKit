@@ -66,7 +66,29 @@
 }
 
 - (void)testChangesToParametersShouldUpdateNaturalDuration {
+    NUSpringAnimationOptions *options = [[NUSpringAnimationOptions alloc] init];
+    options.duration = NUSpringAnimationNaturalDuration;
     
+    NSTimeInterval originalDuration = options.naturalDuration;
+    XCTAssertEqual(options.duration, originalDuration);
+    
+    //Change damping parameter
+    options.damping = options.damping / 2.0f;
+    XCTAssertNotEqual(originalDuration, options.naturalDuration);
+    originalDuration = options.naturalDuration;
+    XCTAssertEqual(options.duration, originalDuration);
+    
+    //Change spring mass parameter
+    options.springMass = options.springMass * 2.0f;
+    XCTAssertNotEqual(originalDuration, options.naturalDuration);
+    originalDuration = options.naturalDuration;
+    XCTAssertEqual(options.duration, originalDuration);
+    
+    //Change spring constant parameter
+    options.springConstant = options.springConstant * 2.0f;
+    XCTAssertNotEqual(originalDuration, options.naturalDuration);
+    originalDuration = options.naturalDuration;
+    XCTAssertEqual(options.duration, originalDuration);
 }
 
 @end
