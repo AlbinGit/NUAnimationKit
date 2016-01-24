@@ -14,7 +14,7 @@
 typedef void (^NUSimpleAnimationBlock)(void);
 typedef void (^NUProgressAnimationBlock)(CGFloat progress);
 
-typedef void (^NUCompletionBlock)(void);
+typedef void (^NUNoArgumentsBlock)(void);
 
 //Types
 typedef NS_ENUM(NSInteger, NUAnimationType) {
@@ -29,7 +29,8 @@ typedef NS_ENUM(NSInteger, NUAnimationType) {
 @property NUAnimationOptions *options;
 @property NSTimeInterval delay;
 @property (nonatomic, copy) NUSimpleAnimationBlock animationBlock;
-@property (nonatomic, copy) NUCompletionBlock completionBlock;
+@property (nonatomic, copy) NUNoArgumentsBlock completionBlock;
+@property (nonatomic, copy) NUNoArgumentsBlock initializationBlock;
 
 + (instancetype) animationBlockWithType: (NUAnimationType)type
                              andOptions: (NUAnimationOptions *)options
@@ -40,9 +41,13 @@ typedef NS_ENUM(NSInteger, NUAnimationType) {
                              andOptions: (NUAnimationOptions *)options
                                andDelay: (NSTimeInterval)delay
                           andAnimations: (NUSimpleAnimationBlock)animations
-                     andCompletionBlock: (NUCompletionBlock)completionBlock;
+                 andInitializationBlock: (NUNoArgumentsBlock)initializationBlock
+                     andCompletionBlock: (NUNoArgumentsBlock)completionBlock;
 
 ///Block invoked when the controller is about to start the animation
 - (void)animationWillBegin;
+
+///Block invoked when the animation is finished
+- (void)animationDidFinish;
 
 @end

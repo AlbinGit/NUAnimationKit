@@ -10,6 +10,35 @@
 
 @implementation NUBaseAnimation
 
+#pragma mark - Static
+
++ (instancetype) animationBlockWithType: (NUAnimationType)type
+                             andOptions: (NUAnimationOptions *)options
+                               andDelay: (NSTimeInterval)delay
+                          andAnimations: (NUSimpleAnimationBlock)animations {
+    return [self animationBlockWithType:type
+                             andOptions:options
+                               andDelay:delay
+                          andAnimations:animations
+                     andCompletionBlock:nil];
+}
+
++ (instancetype) animationBlockWithType: (NUAnimationType)type
+                             andOptions: (NUAnimationOptions *)options
+                               andDelay: (NSTimeInterval)delay
+                          andAnimations: (NUSimpleAnimationBlock)animations
+                     andCompletionBlock: (NUNoArgumentsBlock)completionBlock {
+    
+    NUBaseAnimation *block = [[NUBaseAnimation alloc]initWithType:type
+                                                                 andOptions:options
+                                                                   andDelay:delay
+                                                              andAnimations:animations
+                                                         andCompletionBlock:completionBlock];
+    return block;
+}
+
+#pragma mark - Public
+
 - (instancetype)init
 {
     self = [super init];
@@ -24,7 +53,7 @@
                   andOptions: (NUAnimationOptions *)options
                     andDelay: (NSTimeInterval)delay
                andAnimations: (NUSimpleAnimationBlock)animations
-          andCompletionBlock: (NUCompletionBlock)completionBlock{
+          andCompletionBlock: (NUNoArgumentsBlock)completionBlock{
     NSParameterAssert(animations);
     NSParameterAssert(options);
     self = [super init];
@@ -45,34 +74,18 @@
     }
 }
 
-+ (instancetype) animationBlockWithType: (NUAnimationType)type
-                             andOptions: (NUAnimationOptions *)options
-                               andDelay: (NSTimeInterval)delay
-                          andAnimations: (NUSimpleAnimationBlock)animations {
-    return [self animationBlockWithType:type
-                             andOptions:options
-                               andDelay:delay
-                          andAnimations:animations
-                     andCompletionBlock:nil];
-}
-
-+ (instancetype) animationBlockWithType: (NUAnimationType)type
-                             andOptions: (NUAnimationOptions *)options
-                               andDelay: (NSTimeInterval)delay
-                          andAnimations: (NUSimpleAnimationBlock)animations
-                     andCompletionBlock: (NUCompletionBlock)completionBlock {
-    
-    NUBaseAnimation *block = [[NUBaseAnimation alloc]initWithType:type
-                                                                 andOptions:options
-                                                                   andDelay:delay
-                                                              andAnimations:animations
-                                                         andCompletionBlock:completionBlock];
-    return block;
-}
-
+#pragma mark - Extension points
 
 - (void)animationWillBegin {
-    
+    if (self.initializationBlock) {
+        self.initializationBlock();
+    }
+}
+
+- (void)animationDidFinish {
+    if (self.completionBlock) {
+        self.completionBlock();
+    }
 }
 
 @end
