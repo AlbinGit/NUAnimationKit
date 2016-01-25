@@ -21,12 +21,46 @@
     self.controller = [[NUAnimationController alloc] init];
 }
 
-- (void)testRespectsDefaults {
-    CGFloat damping = 0.3, initialVelocity = 5;
-    double springMass = 2, springConstant = 2E3;
+- (void)testDefaultFactoryMethod {
     UIViewAnimationCurve curve = UIViewAnimationCurveEaseIn;
     UIViewAnimationOptions options = UIViewAnimationOptionAutoreverse;
-    NSTimeInterval duration = 1;
+    NSTimeInterval duration = 1.0123;
+    
+    NUAnimationOptions *result = [NUAnimationOptions animationWithDuration:duration
+                                                                 andOptions:options
+                                                                   andCurve:curve];
+    XCTAssertNotNil(result);
+    XCTAssertEqual(result.duration, duration);
+    XCTAssertEqual(result.options, options);
+    XCTAssertEqual(result.curve, curve);
+}
+
+- (void)testSpringyFactoryMethod {
+    CGFloat damping = 0.312, initialVelocity = 5.32;
+    UIViewAnimationCurve curve = UIViewAnimationCurveEaseIn;
+    UIViewAnimationOptions options = UIViewAnimationOptionAutoreverse;
+    NSTimeInterval duration = 1.0123;
+    
+    NUSpringAnimationOptions *result = [NUSpringAnimationOptions animationWithDuration:duration
+                                                                            andOptions:options
+                                                                              andCurve:curve
+                                                                            andDamping:damping
+                                                                    andInitialVelocity:initialVelocity];
+    
+    XCTAssertNotNil(result);
+    XCTAssertEqual(result.duration, duration);
+    XCTAssertEqual(result.options, options);
+    XCTAssertEqual(result.curve, curve);
+    XCTAssertEqual(result.damping, damping);
+    XCTAssertEqual(result.initialVelocity, initialVelocity);
+}
+
+- (void)testRespectsDefaults {
+    CGFloat damping = 0.312, initialVelocity = 5.32;
+    double springMass = 2.123, springConstant = 2.32E3;
+    UIViewAnimationCurve curve = UIViewAnimationCurveEaseIn;
+    UIViewAnimationOptions options = UIViewAnimationOptionAutoreverse;
+    NSTimeInterval duration = 1.0123;
     
     [NUAnimationDefaults sharedDefaults].defaultDuration = duration;
     [NUAnimationDefaults sharedDefaults].defaultCurve = curve;

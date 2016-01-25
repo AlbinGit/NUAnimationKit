@@ -8,20 +8,104 @@
 
 #import <XCTest/XCTest.h>
 #import "NUAnimationController.h"
+#import "OCMock.h"
 
 @interface NUCompositeAnimationTests : XCTestCase
 
 @property (nonatomic, strong) NUCompositeAnimation *composite;
 
+@property (nonatomic) CGFloat expectedPercentage;
+@property (nonatomic) CFTimeInterval simulatedTimeInterval;
+
+@end
+
+@interface NUCompositeAnimation ()
+- (void)updateAnimationProgress;
 @end
 
 @implementation NUCompositeAnimationTests
 
 - (void)setUp {
     [super setUp];
+    self.composite = [[NUCompositeAnimation alloc] init];
+    
+    //Exposed private methods
+    XCTAssert([NUCompositeAnimation instanceMethodForSelector:@selector(updateAnimationProgress)]);
+}
+
+- (void)testFactoryMethod {
+    id animationBlock = ^{};
+    id completionBlock = ^{};
+    id progressBlock = ^(CGFloat f){};
+    NSTimeInterval delay = 0.32;
+    
+    
+    UIViewAnimationOptions options = UIViewAnimationOptionRepeat;
+    UIViewAnimationCurve curve = UIViewAnimationCurveEaseInOut;
+    NSTimeInterval duration = 0.321;
+    NUAnimationOptions *optionsObject = [NUAnimationOptions animationWithDuration:duration
+                                                                       andOptions:options
+                                                                         andCurve:curve];
+    
+    NUCompositeAnimation *result = [NUCompositeAnimation animationBlockWithType:NUAnimationTypeDefault
+                                                                     andOptions:optionsObject
+                                                                       andDelay:delay
+                                                                  andAnimations:animationBlock
+                                                             andCompletionBlock:completionBlock
+                                                                 inParallelWith:self.composite
+                                                               animateAlongside:progressBlock];
+    
+    XCTAssertEqual(result.type, NUAnimationTypeDefault);
+    XCTAssertEqualObjects(result.options, optionsObject);
+    XCTAssertEqual(result.delay, delay);
+    XCTAssertEqualObjects(result.animationBlock, animationBlock);
+    XCTAssertEqualObjects(result.completionBlock, completionBlock);
+    XCTAssertEqualObjects(result.progressBlock, progressBlock);
+    
+}
+
+- (void)testProgressBlockIsCalled {
+    self.simulatedTimeInterval = kCFAbsoluteTimeIntervalSince1970;
+    
+    //Stub CADisplayLink
+    id linkMock = OCMClassMock([CADisplayLink class]);
+    //  Setup to return our simulated value
+    [OCMStub([linkMock timestamp]) andCall:@selector(simulatedTimeInterval)
+                                  onObject:self];
+    //  Setup to ignore removeFromRunLoop, since it was never added
+    OCMStub([linkMock removeFromRunLoop:[OCMArg any]
+                                forMode:[OCMArg any]]);
+    //  Setup to return our mocked instance
+    [OCMExpect([linkMock displayLinkWithTarget:[OCMArg any]
+                                      selector:[OCMArg anySelector]]) andReturn:linkMock];
     
     self.composite = [[NUCompositeAnimation alloc] init];
     
+    //Create block with the progress assertion
+    self.composite.alongSideBlock(^(CGFloat f){
+        NSLog(@"NUCompositeAnimationTests - Percentage received %f, Percentage expected: %f", f, self.expectedPercentage);
+        //Due to float-point approximations, we must test if the difference is smaller than a certain established value.
+        XCTAssertTrue(fabs(f - self.expectedPercentage) < FLT_EPSILON);
+    }).withDuration(1);
+    
+    //First animation frame. Progress should be zero.
+    self.expectedPercentage = 0;
+    [self.composite updateAnimationProgress];
+    
+    
+    //0.1 seconds passed.
+    self.simulatedTimeInterval += 0.1;
+    self.expectedPercentage = 0.1;
+    [self.composite updateAnimationProgress];
+
+    //0.4 more seconds passed
+    self.simulatedTimeInterval += 0.4;
+    self.expectedPercentage = 0.5;
+    [self.composite updateAnimationProgress];
+
+    //Animation finished
+    self.expectedPercentage = 1;
+    [self.composite animationDidFinish];
 }
 
 - (void)testTypeShorthandNotation {
