@@ -37,14 +37,14 @@
 ///Adds an animation block to the chain
 - (NUBaseAnimation *)addAnimationBlock:(NUBaseAnimation *)block {
     [self.animationBlocks addObject:block];
-    _totalAnimationTime += block.options.duration;
+    self.totalAnimationTime += block.options.duration;
     return block;
 }
 
 ///Starts animation chain with a completion block
 - (void)startAnimationChainWithCompletionBlock:(void (^)())completionBlock {
-    _animationCancelled = false;
-    _animationStep = 0;
+    self.animationCancelled = false;
+    self.animationStep = 0;
     if (self.animationRunning) {
         //Animation cannot be started multiple times.
         return;
@@ -71,10 +71,7 @@
 
 ///Cancels the animation chain, but does not stop the current animation.
 - (void)cancelAnimations {
-    _animationCancelled = true;
-    if (self.completionBlock) {
-        self.completionBlock();
-    }
+    self.animationCancelled = true;
 }
 
 ///Removes an animation block
@@ -95,16 +92,12 @@
 #pragma mark - Private
 
 - (void)startNextAnimation {
-    if (self.animationBlocks.count == _animationStep) {
-        if (self.completionBlock) {
-            self.completionBlock();
-        }
-        
-        [self cleanUp];
+    if (self.animationBlocks.count == self.animationStep) {
+        [self finishAnimations];
         return;
     }
     
-    NUBaseAnimation *block = self.animationBlocks[_animationStep++];
+    NUBaseAnimation *block = self.animationBlocks[self.animationStep];
     [self startBlock:block isParallel:false];
     
 }
@@ -118,21 +111,25 @@
         }
     }
     
+    [block animationWillBegin];
     if (block.type == NUAnimationTypeDefault) {
         [UIView animateWithDuration:block.options.duration
                               delay:block.delay
                             options:block.options.options
                          animations:^{
-                             [block animationWillBegin];
-                             block.animationBlock();
+                             if (block.animationBlock) {
+                                 block.animationBlock();
+                             }
                          }
                          completion:^(BOOL finished) {
                              __strong typeof(self) self = weakself;
-                             if (finished || _animationCancelled) {
-                                 if (block.completionBlock) {
-                                     block.completionBlock();
-                                 }
-                                 if (!_animationCancelled && !isParallel) {
+                             if (finished) {
+                                 [block animationDidFinish];
+                                 
+                                 if (self.animationCancelled) {
+                                     [self finishAnimations];
+                                 } else if (!isParallel) {
+                                     self.animationStep++;
                                      [self startNextAnimation];
                                  }
                              }
@@ -145,16 +142,19 @@
               initialSpringVelocity:springOptions.initialVelocity
                             options:block.options.options
                          animations:^{
-                             [block animationWillBegin];
-                             block.animationBlock();
+                             if (block.animationBlock) {
+                                 block.animationBlock();
+                             }
                          }
                          completion:^(BOOL finished) {
                              __strong typeof(self) self = weakself;
-                             if (finished || _animationCancelled) {
-                                 if (block.completionBlock) {
-                                     block.completionBlock();
-                                 }
-                                 if (!_animationCancelled && !isParallel) {
+                             if (finished) {
+                                 [block animationDidFinish];
+                                 
+                                 if (self.animationCancelled) {
+                                     [self finishAnimations];
+                                 } else if (!isParallel) {
+                                     self.animationStep++;
                                      [self startNextAnimation];
                                  }
                              }
@@ -162,7 +162,10 @@
     }
 }
 
-- (void)cleanUp {
+- (void)finishAnimations {
+    if (self.completionBlock) {
+        self.completionBlock();
+    }
     self.animationRunning = false;
 }
 

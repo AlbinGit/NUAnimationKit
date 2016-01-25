@@ -20,6 +20,7 @@
                              andOptions:options
                                andDelay:delay
                           andAnimations:animations
+                 andInitializationBlock:nil
                      andCompletionBlock:nil];
 }
 
@@ -27,13 +28,15 @@
                              andOptions: (NUAnimationOptions *)options
                                andDelay: (NSTimeInterval)delay
                           andAnimations: (NUSimpleAnimationBlock)animations
+                 andInitializationBlock: (NUNoArgumentsBlock)initializationBlock
                      andCompletionBlock: (NUNoArgumentsBlock)completionBlock {
     
     NUBaseAnimation *block = [[NUBaseAnimation alloc]initWithType:type
-                                                                 andOptions:options
-                                                                   andDelay:delay
-                                                              andAnimations:animations
-                                                         andCompletionBlock:completionBlock];
+                                                       andOptions:options
+                                                         andDelay:delay
+                                                    andAnimations:animations
+                                           andInitializationBlock:initializationBlock
+                                               andCompletionBlock:completionBlock];
     return block;
 }
 
@@ -53,7 +56,8 @@
                   andOptions: (NUAnimationOptions *)options
                     andDelay: (NSTimeInterval)delay
                andAnimations: (NUSimpleAnimationBlock)animations
-          andCompletionBlock: (NUNoArgumentsBlock)completionBlock{
+      andInitializationBlock: (NUNoArgumentsBlock)initializationBlock
+          andCompletionBlock: (NUNoArgumentsBlock)completionBlock {
     NSParameterAssert(animations);
     NSParameterAssert(options);
     self = [super init];
@@ -62,6 +66,7 @@
         self.type = type;
         _delay = delay;
         _animationBlock = [animations copy];
+        _initializationBlock = [initializationBlock copy];
         _completionBlock = [completionBlock copy];
     }
     return self;
