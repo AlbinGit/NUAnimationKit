@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "NUAnimationController.h"
-#import <objc/runtime.h>
+#import "OCMock.h"
 
 @interface NUAnimationControllerTests : XCTestCase
 @property (nonatomic, strong)NUAnimationController *controller;
@@ -22,13 +22,131 @@
     self.controller = [[NUAnimationController alloc] init];
 }
 
+- (void)testCreationShorthandNotation {
+    NUCompositeAnimation *result = [self.controller addAnimation:^{
+    }];
+    XCTAssertTrue([result isKindOfClass:[NUCompositeAnimation class]]);
+}
+
 - (void)testNoAnimations {
     XCTestExpectation *expect = [self expectationWithDescription:@"noAnimations"];
-    [self.controller startAnimationChain];
     [self.controller startAnimationChainWithCompletionBlock:^{
         [expect fulfill];
     }];
     
+    [self waitForExpectationsWithTimeout:1 handler:nil];
+}
+
+- (void)testNilAnimationBlock {
+    XCTestExpectation *expect = [self expectationWithDescription:@"noAnimations"];
+    [self.controller addAnimation:nil];
+    [self.controller startAnimationChainWithCompletionBlock:^{
+        [expect fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:1 handler:nil];
+}
+
+- (void)testNilInitializationBlock {
+    XCTestExpectation *crash = [self expectationWithDescription:@"dontCrash"];
+    XCTestExpectation *run = [self expectationWithDescription:@"runAnimation"];
+    
+    [self.controller addAnimation:^{
+        [run fulfill];
+    }].butBefore(nil);
+    [self.controller startAnimationChainWithCompletionBlock:nil];
+    
+    [self performSelector:@selector(fulfillExpectation:) withObject:crash afterDelay:0.1];
+    [self waitForExpectationsWithTimeout:1 handler:nil];
+}
+
+- (void)testNilCompletionBlock {
+    XCTestExpectation *crash = [self expectationWithDescription:@"dontCrash"];
+    XCTestExpectation *run = [self expectationWithDescription:@"runAnimation"];
+    
+    [self.controller addAnimation:^{
+        [run fulfill];
+    }].andThen(nil);
+    [self.controller startAnimationChainWithCompletionBlock:nil];
+    
+    [self performSelector:@selector(fulfillExpectation:) withObject:crash afterDelay:0.1];
+    [self waitForExpectationsWithTimeout:1 handler:nil];
+}
+
+- (void)testNilControllerCompletionBlock {
+    XCTestExpectation *crash = [self expectationWithDescription:@"dontCrash"];
+    XCTestExpectation *run = [self expectationWithDescription:@"runAnimation"];
+    
+    [self.controller addAnimation:^{
+        [run fulfill];
+    }];
+    [self.controller startAnimationChainWithCompletionBlock:nil];
+    
+    [self performSelector:@selector(fulfillExpectation:) withObject:crash afterDelay:0.1];
+    [self waitForExpectationsWithTimeout:1 handler:nil];
+}
+
+- (void)testAnimationRunningFlag {
+    XCTestExpectation *expect = [self expectationWithDescription:@"animations"];
+    
+    [self.controller addAnimation:nil];
+    
+    [self.controller startAnimationChainWithCompletionBlock:^{
+        [expect fulfill];
+    }];
+    
+    XCTAssertTrue(self.controller.animationRunning);
+    [self waitForExpectationsWithTimeout:1 handler:nil];
+    XCTAssertFalse(self.controller.animationRunning);
+}
+
+- (void)testAnimationCounterUpdates {
+    XCTestExpectation *expect = [self expectationWithDescription:@"animations"];
+    
+    __weak typeof(self) weakself = self;
+    [self.controller addAnimation:^{
+        __strong typeof(self) self = weakself;
+        XCTAssertEqual(self.controller.animationStep, 0);
+    }].butBefore(^{
+        __strong typeof(self) self = weakself;
+        XCTAssertEqual(self.controller.animationStep, 0);
+    }).andThen(^{
+        __strong typeof(self) self = weakself;
+        XCTAssertEqual(self.controller.animationStep, 0);
+    });
+    
+    [self.controller addAnimation:^{
+        __strong typeof(self) self = weakself;
+        XCTAssertEqual(self.controller.animationStep, 1);
+    }].butBefore(^{
+        __strong typeof(self) self = weakself;
+        XCTAssertEqual(self.controller.animationStep, 1);
+    })
+    .andThen(^{
+        __strong typeof(self) self = weakself;
+        XCTAssertEqual(self.controller.animationStep, 1);
+    });
+    
+    [self.controller startAnimationChainWithCompletionBlock:^{
+        [expect fulfill];
+    }];
+    XCTAssertEqual(self.controller.animationStep, 0);
+    [self waitForExpectationsWithTimeout:1 handler:nil];}
+
+- (void)testAnimationCannotBeRunTwice {
+    XCTestExpectation *expect1 = [self expectationWithDescription:@"callAnimations1"];
+    XCTestExpectation *expect2 = [self expectationWithDescription:@"callAnimations2"];
+    
+    [self.controller addAnimation:^{
+        [expect1 fulfill];
+    }];
+    [self.controller addAnimation:^{
+        [expect2 fulfill];
+    }];
+    
+    XCTAssertEqual(self.controller.animations.count, 2);
+    
+    [self.controller startAnimationChain];
     [self waitForExpectationsWithTimeout:1 handler:nil];
 }
 
@@ -43,22 +161,108 @@
         [expect2 fulfill];
     }];
     
+    XCTAssertEqual(self.controller.animations.count, 2);
+    
     [self.controller startAnimationChain];
     [self waitForExpectationsWithTimeout:1 handler:nil];
 }
 
-- (void)testCompletionBlockShouldBeCalled {
-    XCTestExpectation *expect = [self expectationWithDescription:@"completion"];
+- (void)testWillBeginShouldBeCalled {
+    XCTestExpectation *expect = [self expectationWithDescription:@"waitAnimations"];
     
-    [self.controller addAnimation:^{
-        ;
-    }];
+    id base = OCMPartialMock([[NUBaseAnimation alloc] init]);
+    OCMExpect([base animationWillBegin]);
     
-    
+    [self.controller addAnimationBlock:base];
     [self.controller startAnimationChainWithCompletionBlock:^{
         [expect fulfill];
     }];
     
+    [self waitForExpectationsWithTimeout:1 handler:nil];
+    
+    OCMVerifyAll(base);
+}
+
+- (void)testDidFinishShouldBeCalled {
+    XCTestExpectation *expect = [self expectationWithDescription:@"waitAnimations"];
+    
+    id base = OCMPartialMock([[NUBaseAnimation alloc] init]);
+    OCMExpect([base animationDidFinish]);
+    
+    [self.controller addAnimationBlock:base];
+    [self.controller startAnimationChainWithCompletionBlock:^{
+        [expect fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:1 handler:nil];
+    OCMVerifyAll(base);
+}
+
+- (void)testRemoveAllAnimations {
+    XCTestExpectation *running = [self expectationWithDescription:@"finishAnimations"];
+    
+    __weak typeof(self) weakself = self;
+    [self.controller addAnimation:^{
+        __strong typeof(self) self = weakself;
+        XCTFail(@"Removed animation should not be called");
+    }];
+    [self.controller addAnimation:^{
+        __strong typeof(self) self = weakself;
+        XCTFail(@"Removed animation should not be called");
+    }];
+    
+    XCTAssertEqual(self.controller.animations.count, 2);
+    [self.controller removeAllAnimations];
+    XCTAssertEqual(self.controller.animations.count, 0);
+    
+    [self.controller startAnimationChainWithCompletionBlock:^{
+        [running fulfill];
+    }];
+    [self waitForExpectationsWithTimeout:1 handler:nil];
+}
+
+- (void)testParallelAnimationsShouldBeStartedInTheSameStep {
+    XCTestExpectation *animation1 = [self expectationWithDescription:@"animation1"];
+    XCTestExpectation *animation2 = [self expectationWithDescription:@"animation2"];
+    
+    __weak typeof(self) weakself = self;
+    [self.controller addAnimation:^{
+        __strong typeof(self) self = weakself;
+        [animation1 fulfill];
+        XCTAssertEqual(self.controller.animationStep, 0);
+    }].inParallelWith(^{
+        __strong typeof(self) self = weakself;
+        [animation2 fulfill];
+        XCTAssertEqual(self.controller.animationStep, 0);
+    });
+    
+    [self.controller startAnimationChainWithCompletionBlock:^{
+        __strong typeof(self) self = weakself;
+        XCTAssertEqual(self.controller.animationStep, 0);
+    }];
+    
+    [self waitForExpectationsWithTimeout:1 handler:nil];
+    
+}
+
+- (void)testRemoveAnimation {
+    XCTestExpectation *expect = [self expectationWithDescription:@"callAnimation"];
+    
+    [self.controller addAnimation:^{
+        [expect fulfill];
+    }];
+    
+    __weak typeof(self) weakself = self;
+    NUBaseAnimation *removeMe = [self.controller addAnimation:^{
+        __strong typeof(self) self = weakself;
+        XCTFail(@"Removed animation should not be called");
+    }];
+    
+    XCTAssertEqual(self.controller.animations.count, 2);
+    [self.controller removeAnimation:removeMe];
+    XCTAssertEqual(self.controller.animations.count, 1);
+    
+    [self.controller startAnimationChain];
     [self waitForExpectationsWithTimeout:1 handler:nil];
 }
 
@@ -66,10 +270,12 @@
     XCTestExpectation *expect = [self expectationWithDescription:@"firstAnimation"];
     XCTestExpectation *expectCompletion = [self expectationWithDescription:@"completionBlock"];
     
+    XCTAssertFalse(self.controller.animationCancelled);
     __weak typeof(self) weakself = self;
     [self.controller addAnimation:^{
         __strong typeof(self) self = weakself;
         [self.controller cancelAnimations];
+        XCTAssertTrue(self.controller.animationCancelled);
         
         //Wait before fulfilling expectation
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -89,7 +295,14 @@
     }];
     
     [self waitForExpectationsWithTimeout:1 handler:nil];
+}
+
+- (void)testCancelledAnimationsCanBeRunAgain {
     
+}
+
+- (void)fulfillExpectation: (XCTestExpectation *)expectation {
+    [expectation fulfill];
 }
 
 @end

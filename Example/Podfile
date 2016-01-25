@@ -7,6 +7,5 @@ end
 
 target 'NUAnimationKit_Tests', :exclusive => true do
   pod "NUAnimationKit", :path => "../"
-
-  
+  pod "OCMock"
 end

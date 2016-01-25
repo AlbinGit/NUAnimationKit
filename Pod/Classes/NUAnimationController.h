@@ -12,13 +12,14 @@
 @interface NUAnimationController : NSObject
 
 @property (nonatomic, readonly) BOOL animationCancelled;
+@property (nonatomic, readonly) int animationStep;
+@property (nonatomic, readonly) BOOL animationRunning;
 
 - (NUBaseAnimation *)addAnimationBlock:(NUBaseAnimation *)block;
 - (void)removeAnimation: (NUBaseAnimation *)animation;
 - (void)removeAllAnimations;
 
 - (NSArray *)animations;
-
 
 - (void)startAnimationChainWithCompletionBlock:(void (^)())completionBlock;
 - (void)startAnimationChain;

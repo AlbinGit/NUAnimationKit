@@ -10,7 +10,7 @@
 
 @interface NUAnimationDefaults : NSObject
 
-+ (id)sharedDefaults;
++ (instancetype)sharedDefaults;
 
 @property NSTimeInterval defaultDuration;
 @property UIViewAnimationOptions defaultOptions;

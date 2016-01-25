@@ -24,6 +24,8 @@
 		D45B60B51C52ACCB0074A7A0 /* NUSpringAnimationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D45B60B41C52ACCB0074A7A0 /* NUSpringAnimationsViewController.m */; };
 		D45B60B71C52B3420074A7A0 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D45B60B61C52B3420074A7A0 /* Launch Screen.storyboard */; };
 		D45B60BD1C52B4A50074A7A0 /* NUBaseExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D45B60BC1C52B4A50074A7A0 /* NUBaseExampleViewController.m */; };
+		D48363C81C55B57A00934C0C /* NUAnimationAdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D48363C71C55B57A00934C0C /* NUAnimationAdditionsTests.m */; };
+		D4F5E2EC1C5573B9007F4685 /* NUAnimationOptionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F5E2EB1C5573B9007F4685 /* NUAnimationOptionsTests.m */; };
 		FDA009DA11169A79392669F5 /* Pods_NUAnimationKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C8A907C5E530939B8719FC9 /* Pods_NUAnimationKit_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +74,8 @@
 		D45B60B61C52B3420074A7A0 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		D45B60BB1C52B4A50074A7A0 /* NUBaseExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUBaseExampleViewController.h; sourceTree = "<group>"; };
 		D45B60BC1C52B4A50074A7A0 /* NUBaseExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUBaseExampleViewController.m; sourceTree = "<group>"; };
+		D48363C71C55B57A00934C0C /* NUAnimationAdditionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUAnimationAdditionsTests.m; sourceTree = "<group>"; };
+		D4F5E2EB1C5573B9007F4685 /* NUAnimationOptionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUAnimationOptionsTests.m; sourceTree = "<group>"; };
 		D9625224FF189263F1FDB602 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		F8D932AACE9E6406FA1706E0 /* Pods-NUAnimationKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NUAnimationKit_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NUAnimationKit_Example/Pods-NUAnimationKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -183,9 +187,10 @@
 		D41B768D1C53D0FF006F0701 /* NUAnimationKit_Tests */ = {
 			isa = PBXGroup;
 			children = (
-				D41B76961C53D142006F0701 /* NUAnimationControllerTests.m */,
-				D41B76971C53D142006F0701 /* NUBaseAnimationTests.m */,
-				D41B76981C53D142006F0701 /* NUCompositeAnimationTests.m */,
+				D48363C61C55B55300934C0C /* Categories */,
+				D4F5E2EA1C5573A6007F4685 /* NUAnimationOptions */,
+				D4F5E2E91C55739A007F4685 /* NUAnimation */,
+				D4F5E2E81C557391007F4685 /* NUAnimationController */,
 				D41B76901C53D0FF006F0701 /* Info.plist */,
 			);
 			path = NUAnimationKit_Tests;
@@ -228,6 +233,39 @@
 				D45B60B41C52ACCB0074A7A0 /* NUSpringAnimationsViewController.m */,
 			);
 			name = ParallelSprings;
+			sourceTree = "<group>";
+		};
+		D48363C61C55B55300934C0C /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				D48363C71C55B57A00934C0C /* NUAnimationAdditionsTests.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		D4F5E2E81C557391007F4685 /* NUAnimationController */ = {
+			isa = PBXGroup;
+			children = (
+				D41B76961C53D142006F0701 /* NUAnimationControllerTests.m */,
+			);
+			name = NUAnimationController;
+			sourceTree = "<group>";
+		};
+		D4F5E2E91C55739A007F4685 /* NUAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				D41B76971C53D142006F0701 /* NUBaseAnimationTests.m */,
+				D41B76981C53D142006F0701 /* NUCompositeAnimationTests.m */,
+			);
+			name = NUAnimation;
+			sourceTree = "<group>";
+		};
+		D4F5E2EA1C5573A6007F4685 /* NUAnimationOptions */ = {
+			isa = PBXGroup;
+			children = (
+				D4F5E2EB1C5573B9007F4685 /* NUAnimationOptionsTests.m */,
+			);
+			name = NUAnimationOptions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -442,7 +480,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D41B769A1C53D142006F0701 /* NUBaseAnimationTests.m in Sources */,
+				D48363C81C55B57A00934C0C /* NUAnimationAdditionsTests.m in Sources */,
 				D41B76991C53D142006F0701 /* NUAnimationControllerTests.m in Sources */,
+				D4F5E2EC1C5573B9007F4685 /* NUAnimationOptionsTests.m in Sources */,
 				D41B769B1C53D142006F0701 /* NUCompositeAnimationTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

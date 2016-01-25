@@ -15,17 +15,21 @@
                              andOptions: (NUAnimationOptions *)options
                                andDelay: (NSTimeInterval)delay
                           andAnimations: (NUSimpleAnimationBlock)animations
-                     andCompletionBlock: (NUCompletionBlock)completionBlock
+                     andCompletionBlock: (NUNoArgumentsBlock)completionBlock
                          inParallelWith: (NUBaseAnimation *)parallelBlock
                        animateAlongside: (NUProgressAnimationBlock)progressBlock;
 
 @property (nonatomic, strong) NUBaseAnimation *parallelBlock;
+@property (nonatomic, strong) NUProgressAnimationBlock progressBlock;
 
 - (NUCompositeAnimation * (^)(NUAnimationType))withType;
 - (NUCompositeAnimation * (^)(NSTimeInterval))withDelay;
 
+//Initialization
+- (NUCompositeAnimation * (^)(NUNoArgumentsBlock))butBefore;
+
 //Completion
-- (NUCompositeAnimation * (^)(NUCompletionBlock))andThen;
+- (NUCompositeAnimation * (^)(NUNoArgumentsBlock))andThen;
 
 //Options
 - (NUCompositeAnimation * (^)(UIViewAnimationCurve))withCurve;
