@@ -34,15 +34,13 @@
 
 #pragma mark - Public methods
 
-///Adds an animation block to the chain
-- (NUBaseAnimation *)addAnimationBlock:(NUBaseAnimation *)block {
+- (NUBaseAnimation *)addAnimation:(NUBaseAnimation *)block {
     [self.animationBlocks addObject:block];
     self.totalAnimationTime += block.options.duration;
     return block;
 }
 
-///Starts animation chain with a completion block
-- (void)startAnimationChainWithCompletionBlock:(void (^)())completionBlock {
+- (void)startAnimationChainWithCompletionBlock:(NUNoArgumentsBlock)completionBlock {
     self.animationCancelled = false;
     self.animationStep = 0;
     if (self.animationRunning) {
@@ -56,35 +54,29 @@
     [self startNextAnimation];
 }
 
-///Starts animation chain
 - (void)startAnimationChain {
     [self startAnimationChainWithCompletionBlock:nil];
 }
 
-///Adds an animation block to the chain.
-- (NUCompositeAnimation *)addAnimation: (NUSimpleAnimationBlock)animation {
+- (NUCompositeAnimation *)addAnimations: (NUSimpleAnimationBlock)animation {
     NUCompositeAnimation *result = [[NUCompositeAnimation alloc] init];
     result.animationBlock = animation;
-    [self addAnimationBlock:result];
+    [self addAnimation:result];
     return result;
 }
 
-///Cancels the animation chain, but does not stop the current animation.
 - (void)cancelAnimations {
     self.animationCancelled = true;
 }
 
-///Removes an animation block
 - (void)removeAnimation: (NUBaseAnimation *)animation {
     [self.animationBlocks removeObject:animation];
 }
 
-///Removes all animation blocks
 - (void)removeAllAnimations {
     self.animationBlocks = [[NSMutableArray alloc] init];
 }
 
-///Gets a copy of the internal animation blocks collection
 - (NSArray *)animations {
     return [self.animationBlocks copy];
 }

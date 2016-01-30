@@ -19,7 +19,9 @@
                          inParallelWith: (NUBaseAnimation *)parallelBlock
                        animateAlongside: (NUProgressAnimationBlock)progressBlock;
 
+///An animation that will be started concurrently with this.
 @property (nonatomic, strong) NUBaseAnimation *parallelBlock;
+///A progress-based animation block that will be animated alongside this.
 @property (nonatomic, strong) NUProgressAnimationBlock progressBlock;
 
 - (NUCompositeAnimation * (^)(NUAnimationType))withType;
