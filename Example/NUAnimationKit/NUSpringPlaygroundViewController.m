@@ -101,7 +101,7 @@
     
     __weak typeof(self) weakself = self;
     NUBaseAnimation *animation =
-    [self.controller addAnimation:^{
+    [self.controller addAnimations:^{
         __strong typeof(self) self = weakself;
         [self.animationView setFrameX:150];
     }].withType(NUAnimationTypeSpringy)

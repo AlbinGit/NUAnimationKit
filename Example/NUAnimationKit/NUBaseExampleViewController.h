@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NUAnimationController.h"
+#import <NUAnimationKit/NUAnimationController.h>
 
 @interface NUBaseExampleViewController : UIViewController
 

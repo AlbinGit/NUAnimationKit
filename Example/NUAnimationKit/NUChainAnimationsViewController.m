@@ -7,7 +7,6 @@
 //
 
 #import "NUChainAnimationsViewController.h"
-#import "NUAnimationController.h"
 
 @interface NUChainAnimationsViewController ()
 @property (nonatomic, strong) UILabel *completionLabel;
@@ -39,7 +38,7 @@
     [self.view addSubview:self.completionLabel];
     [self.view addSubview:progressLabel];
     
-    [self.controller addAnimation:^{
+    [self.controller addAnimations:^{
         [animationView1 setFrameY:400];
         animationView1.backgroundColor = [UIColor grayColor];
     }].withAnimationOption(UIViewAnimationOptionTransitionCrossDissolve)
@@ -47,11 +46,11 @@
         self.completionLabel.text = @"Working on it";
     });
     
-    [self.controller addAnimation:^{
+    [self.controller addAnimations:^{
         [animationView2 setFrameY:400];
     }].withDelay(0.1).withDuration(0.3).withCurve(UIViewAnimationCurveEaseInOut);
     
-    [self.controller addAnimation:^{
+    [self.controller addAnimations:^{
         [animationView3 setFrameY:400];
     }].withType(NUAnimationTypeSpringy).withDuration(NUSpringAnimationNaturalDuration).
     alongSideBlock(^(CGFloat progress){
@@ -64,12 +63,6 @@
     [self.controller startAnimationChainWithCompletionBlock:^{
         self.completionLabel.text = @"All done";
     }];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

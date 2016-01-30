@@ -23,7 +23,7 @@
 }
 
 - (void)testCreationShorthandNotation {
-    NUCompositeAnimation *result = [self.controller addAnimation:^{
+    NUCompositeAnimation *result = [self.controller addAnimations:^{
     }];
     XCTAssertTrue([result isKindOfClass:[NUCompositeAnimation class]]);
 }
@@ -39,7 +39,7 @@
 
 - (void)testNilAnimationBlock {
     XCTestExpectation *expect = [self expectationWithDescription:@"noAnimations"];
-    [self.controller addAnimation:nil];
+    [self.controller addAnimations:nil];
     [self.controller startAnimationChainWithCompletionBlock:^{
         [expect fulfill];
     }];
@@ -51,7 +51,7 @@
     XCTestExpectation *crash = [self expectationWithDescription:@"dontCrash"];
     XCTestExpectation *run = [self expectationWithDescription:@"runAnimation"];
     
-    [self.controller addAnimation:^{
+    [self.controller addAnimations:^{
         [run fulfill];
     }].butBefore(nil);
     [self.controller startAnimationChainWithCompletionBlock:nil];
@@ -64,7 +64,7 @@
     XCTestExpectation *crash = [self expectationWithDescription:@"dontCrash"];
     XCTestExpectation *run = [self expectationWithDescription:@"runAnimation"];
     
-    [self.controller addAnimation:^{
+    [self.controller addAnimations:^{
         [run fulfill];
     }].andThen(nil);
     [self.controller startAnimationChainWithCompletionBlock:nil];
@@ -77,7 +77,7 @@
     XCTestExpectation *crash = [self expectationWithDescription:@"dontCrash"];
     XCTestExpectation *run = [self expectationWithDescription:@"runAnimation"];
     
-    [self.controller addAnimation:^{
+    [self.controller addAnimations:^{
         [run fulfill];
     }];
     [self.controller startAnimationChainWithCompletionBlock:nil];
@@ -89,7 +89,7 @@
 - (void)testAnimationRunningFlag {
     XCTestExpectation *expect = [self expectationWithDescription:@"animations"];
     
-    [self.controller addAnimation:nil];
+    [self.controller addAnimations:nil];
     
     [self.controller startAnimationChainWithCompletionBlock:^{
         [expect fulfill];
@@ -104,7 +104,7 @@
     XCTestExpectation *expect = [self expectationWithDescription:@"animations"];
     
     __weak typeof(self) weakself = self;
-    [self.controller addAnimation:^{
+    [self.controller addAnimations:^{
         __strong typeof(self) self = weakself;
         XCTAssertEqual(self.controller.animationStep, 0);
     }].butBefore(^{
@@ -115,7 +115,7 @@
         XCTAssertEqual(self.controller.animationStep, 0);
     });
     
-    [self.controller addAnimation:^{
+    [self.controller addAnimations:^{
         __strong typeof(self) self = weakself;
         XCTAssertEqual(self.controller.animationStep, 1);
     }].butBefore(^{
@@ -137,10 +137,10 @@
     XCTestExpectation *expect1 = [self expectationWithDescription:@"callAnimations1"];
     XCTestExpectation *expect2 = [self expectationWithDescription:@"callAnimations2"];
     
-    [self.controller addAnimation:^{
+    [self.controller addAnimations:^{
         [expect1 fulfill];
     }];
-    [self.controller addAnimation:^{
+    [self.controller addAnimations:^{
         [expect2 fulfill];
     }];
     
@@ -154,10 +154,10 @@
     XCTestExpectation *expect1 = [self expectationWithDescription:@"callAnimations1"];
     XCTestExpectation *expect2 = [self expectationWithDescription:@"callAnimations2"];
     
-    [self.controller addAnimation:^{
+    [self.controller addAnimations:^{
         [expect1 fulfill];
     }];
-    [self.controller addAnimation:^{
+    [self.controller addAnimations:^{
         [expect2 fulfill];
     }];
     
@@ -173,7 +173,7 @@
     id base = OCMPartialMock([[NUBaseAnimation alloc] init]);
     OCMExpect([base animationWillBegin]);
     
-    [self.controller addAnimationBlock:base];
+    [self.controller addAnimation:base];
     [self.controller startAnimationChainWithCompletionBlock:^{
         [expect fulfill];
     }];
@@ -189,7 +189,7 @@
     id base = OCMPartialMock([[NUBaseAnimation alloc] init]);
     OCMExpect([base animationDidFinish]);
     
-    [self.controller addAnimationBlock:base];
+    [self.controller addAnimation:base];
     [self.controller startAnimationChainWithCompletionBlock:^{
         [expect fulfill];
     }];
@@ -202,11 +202,11 @@
     XCTestExpectation *running = [self expectationWithDescription:@"finishAnimations"];
     
     __weak typeof(self) weakself = self;
-    [self.controller addAnimation:^{
+    [self.controller addAnimations:^{
         __strong typeof(self) self = weakself;
         XCTFail(@"Removed animation should not be called");
     }];
-    [self.controller addAnimation:^{
+    [self.controller addAnimations:^{
         __strong typeof(self) self = weakself;
         XCTFail(@"Removed animation should not be called");
     }];
@@ -226,7 +226,7 @@
     XCTestExpectation *animation2 = [self expectationWithDescription:@"animation2"];
     
     __weak typeof(self) weakself = self;
-    [self.controller addAnimation:^{
+    [self.controller addAnimations:^{
         __strong typeof(self) self = weakself;
         [animation1 fulfill];
         XCTAssertEqual(self.controller.animationStep, 0);
@@ -248,12 +248,12 @@
 - (void)testRemoveAnimation {
     XCTestExpectation *expect = [self expectationWithDescription:@"callAnimation"];
     
-    [self.controller addAnimation:^{
+    [self.controller addAnimations:^{
         [expect fulfill];
     }];
     
     __weak typeof(self) weakself = self;
-    NUBaseAnimation *removeMe = [self.controller addAnimation:^{
+    NUBaseAnimation *removeMe = [self.controller addAnimations:^{
         __strong typeof(self) self = weakself;
         XCTFail(@"Removed animation should not be called");
     }];
@@ -272,7 +272,7 @@
     
     XCTAssertFalse(self.controller.animationCancelled);
     __weak typeof(self) weakself = self;
-    [self.controller addAnimation:^{
+    [self.controller addAnimations:^{
         __strong typeof(self) self = weakself;
         [self.controller cancelAnimations];
         XCTAssertTrue(self.controller.animationCancelled);
@@ -284,7 +284,7 @@
         });
     }];
     
-    [self.controller addAnimation:^{
+    [self.controller addAnimations:^{
         __strong typeof(self) self = weakself;
         XCTFail(@"Second animation shouldn't be called");
     }];

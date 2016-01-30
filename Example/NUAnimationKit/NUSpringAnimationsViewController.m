@@ -7,7 +7,6 @@
 //
 
 #import "NUSpringAnimationsViewController.h"
-#import "NUAnimationController.h"
 
 @interface NUSpringAnimationsViewController ()
 @property (nonatomic, strong) NSDate *startDate;
@@ -41,7 +40,7 @@
     [self.view addSubview:duration2];
     [self.view addSubview:duration3];
     
-    [self.controller addAnimation:^{
+    [self.controller addAnimations:^{
         [animationView1 setFrameY: 300];
     }].withType(NUAnimationTypeSpringy).withDuration(NUSpringAnimationNaturalDuration).
     alongSideBlock(^(CGFloat progress){
@@ -74,11 +73,6 @@
 - (void)startAnimation {
     [super startAnimation];
     self.startDate = [NSDate date];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end
