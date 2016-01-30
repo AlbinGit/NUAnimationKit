@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "NUAnimationKit"
-  s.version          = "0.1.0"
+  s.version          = "0.2.0"
   s.summary          = "DSL to wrap UIView animation chaining into a cleaner structure"
 
 # This description is used to generate tags and improve search results.
@@ -20,12 +20,10 @@ Pod::Spec.new do |s|
 UIView animation wrapper that simplifies chaining of multiple animation steps, each with their own completion blocks. Also supports progress-based animations using CADisplayKit synchronization
                        DESC
 
-  s.homepage         = "https://github.com/nubank/NUAnimationKit"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
+  s.homepage         = "git@github.com:nubank/NUAnimationKit.git"
   s.license          = 'MIT'
   s.author           = { "Victor Maraccini" => "vgm.maraccini@gmail.com" }
-  s.source           = { :git => "https://github.com/nubank/NUAnimationKit.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.source           = { :git => "git@github.com:nubank/NUAnimationKit.git", :tag => s.version.to_s }
 
   s.platform     = :ios, '8.0'
   s.requires_arc = true
