@@ -7,8 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "NUAnimationController.h"
-#import "NUBaseAnimation.h"
+#import <NUAnimationKit/NUAnimationController.h>
+#import <NUAnimationKit/NUBaseAnimation.h>
 
 @interface NUBaseAnimationTests : XCTestCase
 
@@ -87,11 +87,32 @@
                                                                 andDelay:0
                                                            andAnimations:^{}
                                                   andInitializationBlock:block
-                                                      andCompletionBlock:nil];
+                                                      andCompletionBlock:nil
+                                                    andCancellationBlock:nil];
     //Controller calls public method
     [animation animationWillBegin];
     [self waitForExpectationsWithTimeout:1 handler:nil];
 
+}
+
+- (void)tesCancellationBlockIsCalled {
+    XCTestExpectation *expect = [self expectationWithDescription:@"cancellation"];
+    id block = ^{
+        [expect fulfill];
+    };
+    
+    NUBaseAnimation *animation = [NUBaseAnimation animationBlockWithType:NUAnimationTypeDefault
+                                                              andOptions:[NUAnimationOptions animationWithDuration:0
+                                                                                                        andOptions:0
+                                                                                                          andCurve:0]
+                                                                andDelay:0
+                                                           andAnimations:^{}
+                                                  andInitializationBlock:nil
+                                                      andCompletionBlock:nil
+                                                    andCancellationBlock:block];
+    //Controller calls public method
+    [animation animationDidCancel];
+    [self waitForExpectationsWithTimeout:1 handler:nil];
 }
 
 - (void)testCompletionBlockIsCalled {
@@ -107,7 +128,8 @@
                                                                 andDelay:0
                                                            andAnimations:^{}
                                                   andInitializationBlock:nil
-                                                      andCompletionBlock:block];
+                                                      andCompletionBlock:block
+                                                    andCancellationBlock:nil];
     //Controller calls public method
     [animation animationDidFinish];
     [self waitForExpectationsWithTimeout:1 handler:nil];
