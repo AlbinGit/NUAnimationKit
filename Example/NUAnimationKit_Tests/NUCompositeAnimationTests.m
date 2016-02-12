@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "NUAnimationController.h"
+#import <NUAnimationKit/NUAnimationController.h>
 #import "OCMock.h"
 
 @interface NUCompositeAnimationTests : XCTestCase
@@ -34,9 +34,10 @@
 }
 
 - (void)testFactoryMethod {
-    id animationBlock = ^{};
-    id completionBlock = ^{};
-    id progressBlock = ^(CGFloat f){};
+    id animationBlock = ^{NSLog(@"animation");};
+    id completionBlock = ^{NSLog(@"completion");};
+    id cancellationBlock = ^{NSLog(@"cancellation");};
+    id progressBlock = ^(CGFloat f){NSLog(@"progress");};
     NSTimeInterval delay = 0.32;
     
     
@@ -52,6 +53,7 @@
                                                                        andDelay:delay
                                                                   andAnimations:animationBlock
                                                              andCompletionBlock:completionBlock
+                                                           andCancellationBlock:cancellationBlock
                                                                  inParallelWith:self.composite
                                                                animateAlongside:progressBlock];
     
@@ -60,6 +62,7 @@
     XCTAssertEqual(result.delay, delay);
     XCTAssertEqualObjects(result.animationBlock, animationBlock);
     XCTAssertEqualObjects(result.completionBlock, completionBlock);
+    XCTAssertEqualObjects(result.cancellationBlock, cancellationBlock);
     XCTAssertEqualObjects(result.progressBlock, progressBlock);
     
 }
@@ -97,12 +100,12 @@
     self.simulatedTimeInterval += 0.1;
     self.expectedPercentage = 0.1;
     [self.composite updateAnimationProgress];
-
+    
     //0.4 more seconds passed
     self.simulatedTimeInterval += 0.4;
     self.expectedPercentage = 0.5;
     [self.composite updateAnimationProgress];
-
+    
     //Animation finished
     self.expectedPercentage = 1;
     [self.composite animationDidFinish];
@@ -148,6 +151,12 @@
     id block = ^{;};
     self.composite.andThen(block);
     XCTAssertEqualObjects(self.composite.completionBlock, block);
+}
+
+- (void)testCancellationShorthandNotation {
+    id block = ^{;};
+    self.composite.ifCancelled(block);
+    XCTAssertEqualObjects(self.composite.cancellationBlock, block);
 }
 
 - (void)testAnimationOptionShorthandNotation {
