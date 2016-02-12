@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "NUAnimationKit"
-  s.version          = "0.2.0"
+  s.version          = "0.2.1"
   s.summary          = "DSL to wrap UIView animation chaining into a cleaner structure"
 
 # This description is used to generate tags and improve search results.
