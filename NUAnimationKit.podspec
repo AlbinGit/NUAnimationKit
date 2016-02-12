@@ -11,11 +11,6 @@ Pod::Spec.new do |s|
   s.version          = "0.2.1"
   s.summary          = "DSL to wrap UIView animation chaining into a cleaner structure"
 
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!  
   s.description      = <<-DESC
 UIView animation wrapper that simplifies chaining of multiple animation steps, each with their own completion blocks. Also supports progress-based animations using CADisplayKit synchronization
                        DESC
@@ -29,11 +24,4 @@ UIView animation wrapper that simplifies chaining of multiple animation steps, e
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*'
-  s.resource_bundles = {
-    'NUAnimationKit' => ['Pod/Assets/*.png']
-  }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end
