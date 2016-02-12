@@ -11,9 +11,9 @@
 
 @interface NUAnimationController ()
 
-@property (nonatomic, copy) void (^completionBlock)();
-@property (nonatomic, strong) NSMutableArray *animationBlocks;
+@property (nonatomic, strong) NSMutableArray *animationSteps;
 @property (nonatomic, readwrite) NSTimeInterval totalAnimationTime;
+
 @property (nonatomic, readwrite) int animationStep;
 @property (nonatomic, readwrite) BOOL animationRunning;
 @property (nonatomic, readwrite) BOOL animationCancelled;
@@ -26,7 +26,7 @@
 {
     self = [super init];
     if (self) {
-        _animationBlocks = [[NSMutableArray alloc] init];
+        _animationSteps = [[NSMutableArray alloc] init];
         _totalAnimationTime = 0;
     }
     return self;
@@ -35,7 +35,7 @@
 #pragma mark - Public methods
 
 - (NUBaseAnimation *)addAnimation:(NUBaseAnimation *)block {
-    [self.animationBlocks addObject:block];
+    [self.animationSteps addObject:block];
     self.totalAnimationTime += block.options.duration;
     return block;
 }
@@ -70,26 +70,34 @@
 }
 
 - (void)removeAnimation: (NUBaseAnimation *)animation {
-    [self.animationBlocks removeObject:animation];
+    [self.animationSteps removeObject:animation];
 }
 
 - (void)removeAllAnimations {
-    self.animationBlocks = [[NSMutableArray alloc] init];
+    self.animationSteps = [[NSMutableArray alloc] init];
 }
 
 - (NSArray *)animations {
-    return [self.animationBlocks copy];
+    return [self.animationSteps copy];
+}
+
+- (NUNoArgumentsBlock)allAnimations {
+    return ^{
+        for (NUBaseAnimation *animation in self.animationSteps) {
+            animation.animationBlock();
+        }
+    };
 }
 
 #pragma mark - Private
 
 - (void)startNextAnimation {
-    if (self.animationBlocks.count == self.animationStep) {
+    if (self.animationSteps.count == self.animationStep) {
         [self finishAnimations];
         return;
     }
     
-    NUBaseAnimation *block = self.animationBlocks[self.animationStep];
+    NUBaseAnimation *block = self.animationSteps[self.animationStep];
     [self startBlock:block isParallel:false];
     
 }
@@ -103,6 +111,21 @@
         }
     }
     
+    void (^continueBlock)(BOOL finished) = ^(BOOL finished){
+        __strong typeof(self) self = weakself;
+        if (!finished || self.animationCancelled) {
+            self.animationCancelled = true;
+            [block animationDidCancel];
+            [self finishAnimations];
+        } else {
+            [block animationDidFinish];
+            if (!isParallel) {
+                self.animationStep++;
+                [self startNextAnimation];
+            }
+        }
+    };
+    
     [block animationWillBegin];
     if (block.type == NUAnimationTypeDefault) {
         [UIView animateWithDuration:block.options.duration
@@ -113,19 +136,8 @@
                                  block.animationBlock();
                              }
                          }
-                         completion:^(BOOL finished) {
-                             __strong typeof(self) self = weakself;
-                             if (finished) {
-                                 [block animationDidFinish];
-                                 
-                                 if (self.animationCancelled) {
-                                     [self finishAnimations];
-                                 } else if (!isParallel) {
-                                     self.animationStep++;
-                                     [self startNextAnimation];
-                                 }
-                             }
-                         }];
+                         completion:continueBlock];
+        
     } else if (block.type == NUAnimationTypeSpringy) {
         NUSpringAnimationOptions *springOptions = (NUSpringAnimationOptions *)block.options;
         [UIView animateWithDuration:block.options.duration
@@ -138,27 +150,30 @@
                                  block.animationBlock();
                              }
                          }
-                         completion:^(BOOL finished) {
-                             __strong typeof(self) self = weakself;
-                             if (finished) {
-                                 [block animationDidFinish];
-                                 
-                                 if (self.animationCancelled) {
-                                     [self finishAnimations];
-                                 } else if (!isParallel) {
-                                     self.animationStep++;
-                                     [self startNextAnimation];
-                                 }
-                             }
-                         }];
+                         completion:continueBlock];
+    } else {
+        @throw [NSException exceptionWithName:@"Uknown animation type"
+                                       reason:@"Unknown animation block type"
+                                     userInfo:nil];
     }
 }
 
 - (void)finishAnimations {
+    self.animationRunning = false;
+    
+    if (self.animationCancelled) {
+        if (self.shouldRunAllAnimationsIfCancelled) {
+            self.allAnimations();
+        }
+        if (self.cancellationBlock) {
+            self.cancellationBlock();
+        }
+        return;
+    }
+    
     if (self.completionBlock) {
         self.completionBlock();
     }
-    self.animationRunning = false;
 }
 
 @end

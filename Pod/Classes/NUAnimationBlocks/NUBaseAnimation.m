@@ -21,7 +21,8 @@
                                andDelay:delay
                           andAnimations:animations
                  andInitializationBlock:nil
-                     andCompletionBlock:nil];
+                     andCompletionBlock:nil
+                   andCancellationBlock:nil];
 }
 
 + (instancetype) animationBlockWithType: (NUAnimationType)type
@@ -29,14 +30,16 @@
                                andDelay: (NSTimeInterval)delay
                           andAnimations: (NUSimpleAnimationBlock)animations
                  andInitializationBlock: (NUNoArgumentsBlock)initializationBlock
-                     andCompletionBlock: (NUNoArgumentsBlock)completionBlock {
+                     andCompletionBlock: (NUNoArgumentsBlock)completionBlock
+                   andCancellationBlock: (NUNoArgumentsBlock)cancellationBlock {
     
     NUBaseAnimation *block = [[NUBaseAnimation alloc]initWithType:type
                                                        andOptions:options
                                                          andDelay:delay
                                                     andAnimations:animations
                                            andInitializationBlock:initializationBlock
-                                               andCompletionBlock:completionBlock];
+                                               andCompletionBlock:completionBlock
+                                             andCancellationBlock:cancellationBlock];
     return block;
 }
 
@@ -57,7 +60,8 @@
                     andDelay: (NSTimeInterval)delay
                andAnimations: (NUSimpleAnimationBlock)animations
       andInitializationBlock: (NUNoArgumentsBlock)initializationBlock
-          andCompletionBlock: (NUNoArgumentsBlock)completionBlock {
+          andCompletionBlock: (NUNoArgumentsBlock)completionBlock
+        andCancellationBlock: (NUNoArgumentsBlock)cancellationBlock{
     NSParameterAssert(animations);
     NSParameterAssert(options);
     self = [super init];
@@ -68,6 +72,7 @@
         _animationBlock = [animations copy];
         _initializationBlock = [initializationBlock copy];
         _completionBlock = [completionBlock copy];
+        _cancellationBlock = [cancellationBlock copy];
     }
     return self;
 }
@@ -90,6 +95,12 @@
 - (void)animationDidFinish {
     if (self.completionBlock) {
         self.completionBlock();
+    }
+}
+
+- (void)animationDidCancel {
+    if (self.cancellationBlock) {
+        self.cancellationBlock();
     }
 }
 

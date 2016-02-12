@@ -38,29 +38,49 @@
     [self.view addSubview:self.completionLabel];
     [self.view addSubview:progressLabel];
     
+    __weak typeof(self) weakself = self;
     [self.controller addAnimations:^{
         [animationView1 setFrameY:400];
         animationView1.backgroundColor = [UIColor grayColor];
     }].withAnimationOption(UIViewAnimationOptionTransitionCrossDissolve)
+    .withDuration(2)
+    .ifCancelled(^{
+        NSLog(@"First was cancelled");
+    })
     .andThen(^{
+        __strong typeof(self) self = weakself;
         self.completionLabel.text = @"Working on it";
     });
     
     [self.controller addAnimations:^{
         [animationView2 setFrameY:400];
-    }].withDelay(0.1).withDuration(0.3).withCurve(UIViewAnimationCurveEaseInOut);
+    }].withDelay(0.1).withDuration(2).withCurve(UIViewAnimationCurveEaseInOut)
+    .ifCancelled(^{
+        NSLog(@"Second was cancelled");
+    });
     
     [self.controller addAnimations:^{
         [animationView3 setFrameY:400];
     }].withType(NUAnimationTypeSpringy).withDuration(NUSpringAnimationNaturalDuration).
     alongSideBlock(^(CGFloat progress){
         progressLabel.text = [NSString stringWithFormat:@"%f", progress];
+    })
+    .ifCancelled(^{
+        NSLog(@"Third was cancelled");
     });
+    
+    [self.controller setCancellationBlock:^{
+        NSLog(@"Someone was cancelled");
+    }];
+    
+    self.controller.shouldRunAllAnimationsIfCancelled = true;
     
 }
 
 - (void)startAnimation {
+    __weak typeof(self) weakself = self;
     [self.controller startAnimationChainWithCompletionBlock:^{
+        __strong typeof(self) self = weakself;
         self.completionLabel.text = @"All done";
     }];
 }

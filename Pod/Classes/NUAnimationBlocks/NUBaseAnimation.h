@@ -28,8 +28,23 @@ typedef NS_ENUM(NSInteger, NUAnimationType) {
 @property (nonatomic) NUAnimationType type;
 @property NUAnimationOptions *options;
 @property NSTimeInterval delay;
+
+//!UIView animations to be performed
 @property (nonatomic, copy) NUSimpleAnimationBlock animationBlock;
+
+//!Block called when animation finishes successfully
 @property (nonatomic, copy) NUNoArgumentsBlock completionBlock;
+
+/**
+ *  Block invoked when animation is cancelled.
+ @discussion
+ By default, no action is taken when the animation is cancelled.
+ If you need to reliably get to a state after you trigger animations, even if they are cancelled,
+ you should supply your @c animationBlock here.
+ */
+@property (nonatomic, copy) NUNoArgumentsBlock cancellationBlock;
+
+//!Block called before animation starts
 @property (nonatomic, copy) NUNoArgumentsBlock initializationBlock;
 
 + (instancetype) animationBlockWithType: (NUAnimationType)type
@@ -42,12 +57,21 @@ typedef NS_ENUM(NSInteger, NUAnimationType) {
                                andDelay: (NSTimeInterval)delay
                           andAnimations: (NUSimpleAnimationBlock)animations
                  andInitializationBlock: (NUNoArgumentsBlock)initializationBlock
-                     andCompletionBlock: (NUNoArgumentsBlock)completionBlock;
+                     andCompletionBlock: (NUNoArgumentsBlock)completionBlock
+                   andCancellationBlock: (NUNoArgumentsBlock)cancellationBlock;
 
-///Block invoked when the controller is about to start the animation
+///Invoked when the controller is about to start the animation
 - (void)animationWillBegin;
 
-///Block invoked when the animation is finished
+///Invoked when the animation is finished
 - (void)animationDidFinish;
+
+/**
+ *  Invoked when the animation is cancelled, either by the view hierarchy or by calling @c cancelAnimations on the controller.
+ @discussion
+ Animations can be prematurelly terminated by iOS's Core Animation framework when a UIView is no longer visible.
+ In that case, you may need to do some final adjustments to your internal view's state, 
+ */
+- (void)animationDidCancel;
 
 @end

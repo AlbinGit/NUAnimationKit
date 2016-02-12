@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "NUAnimationController.h"
+#import <NUAnimationKit/NUAnimationController.h>
 #import "OCMock.h"
 
 @interface NUAnimationControllerTests : XCTestCase
@@ -268,7 +268,7 @@
 
 - (void)testCancelAnimations {
     XCTestExpectation *expect = [self expectationWithDescription:@"firstAnimation"];
-    XCTestExpectation *expectCompletion = [self expectationWithDescription:@"completionBlock"];
+    XCTestExpectation *expectCancellation = [self expectationWithDescription:@"cancellationBlock"];
     
     XCTAssertFalse(self.controller.animationCancelled);
     __weak typeof(self) weakself = self;
@@ -289,16 +289,72 @@
         XCTFail(@"Second animation shouldn't be called");
     }];
     
-    [self.controller startAnimationChainWithCompletionBlock:^{
+    [self.controller setCancellationBlock:^{
+        __strong typeof(self) self = weakself;
         XCTAssertTrue(self.controller.animationCancelled);
-        [expectCompletion fulfill];
+        [expectCancellation fulfill];
+    }];
+    
+    [self.controller startAnimationChainWithCompletionBlock:^{
+        XCTFail(@"Should not call completion block");
+    }];
+    
+    [self waitForExpectationsWithTimeout:1 handler:nil];
+}
+
+- (void)testRunsAllAnimationsIfCancelled {
+    XCTestExpectation *expectSecond = [self expectationWithDescription:@"secondAnimation"];
+    
+    XCTAssertFalse(self.controller.animationCancelled);
+    __weak typeof(self) weakself = self;
+    [self.controller addAnimations:^{
+        __strong typeof(self) self = weakself;
+        [self.controller cancelAnimations];
+        XCTAssertTrue(self.controller.animationCancelled);
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            XCTAssertTrue(self.controller.animationCancelled);
+        });
+    }];
+    
+    [self.controller addAnimations:^{
+        [expectSecond fulfill];
+    }];
+
+    self.controller.shouldRunAllAnimationsIfCancelled = true;
+    
+    [self.controller startAnimationChainWithCompletionBlock:^{
+        XCTFail(@"Should not call completion block");
     }];
     
     [self waitForExpectationsWithTimeout:1 handler:nil];
 }
 
 - (void)testCancelledAnimationsCanBeRunAgain {
+    __block BOOL shouldCancel = true;
+    __block BOOL didCallSecondAnimation = false;
+    XCTestExpectation *expectSecond = [self expectationWithDescription:@"secondAnimation"];
     
+    [self.controller addAnimations:^{}]
+    .andThen(^{
+        if (shouldCancel) {
+            [self.controller cancelAnimations];
+        }
+    });
+    
+    [self.controller addAnimations:^{
+        didCallSecondAnimation = true;
+        [expectSecond fulfill];
+    }];
+    
+    [self.controller startAnimationChain];
+    XCTAssertFalse(didCallSecondAnimation, @"Should not call second animation if cancelled");
+    shouldCancel = false;
+    
+    [self.controller startAnimationChain];
+    
+    [self waitForExpectationsWithTimeout:1 handler:nil];
+    XCTAssertTrue(didCallSecondAnimation, @"Should call second animation");
 }
 
 - (void)fulfillExpectation: (XCTestExpectation *)expectation {

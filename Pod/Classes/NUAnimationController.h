@@ -19,18 +19,47 @@
 @property (nonatomic, readonly) BOOL animationRunning;
 
 
-///Add an animation to the chain
+/**
+ *  If set to @c YES, the animation blocks of each animation step
+ passed in will be called synchronously if animations are cancelled.
+ @discussion
+ This ensures a consistent final state if animations are cancelled either by explicitly calling
+ @c cancelAnimations or by changes in the view hierarchy
+ */
+@property (nonatomic, readwrite) BOOL shouldRunAllAnimationsIfCancelled;
+
+/**
+ *  The NUAnimationController's completion block
+ *
+ *  @discussion This block is invoked when the last chained animations has finished
+ */
+@property (nonatomic, copy) NUNoArgumentsBlock completionBlock;
+
+/**
+ *  The NUAnimationController's cancellation block
+ *
+ *  @discussion This block is invoked if any of the animations in the chain are cancelled, either
+ by explicitly calling @c cancelAnimations or if the animation is cancelled by the Core Animation
+ framework.
+ */
+@property (nonatomic, copy) NUNoArgumentsBlock cancellationBlock;
+
+///Adds an animation to the chain
 - (NUBaseAnimation *)addAnimation:(NUBaseAnimation *)animation;
-///Remove an animation from the chain
+///Removes an animation from the chain
 - (void)removeAnimation: (NUBaseAnimation *)animation;
-///Clear the nimation chain
+///Clears the animation chain
 - (void)removeAllAnimations;
 
-///Gets all animation steps
+///Returns an array with all the animation steps
 - (NSArray *)animations;
 
-///Starts the animation and calls @c completionBlock when done.
+///Returns a block that calls all animation blocks synchronously
+- (NUNoArgumentsBlock)allAnimations;
+
+///Starts the animation chain and calls @c completionBlock when done.
 - (void)startAnimationChainWithCompletionBlock:(NUNoArgumentsBlock)completionBlock;
+///Starts the animation chain
 - (void)startAnimationChain;
 
 //Convenience methods
