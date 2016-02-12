@@ -25,6 +25,7 @@
                                andDelay: (NSTimeInterval)delay
                           andAnimations: (NUSimpleAnimationBlock)animations
                      andCompletionBlock: (NUNoArgumentsBlock)completionBlock
+                   andCancellationBlock: (NUNoArgumentsBlock)cancellationBlock
                          inParallelWith:(NUBaseAnimation *)parallelBlock
                        animateAlongside: (NUProgressAnimationBlock)progressBlock {
     
@@ -35,6 +36,7 @@
         result.delay = delay;
         result.animationBlock = animations;
         result.completionBlock = completionBlock;
+        result.cancellationBlock = cancellationBlock;
         result.parallelBlock = parallelBlock;
         result.progressBlock = progressBlock;
     }
@@ -63,6 +65,11 @@
 - (void)animationDidFinish {
     [self cleanUp];
     [super animationDidFinish];
+}
+
+- (void)animationDidCancel {
+    [self cleanUp];
+    [super animationDidCancel];
 }
 
 #pragma mark - Convenience methods
@@ -102,6 +109,15 @@
     return ^NUCompositeAnimation*(NUNoArgumentsBlock initialization) {
         __strong typeof(self) self = weakself;
         self.initializationBlock = initialization;
+        return self;
+    };
+}
+
+- (NUCompositeAnimation *(^)(NUNoArgumentsBlock))ifCancelled {
+    __weak typeof(self) weakself = self;
+    return ^NUCompositeAnimation*(NUNoArgumentsBlock cancellation) {
+        __strong typeof(self) self = weakself;
+        self.cancellationBlock = cancellation;
         return self;
     };
 }

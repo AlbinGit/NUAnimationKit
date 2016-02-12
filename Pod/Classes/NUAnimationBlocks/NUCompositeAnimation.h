@@ -16,6 +16,7 @@
                                andDelay: (NSTimeInterval)delay
                           andAnimations: (NUSimpleAnimationBlock)animations
                      andCompletionBlock: (NUNoArgumentsBlock)completionBlock
+                   andCancellationBlock: (NUNoArgumentsBlock)cancellationBlock
                          inParallelWith: (NUBaseAnimation *)parallelBlock
                        animateAlongside: (NUProgressAnimationBlock)progressBlock;
 
@@ -32,6 +33,9 @@
 
 //Completion
 - (NUCompositeAnimation * (^)(NUNoArgumentsBlock))andThen;
+
+//Cancellation
+- (NUCompositeAnimation * (^)(NUNoArgumentsBlock))ifCancelled;
 
 //Options
 - (NUCompositeAnimation * (^)(UIViewAnimationCurve))withCurve;
