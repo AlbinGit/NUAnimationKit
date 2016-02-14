@@ -54,6 +54,11 @@
     }
     
     self.animationRunning = true;
+    
+    if (self.initializationBlock) {
+        self.initializationBlock();
+    }
+    
     [self startNextAnimation];
 }
 

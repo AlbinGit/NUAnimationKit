@@ -266,6 +266,18 @@
     [self waitForExpectationsWithTimeout:1 handler:nil];
 }
 
+- (void)testInitializationBlock {
+    XCTestExpectation *expect = [self expectationWithDescription:@"inti"];
+    
+    self.controller.initializationBlock = ^{
+        [expect fulfill];
+    };
+    
+    [self.controller startAnimationChain];
+    
+    [self waitForExpectationsWithTimeout:1 handler:nil];
+}
+
 - (void)testCancelAnimations {
     XCTestExpectation *expect = [self expectationWithDescription:@"firstAnimation"];
     XCTestExpectation *expectCancellation = [self expectationWithDescription:@"cancellationBlock"];
