@@ -41,6 +41,11 @@
 }
 
 - (void)startAnimationChainWithCompletionBlock:(NUNoArgumentsBlock)completionBlock {
+    self.completionBlock = completionBlock;
+    [self startAnimationChain];
+}
+
+- (void)startAnimationChain {
     self.animationCancelled = false;
     self.animationStep = 0;
     if (self.animationRunning) {
@@ -49,13 +54,7 @@
     }
     
     self.animationRunning = true;
-    
-    self.completionBlock = completionBlock;
     [self startNextAnimation];
-}
-
-- (void)startAnimationChain {
-    [self startAnimationChainWithCompletionBlock:nil];
 }
 
 - (NUCompositeAnimation *)addAnimations: (NUSimpleAnimationBlock)animation {
