@@ -44,6 +44,13 @@
  */
 @property (nonatomic, copy) NUNoArgumentsBlock cancellationBlock;
 
+/**
+ *  The NUAnimationController's initialization block
+ *
+ *  @discussion This block is invoked before all animations begin
+ */
+@property (nonatomic, copy) NUNoArgumentsBlock initializationBlock;
+
 ///Adds an animation to the chain
 - (NUBaseAnimation *)addAnimation:(NUBaseAnimation *)animation;
 ///Removes an animation from the chain
