@@ -29,10 +29,10 @@ typedef NS_ENUM(NSInteger, NUAnimationType) {
 @property NUAnimationOptions *options;
 @property NSTimeInterval delay;
 
-//!UIView animations to be performed
+///UIView animations to be performed
 @property (nonatomic, copy) NUSimpleAnimationBlock animationBlock;
 
-//!Block called when animation finishes successfully
+///Block called when animation finishes successfully
 @property (nonatomic, copy) NUNoArgumentsBlock completionBlock;
 
 /**

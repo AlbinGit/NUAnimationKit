@@ -26,7 +26,7 @@
                           andAnimations: (NUSimpleAnimationBlock)animations
                      andCompletionBlock: (NUNoArgumentsBlock)completionBlock
                    andCancellationBlock: (NUNoArgumentsBlock)cancellationBlock
-                         inParallelWith:(NUBaseAnimation *)parallelBlock
+                         inParallelWith: (NUBaseAnimation *)parallelBlock
                        animateAlongside: (NUProgressAnimationBlock)progressBlock {
     
     NUCompositeAnimation *result = [[NUCompositeAnimation alloc] init];

@@ -18,7 +18,6 @@
 ///Readonly boolean that reports whether animations are running
 @property (nonatomic, readonly) BOOL animationRunning;
 
-
 /**
  *  If set to @c YES, the animation blocks of each animation step
  passed in will be called synchronously if animations are cancelled.
