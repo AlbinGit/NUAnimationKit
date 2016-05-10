@@ -68,6 +68,9 @@
 ///Starts the animation chain
 - (void)startAnimationChain;
 
+///Starts the animation chain
+- (void)animateToProgress:(CGFloat)progress;
+
 //Convenience methods
 
 ///Adds an animation block to the chain

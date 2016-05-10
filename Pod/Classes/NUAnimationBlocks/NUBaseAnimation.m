@@ -7,6 +7,11 @@
 //
 
 #import "NUBaseAnimation.h"
+#import "CALayer+NUAnimations.h"
+
+@interface NUBaseAnimation ()
+@property (nonatomic, strong) NSArray<NSValue *> *targetLayers;
+@end
 
 @implementation NUBaseAnimation
 
@@ -81,6 +86,28 @@
     _type = type;
     if (type == NUAnimationTypeSpringy) {
         self.options = [[NUSpringAnimationOptions alloc] initWithOptions:self.options];
+    }
+}
+
+- (void)setAssociatedViews:(NSArray<UIView *>*)views {
+    NSMutableArray *result = [[NSMutableArray alloc] initWithCapacity:views.count];
+    for (UIView *view in views) {
+        [result addObject:[NSValue valueWithNonretainedObject:view.layer]];
+    }
+    _targetLayers = [result copy];
+}
+
+- (void)setTargetLayersOffset:(NSTimeInterval)offset {
+    for (NSValue *targetLayerReference in self.targetLayers) {
+        CALayer *targetLayer = [targetLayerReference nonretainedObjectValue];
+        targetLayer.timeOffset = offset;
+    }
+}
+
+- (void)pauseLayerAnimations {
+    for (NSValue *targetLayerReference in self.targetLayers) {
+        CALayer *targetLayer = [targetLayerReference nonretainedObjectValue];
+        [targetLayer pauseAnimations];
     }
 }
 
