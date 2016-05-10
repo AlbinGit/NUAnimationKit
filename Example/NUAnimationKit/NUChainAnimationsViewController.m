@@ -25,6 +25,12 @@
     
     UIView *animationView3 = [[UIView alloc] initWithFrame:CGRectMake(200, 100, 100, 100)];
     animationView3.backgroundColor = [UIColor blueColor];
+
+    UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(100, 500, 300, 20)];
+    [slider addTarget:self
+               action:@selector(updateAnimation:) forControlEvents:UIControlEventValueChanged];
+    slider.maximumValue = 1;
+    slider.minimumValue = 0;
     
     self.completionLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 300, 300, 20)];
     self.completionLabel.text = @"Not started";
@@ -35,11 +41,12 @@
     [self.view addSubview:animationView1];
     [self.view addSubview:animationView2];
     [self.view addSubview:animationView3];
+    [self.view addSubview:slider];
     [self.view addSubview:self.completionLabel];
     [self.view addSubview:progressLabel];
     
     __weak typeof(self) weakself = self;
-    [self.controller addAnimations:^{
+    NUBaseAnimation *one = [self.controller addAnimations:^{
         [animationView1 setFrameY:400];
         animationView1.backgroundColor = [UIColor grayColor];
     }].withAnimationOption(UIViewAnimationOptionTransitionCrossDissolve)
@@ -51,15 +58,17 @@
         __strong typeof(self) self = weakself;
         self.completionLabel.text = @"Working on it";
     });
+    [one setAssociatedViews:@[animationView1]];
     
-    [self.controller addAnimations:^{
+    NUBaseAnimation *two = [self.controller addAnimations:^{
         [animationView2 setFrameY:400];
     }].withDelay(0.1).withDuration(2).withCurve(UIViewAnimationCurveEaseInOut)
     .ifCancelled(^{
         NSLog(@"Second was cancelled");
     });
+    [two setAssociatedViews:@[animationView2]];
     
-    [self.controller addAnimations:^{
+    NUBaseAnimation *three = [self.controller addAnimations:^{
         [animationView3 setFrameY:400];
     }].withType(NUAnimationTypeSpringy).withDuration(NUSpringAnimationNaturalDuration).
     alongSideBlock(^(CGFloat progress){
@@ -68,13 +77,17 @@
     .ifCancelled(^{
         NSLog(@"Third was cancelled");
     });
+    [three setAssociatedViews:@[animationView3]];
     
     [self.controller setCancellationBlock:^{
         NSLog(@"Someone was cancelled");
     }];
     
     self.controller.shouldRunAllAnimationsIfCancelled = true;
-    
+}
+
+- (void)updateAnimation:(UISlider *)slider {
+    [self.controller animateToProgress:slider.value];
 }
 
 - (void)startAnimation {
