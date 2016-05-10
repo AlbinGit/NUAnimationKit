@@ -228,7 +228,7 @@
     NSTimeInterval result = 0;
     for (NUBaseAnimation *animation in self.animationSteps) {
         if ([animation isKindOfClass:[NUCompositeAnimation class]]) {
-            NUCompositeAnimation *parallel = ((NUCompositeAnimation *)animation).parallelBlock;
+            NUBaseAnimation *parallel = ((NUCompositeAnimation *)animation).parallelBlock;
             if (parallel) {
                 CGFloat this = animation.options.duration + animation.delay;
                 CGFloat other = parallel.options.duration + parallel.options.duration;
