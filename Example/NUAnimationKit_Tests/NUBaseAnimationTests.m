@@ -14,6 +14,11 @@
 
 @end
 
+@interface NUBaseAnimation (Private)
+@property (nonatomic, strong) NSArray<NSValue *> *targetLayers;
+@end
+
+
 @implementation NUBaseAnimationTests
 
 - (void)testDefaultTypeInstantiation {
@@ -133,6 +138,25 @@
     //Controller calls public method
     [animation animationDidFinish];
     [self waitForExpectationsWithTimeout:1 handler:nil];
+}
+
+- (void)testShouldGetWeakReferencesToViewLayersOnSettingAssociatedViews {
+    UIView *view = [UIView new];
+    NUBaseAnimation *animation = [NUBaseAnimation animationBlockWithType:NUAnimationTypeDefault
+                                                              andOptions:[NUAnimationOptions animationWithDuration:0
+                                                                                                        andOptions:0
+                                                                                                          andCurve:0]
+                                                                andDelay:0
+                                                           andAnimations:^{
+                                                               view.alpha = 0;
+                                                           }
+                                                  andInitializationBlock:nil
+                                                      andCompletionBlock:nil
+                                                    andCancellationBlock:nil];
+    [animation setAssociatedViews:@[view]];
+
+    XCTAssertNotNil(animation.targetLayers);
+    XCTAssertEqualObjects([NSValue valueWithNonretainedObject:view.layer], animation.targetLayers[0]);
 }
 
 @end

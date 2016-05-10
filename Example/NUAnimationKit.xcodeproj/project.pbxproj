@@ -17,6 +17,7 @@
 		6003F5A7195388D20070C39A /* NUChainAnimationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* NUChainAnimationsViewController.m */; };
 		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		D40E38971CE27BF80034E722 /* NUChainProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D40E38961CE27BF80034E722 /* NUChainProgressViewController.m */; };
 		D41B76991C53D142006F0701 /* NUAnimationControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D41B76961C53D142006F0701 /* NUAnimationControllerTests.m */; };
 		D41B769A1C53D142006F0701 /* NUBaseAnimationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D41B76971C53D142006F0701 /* NUBaseAnimationTests.m */; };
 		D41B769B1C53D142006F0701 /* NUCompositeAnimationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D41B76981C53D142006F0701 /* NUCompositeAnimationTests.m */; };
@@ -62,6 +63,8 @@
 		9581498B9CFFA273D5728C4E /* NUAnimationKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = NUAnimationKit.podspec; path = ../NUAnimationKit.podspec; sourceTree = "<group>"; };
 		99345F8D0E7392B493F30A66 /* Pods-NUAnimationKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NUAnimationKit_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NUAnimationKit_Tests/Pods-NUAnimationKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		9D95C910C8DE0A78421BDA2E /* Pods-NUAnimationKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NUAnimationKit_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-NUAnimationKit_Example/Pods-NUAnimationKit_Example.release.xcconfig"; sourceTree = "<group>"; };
+		D40E38951CE27BF80034E722 /* NUChainProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUChainProgressViewController.h; sourceTree = "<group>"; };
+		D40E38961CE27BF80034E722 /* NUChainProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUChainProgressViewController.m; sourceTree = "<group>"; };
 		D41B768C1C53D0FF006F0701 /* NUAnimationKit_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NUAnimationKit_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D41B76901C53D0FF006F0701 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D41B76961C53D142006F0701 /* NUAnimationControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUAnimationControllerTests.m; sourceTree = "<group>"; };
@@ -184,6 +187,15 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		D40E38941CE27BD70034E722 /* ChainProgress */ = {
+			isa = PBXGroup;
+			children = (
+				D40E38951CE27BF80034E722 /* NUChainProgressViewController.h */,
+				D40E38961CE27BF80034E722 /* NUChainProgressViewController.m */,
+			);
+			name = ChainProgress;
+			sourceTree = "<group>";
+		};
 		D41B768D1C53D0FF006F0701 /* NUAnimationKit_Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,6 +220,7 @@
 		D45B60B81C52B3D70074A7A0 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				D40E38941CE27BD70034E722 /* ChainProgress */,
 				D432BC4C1C52E42E005709FE /* SpringPlaygroud */,
 				D45B60BA1C52B3ED0074A7A0 /* ParallelSprings */,
 				D45B60B91C52B3E60074A7A0 /* Chain */,
@@ -468,6 +481,7 @@
 			files = (
 				6003F59E195388D20070C39A /* NUAppDelegate.m in Sources */,
 				D45B60B51C52ACCB0074A7A0 /* NUSpringAnimationsViewController.m in Sources */,
+				D40E38971CE27BF80034E722 /* NUChainProgressViewController.m in Sources */,
 				6003F5A7195388D20070C39A /* NUChainAnimationsViewController.m in Sources */,
 				D432BC4F1C52E4AF005709FE /* NUSpringPlaygroundViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,

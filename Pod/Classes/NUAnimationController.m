@@ -12,12 +12,17 @@
 @interface NUAnimationController ()
 
 @property (nonatomic, strong) NSMutableArray *animationSteps;
-@property (nonatomic, readwrite) NSTimeInterval totalAnimationTime;
+@property (nonatomic, readonly) NSTimeInterval totalAnimationTime;
 
 @property (nonatomic, readwrite) int animationStep;
 @property (nonatomic, readwrite) BOOL animationRunning;
 @property (nonatomic, readwrite) BOOL animationCancelled;
 
+@end
+
+@interface NUBaseAnimation (Private)
+- (void)pauseLayerAnimations;
+- (void)setTargetLayersOffset:(NSTimeInterval)offset;
 @end
 
 @implementation NUAnimationController
@@ -27,7 +32,6 @@
     self = [super init];
     if (self) {
         _animationSteps = [[NSMutableArray alloc] init];
-        _totalAnimationTime = 0;
     }
     return self;
 }
@@ -36,7 +40,6 @@
 
 - (NUBaseAnimation *)addAnimation:(NUBaseAnimation *)block {
     [self.animationSteps addObject:block];
-    self.totalAnimationTime += block.options.duration;
     return block;
 }
 
@@ -52,13 +55,13 @@
         //Animation cannot be started multiple times.
         return;
     }
-    
+
     self.animationRunning = true;
-    
+
     if (self.initializationBlock) {
         self.initializationBlock();
     }
-    
+
     [self startNextAnimation];
 }
 
@@ -93,6 +96,38 @@
     };
 }
 
+-(void)animateToProgress:(CGFloat)progress {
+    if (!self.animationRunning) {
+        for (NUBaseAnimation *animation in self.animationSteps) {
+            [self beginBlock:animation andChainToBlock:nil];
+        }
+        self.animationRunning = YES;
+    }
+
+    NSTimeInterval currentTime = 0;
+    NSTimeInterval targetTime = progress * self.totalAnimationTime;
+    for (NUBaseAnimation *animation in self.animationSteps) {
+        CGFloat delay = animation.delay;
+        [animation pauseLayerAnimations];
+
+        if (currentTime + delay < targetTime) {
+            if (currentTime + animation.options.duration + delay > targetTime) {
+                //Animation in progress
+                NSTimeInterval currentOffset = (targetTime - currentTime - delay);
+                [animation setTargetLayersOffset:currentOffset];
+            } else {
+                //Animation done
+                //TODO: Remove the +1 once this is understood.
+                [animation setTargetLayersOffset:animation.options.duration + delay + 1]; //+1 Fixes glitches
+            }
+        } else {
+            [animation setTargetLayersOffset:0];
+        }
+
+        currentTime += animation.options.duration + delay;
+    }
+}
+
 #pragma mark - Private
 
 - (void)startNextAnimation {
@@ -100,21 +135,21 @@
         [self finishAnimations];
         return;
     }
-    
+
     NUBaseAnimation *block = self.animationSteps[self.animationStep];
-    [self startBlock:block isParallel:false];
-    
+    [self setupBlock:block isParallel:false];
+
 }
 
-- (void)startBlock:(NUBaseAnimation *)block isParallel: (BOOL)isParallel {
+- (void)setupBlock:(NUBaseAnimation *)block isParallel: (BOOL)isParallel {
     __weak typeof(self) weakself = self;
     if ([block isKindOfClass:[NUCompositeAnimation class]]) {
         NUCompositeAnimation *composite = (NUCompositeAnimation *)block;
         if (composite.parallelBlock) {
-            [self startBlock:composite.parallelBlock isParallel:true];
+            [self setupBlock:composite.parallelBlock isParallel:true];
         }
     }
-    
+
     void (^continueBlock)(BOOL finished) = ^(BOOL finished){
         __strong typeof(self) self = weakself;
         if (!finished || self.animationCancelled) {
@@ -129,8 +164,17 @@
             }
         }
     };
-    
+
     [block animationWillBegin];
+    [self beginBlock:block andChainToBlock:continueBlock];
+}
+
+- (void)beginBlock:(NUBaseAnimation *)block
+   andChainToBlock:(void(^)(BOOL finished))continueBlock {
+    if (!continueBlock) {
+        continueBlock = ^(BOOL _){};
+    }
+
     if (block.type == NUAnimationTypeDefault) {
         [UIView animateWithDuration:block.options.duration
                               delay:block.delay
@@ -141,7 +185,7 @@
                              }
                          }
                          completion:continueBlock];
-        
+
     } else if (block.type == NUAnimationTypeSpringy) {
         NUSpringAnimationOptions *springOptions = (NUSpringAnimationOptions *)block.options;
         [UIView animateWithDuration:block.options.duration
@@ -164,7 +208,7 @@
 
 - (void)finishAnimations {
     self.animationRunning = false;
-    
+
     if (self.animationCancelled) {
         if (self.shouldRunAllAnimationsIfCancelled) {
             self.allAnimations();
@@ -174,10 +218,28 @@
         }
         return;
     }
-    
+
     if (self.completionBlock) {
         self.completionBlock();
     }
+}
+
+- (NSTimeInterval)totalAnimationTime {
+    NSTimeInterval result = 0;
+    for (NUBaseAnimation *animation in self.animationSteps) {
+        if ([animation isKindOfClass:[NUCompositeAnimation class]]) {
+            NUCompositeAnimation *parallel = ((NUCompositeAnimation *)animation).parallelBlock;
+            if (parallel) {
+                CGFloat this = animation.options.duration + animation.delay;
+                CGFloat other = parallel.options.duration + parallel.options.duration;
+                result += MAX(this, other);
+                continue;
+            }
+        }
+        result += animation.options.duration;
+        result += animation.delay;
+    }
+    return result;
 }
 
 @end

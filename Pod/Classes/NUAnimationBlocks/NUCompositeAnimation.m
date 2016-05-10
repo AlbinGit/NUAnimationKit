@@ -26,7 +26,7 @@
                           andAnimations: (NUSimpleAnimationBlock)animations
                      andCompletionBlock: (NUNoArgumentsBlock)completionBlock
                    andCancellationBlock: (NUNoArgumentsBlock)cancellationBlock
-                         inParallelWith:(NUBaseAnimation *)parallelBlock
+                         inParallelWith: (NUBaseAnimation *)parallelBlock
                        animateAlongside: (NUProgressAnimationBlock)progressBlock {
     
     NUCompositeAnimation *result = [[NUCompositeAnimation alloc] init];
@@ -195,6 +195,15 @@
         result.animationBlock = block;
         self.parallelBlock = result;
         return result;
+    };
+}
+
+- (NUCompositeAnimation * (^)(NSArray<UIView *>*))withAssociatedViews {
+    __weak typeof(self) weakself = self;
+    return ^NUCompositeAnimation*(NSArray<UIView *>* views) {
+        __strong typeof(self) self = weakself;
+        [self setAssociatedViews:views];
+        return self;
     };
 }
 

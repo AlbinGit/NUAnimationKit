@@ -3,6 +3,7 @@ use_frameworks!
 
 target 'NUAnimationKit_Example', :exclusive => true do
   pod "NUAnimationKit", :path => "../"
+  pod "Masonry"
 end
 
 target 'NUAnimationKit_Tests', :exclusive => true do

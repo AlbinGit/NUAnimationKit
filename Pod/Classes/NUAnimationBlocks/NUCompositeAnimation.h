@@ -53,4 +53,7 @@
 //Parallel
 - (NUCompositeAnimation * (^)(NUSimpleAnimationBlock))inParallelWith;
 
+//Progress-based animations
+- (NUCompositeAnimation * (^)(NSArray<UIView *>*))withAssociatedViews;
+
 @end

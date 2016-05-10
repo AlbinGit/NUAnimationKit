@@ -29,10 +29,10 @@ typedef NS_ENUM(NSInteger, NUAnimationType) {
 @property NUAnimationOptions *options;
 @property NSTimeInterval delay;
 
-//!UIView animations to be performed
+///UIView animations to be performed
 @property (nonatomic, copy) NUSimpleAnimationBlock animationBlock;
 
-//!Block called when animation finishes successfully
+///Block called when animation finishes successfully
 @property (nonatomic, copy) NUNoArgumentsBlock completionBlock;
 
 /**
@@ -65,6 +65,9 @@ typedef NS_ENUM(NSInteger, NUAnimationType) {
 
 ///Invoked when the animation is finished
 - (void)animationDidFinish;
+
+///Sets the views associated with this animation. MUST be supplied if you need the progress-based behavior.
+- (void)setAssociatedViews:(NSArray<UIView *>*)views;
 
 /**
  *  Invoked when the animation is cancelled, either by the view hierarchy or by calling @c cancelAnimations on the controller.

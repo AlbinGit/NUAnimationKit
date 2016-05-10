@@ -8,12 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import <NUAnimationKit/NUAnimationController.h>
+#import <Masonry/Masonry.h>
 
 @interface NUBaseExampleViewController : UIViewController
 
 - (void)startAnimation;
-@property (nonatomic, strong) NUAnimationController *controller;
+- (void)installInitialConstraints NS_REQUIRES_SUPER;
 
+@property (nonatomic, strong) NUAnimationController *controller;
+@property BOOL didInstallConstraints;
 @property (nonatomic, weak) UIButton *startButton;
 
 @end

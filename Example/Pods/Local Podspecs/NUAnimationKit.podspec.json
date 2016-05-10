@@ -1,25 +1,20 @@
 {
   "name": "NUAnimationKit",
-  "version": "0.1.0",
+  "version": "0.2.4",
   "summary": "DSL to wrap UIView animation chaining into a cleaner structure",
   "description": "UIView animation wrapper that simplifies chaining of multiple animation steps, each with their own completion blocks. Also supports progress-based animations using CADisplayKit synchronization",
-  "homepage": "https://github.com/nubank/NUAnimationKit",
+  "homepage": "git@github.com:nubank/NUAnimationKit.git",
   "license": "MIT",
   "authors": {
     "Victor Maraccini": "vgm.maraccini@gmail.com"
   },
   "source": {
-    "git": "https://github.com/nubank/NUAnimationKit.git",
-    "tag": "0.1.0"
+    "git": "git@github.com:nubank/NUAnimationKit.git",
+    "tag": "0.2.4"
   },
   "platforms": {
     "ios": "8.0"
   },
   "requires_arc": true,
-  "source_files": "Pod/Classes/**/*",
-  "resource_bundles": {
-    "NUAnimationKit": [
-      "Pod/Assets/*.png"
-    ]
-  }
+  "source_files": "Pod/Classes/**/*"
 }
