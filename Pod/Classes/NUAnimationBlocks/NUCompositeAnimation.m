@@ -198,6 +198,15 @@
     };
 }
 
+- (NUCompositeAnimation * (^)(NSArray<UIView *>*))withAssociatedViews {
+    __weak typeof(self) weakself = self;
+    return ^NUCompositeAnimation*(NSArray<UIView *>* views) {
+        __strong typeof(self) self = weakself;
+        [self setAssociatedViews:views];
+        return self;
+    };
+}
+
 #pragma mark - Private methods
 
 - (void)cleanUp {
