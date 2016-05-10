@@ -35,7 +35,10 @@ Chaining of UIView animations requires the use of completion handler blocks to c
 ```
 Which isn't a particularly elegant solution, and is hard to read.
 
-###Enter NUAnimationKit
+### Features
+
+#### UIView animation chaining
+
 This library creates a wrapper around UIView animations that facilitates chaining via a simple syntax:
 
 ```objc
@@ -83,6 +86,8 @@ Like so:
 <img src="./Pod/Assets/parallelSprings.gif"/>
 </p>
 
+#### Progress-based explicit animations
+
 And also adds support for progress-based blocks, for properties that may not be directly animatable:
 
 ```objc
@@ -97,6 +102,35 @@ Like setting a string value:
 <p align="center">
 <img src="./Pod/Assets/stringAnimation.gif"/>
 </p>
+
+#### Progress-based UIView animations
+
+<p align="center">
+<img src="./Pod/Assets/animation_progress.gif"/>
+</p>
+
+NUAnimationKit also supports creating parametrized animations using simple UIView animation blocks
+
+1 - Build your block animation as usual, but setting the views associated with the transformations you are making:
+```objc
+[self.controller addAnimations:^{
+     [animationView1 setFrameY:400];
+     animationView1.backgroundColor = [UIColor grayColor];
+}].withAnimationOption(UIViewAnimationOptionTransitionCrossDissolve)
+.withDuration(2)
+.withAssociatedViews(@[animationView1]);
+```
+
+> Note: You may still add as many animation blocks as you like. The order, duration and delay of each one will be preserved.
+
+2 - Call the progress update block whenever you need to change the animation state:
+```objc
+[self.controller animateToProgress:progress];
+```
+
+#### Caveats:
+This animation method does not support the chaining of `before` and `after` blocks.
+
 
 ## Installation
 
