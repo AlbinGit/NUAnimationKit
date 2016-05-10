@@ -117,7 +117,8 @@
                 [animation setTargetLayersOffset:currentOffset];
             } else {
                 //Animation done
-                [animation setTargetLayersOffset:animation.options.duration + delay];
+                //TODO: Remove the +1 once this is understood.
+                [animation setTargetLayersOffset:animation.options.duration + delay + 1]; //+1 Fixes glitches
             }
         } else {
             [animation setTargetLayersOffset:0];
