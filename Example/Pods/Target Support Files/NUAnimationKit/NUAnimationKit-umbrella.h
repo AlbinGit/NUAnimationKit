@@ -1,5 +1,6 @@
 #import <UIKit/UIKit.h>
 
+#import "CALayer+NUAnimations.h"
 #import "UIView+NUAnimationAdditions.h"
 #import "NUBaseAnimation.h"
 #import "NUCompositeAnimation.h"
