@@ -19,6 +19,11 @@
 
 @end
 
+@interface NUBaseAnimation (Private)
+@property (nonatomic, strong) NSArray<NSValue *> *targetLayers;
+@end
+
+
 @interface NUCompositeAnimation ()
 - (void)updateAnimationProgress;
 @end
@@ -203,6 +208,14 @@
     XCTAssertNotNil(result);
     XCTAssertNotEqualObjects(result, self.composite);
     XCTAssertEqualObjects(result.animationBlock, block);
+}
+
+- (void)testAssociatedViewsShorthandNotation {
+    UIView *view = [UIView new];
+    self.composite.withAssociatedViews(@[view]);
+    XCTAssertNotNil(self.composite.targetLayers);
+    XCTAssertEqual(self.composite.targetLayers.count, 1);
+    XCTAssertEqualObjects([NSValue valueWithNonretainedObject:view.layer], self.composite.targetLayers[0]);
 }
 
 @end

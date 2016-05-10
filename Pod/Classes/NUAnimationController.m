@@ -117,7 +117,7 @@
                 [animation setTargetLayersOffset:currentOffset];
             } else {
                 //Animation done
-                [animation setTargetLayersOffset:animation.options.duration + delay + 1];
+                [animation setTargetLayersOffset:animation.options.duration + delay];
             }
         } else {
             [animation setTargetLayersOffset:0];

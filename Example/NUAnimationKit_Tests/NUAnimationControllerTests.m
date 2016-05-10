@@ -10,6 +10,10 @@
 #import <NUAnimationKit/NUAnimationController.h>
 #import "OCMock.h"
 
+@interface CALayer (NUAnimation)
+- (void)pauseAnimations;
+@end
+
 @interface NUAnimationControllerTests : XCTestCase
 @property (nonatomic, strong)NUAnimationController *controller;
 @property XCTestExpectation *deallocExpectation;
@@ -368,6 +372,67 @@
     [self waitForExpectationsWithTimeout:1 handler:nil];
     XCTAssertTrue(didCallSecondAnimation, @"Should call second animation");
 }
+
+- (void)testProgressBasedUIViewAnimations {
+    __kindof CALayer *mockLayer1 = OCMPartialMock([CALayer new]);
+    OCMExpect([mockLayer1 pauseAnimations]);
+
+    UIView *mockView1 = OCMPartialMock([UIView new]);
+    [OCMStub([mockView1 layer]) andReturn:mockLayer1];
+
+    __kindof CALayer *mockLayer2 = OCMPartialMock([CALayer new]);
+    OCMExpect([mockLayer2 pauseAnimations]);
+
+    UIView *mockView2 = OCMPartialMock([UIView new]);
+    [OCMStub([mockView2 layer]) andReturn:mockLayer2];
+
+    [self.controller addAnimations:^{
+        mockView1.alpha = 0;
+    }].withDuration(1)
+    .withAssociatedViews(@[mockView1]);
+
+    [self.controller addAnimations:^{
+        mockView2.alpha = 0;
+    }].withDuration(1)
+    .withAssociatedViews(@[mockView2]);
+
+    OCMExpect([mockLayer2 setTimeOffset:0]);
+    OCMExpect([mockLayer1 setTimeOffset:0]);
+
+    [self.controller animateToProgress:0];
+    OCMVerifyAll(mockLayer1);
+    OCMVerifyAll(mockLayer2);
+
+    OCMExpect([mockLayer1 setTimeOffset:0.5]);
+    OCMExpect([mockLayer2 setTimeOffset:0]);
+
+    [self.controller animateToProgress:0.25];
+    OCMVerifyAll(mockLayer1);
+    OCMVerifyAll(mockLayer2);
+
+    OCMExpect([mockLayer1 setTimeOffset:1]);
+    OCMExpect([mockLayer2 setTimeOffset:0]);
+
+    [self.controller animateToProgress:0.5];
+    OCMVerifyAll(mockLayer1);
+    OCMVerifyAll(mockLayer2);
+
+    OCMExpect([mockLayer1 setTimeOffset:1]);
+    OCMExpect([mockLayer2 setTimeOffset:0.5]);
+
+    [self.controller animateToProgress:0.75];
+    OCMVerifyAll(mockLayer1);
+    OCMVerifyAll(mockLayer2);
+
+    OCMExpect([mockLayer1 setTimeOffset:1]);
+    OCMExpect([mockLayer2 setTimeOffset:1]);
+
+    [self.controller animateToProgress:1];
+    OCMVerifyAll(mockLayer1);
+    OCMVerifyAll(mockLayer2);
+}
+
+#pragma mark - Helper functions
 
 - (void)fulfillExpectation: (XCTestExpectation *)expectation {
     [expectation fulfill];
