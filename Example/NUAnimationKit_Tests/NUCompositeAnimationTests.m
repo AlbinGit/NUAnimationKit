@@ -95,12 +95,13 @@
         //Due to float-point approximations, we must test if the difference is smaller than a certain established value.
         XCTAssertTrue(fabs(f - self.expectedPercentage) < FLT_EPSILON);
     }).withDuration(1);
+
+    [self.composite animationWillBegin];
     
     //First animation frame. Progress should be zero.
     self.expectedPercentage = 0;
     [self.composite updateAnimationProgress];
-    
-    
+
     //0.1 seconds passed.
     self.simulatedTimeInterval += 0.1;
     self.expectedPercentage = 0.1;
