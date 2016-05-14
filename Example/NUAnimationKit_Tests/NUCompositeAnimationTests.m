@@ -178,6 +178,41 @@
     XCTAssertThrows(self.composite.withDamping(0.3));
 }
 
+- (void)testShouldOnlyCreateDisplayLinkIfAnimationHasProgressBlock {
+    id displayMock = OCMClassMock([CADisplayLink class]);
+    [[displayMock reject] displayLinkWithTarget:[OCMArg isEqual:self.composite]
+                                       selector:[OCMArg anySelector]];
+    [self.composite animationWillBegin];
+    OCMVerifyAll(displayMock);
+    [self.composite animationDidFinish];
+    [displayMock stopMocking];
+
+    displayMock = OCMClassMock([CADisplayLink class]);
+    OCMExpect([displayMock displayLinkWithTarget:[OCMArg isEqual:self.composite]
+                                        selector:[OCMArg anySelector]]);
+    self.composite.progressBlock = ^(CGFloat progress){};
+    [self.composite animationWillBegin];
+    OCMVerifyAll(displayMock);
+    [self.composite animationDidFinish];
+}
+
+- (void)testResetsDisplayLinkEveryTimeAnimationStarts {
+    id displayMock = OCMClassMock([CADisplayLink class]);
+    OCMExpect([displayMock displayLinkWithTarget:[OCMArg isEqual:self.composite]
+                                        selector:[OCMArg anySelector]]);
+    self.composite.progressBlock = ^(CGFloat progress){};
+    [self.composite animationWillBegin];
+    OCMVerifyAll(displayMock);
+    [self.composite animationDidFinish];
+
+    OCMExpect([displayMock displayLinkWithTarget:[OCMArg isEqual:self.composite]
+                                        selector:[OCMArg anySelector]]);
+    self.composite.progressBlock = ^(CGFloat progress){};
+    [self.composite animationWillBegin];
+    OCMVerifyAll(displayMock);
+    [self.composite animationDidFinish];
+}
+
 - (void)testDampingShorthandNotation {
     self.composite.type = NUAnimationTypeSpringy;
     self.composite.withDamping(0.212);
