@@ -22,6 +22,7 @@
 		D41B769A1C53D142006F0701 /* NUBaseAnimationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D41B76971C53D142006F0701 /* NUBaseAnimationTests.m */; };
 		D41B769B1C53D142006F0701 /* NUCompositeAnimationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D41B76981C53D142006F0701 /* NUCompositeAnimationTests.m */; };
 		D432BC4F1C52E4AF005709FE /* NUSpringPlaygroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D432BC4E1C52E4AF005709FE /* NUSpringPlaygroundViewController.m */; };
+		D44B29341CE69F0A008C8798 /* NUProgressAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D44B29331CE69F0A008C8798 /* NUProgressAnimationViewController.m */; };
 		D45B60B51C52ACCB0074A7A0 /* NUSpringAnimationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D45B60B41C52ACCB0074A7A0 /* NUSpringAnimationsViewController.m */; };
 		D45B60B71C52B3420074A7A0 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D45B60B61C52B3420074A7A0 /* Launch Screen.storyboard */; };
 		D45B60BD1C52B4A50074A7A0 /* NUBaseExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D45B60BC1C52B4A50074A7A0 /* NUBaseExampleViewController.m */; };
@@ -72,6 +73,8 @@
 		D41B76981C53D142006F0701 /* NUCompositeAnimationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUCompositeAnimationTests.m; sourceTree = "<group>"; };
 		D432BC4D1C52E4AF005709FE /* NUSpringPlaygroundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUSpringPlaygroundViewController.h; sourceTree = "<group>"; };
 		D432BC4E1C52E4AF005709FE /* NUSpringPlaygroundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUSpringPlaygroundViewController.m; sourceTree = "<group>"; };
+		D44B29321CE69F0A008C8798 /* NUProgressAnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUProgressAnimationViewController.h; sourceTree = "<group>"; };
+		D44B29331CE69F0A008C8798 /* NUProgressAnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUProgressAnimationViewController.m; sourceTree = "<group>"; };
 		D45B60B31C52ACCB0074A7A0 /* NUSpringAnimationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUSpringAnimationsViewController.h; sourceTree = "<group>"; };
 		D45B60B41C52ACCB0074A7A0 /* NUSpringAnimationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUSpringAnimationsViewController.m; sourceTree = "<group>"; };
 		D45B60B61C52B3420074A7A0 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -217,9 +220,19 @@
 			name = SpringPlaygroud;
 			sourceTree = "<group>";
 		};
+		D44B292E1CE69E8A008C8798 /* ProgressAnimations */ = {
+			isa = PBXGroup;
+			children = (
+				D44B29321CE69F0A008C8798 /* NUProgressAnimationViewController.h */,
+				D44B29331CE69F0A008C8798 /* NUProgressAnimationViewController.m */,
+			);
+			name = ProgressAnimations;
+			sourceTree = "<group>";
+		};
 		D45B60B81C52B3D70074A7A0 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				D44B292E1CE69E8A008C8798 /* ProgressAnimations */,
 				D40E38941CE27BD70034E722 /* ChainProgress */,
 				D432BC4C1C52E42E005709FE /* SpringPlaygroud */,
 				D45B60BA1C52B3ED0074A7A0 /* ParallelSprings */,
@@ -484,6 +497,7 @@
 				D40E38971CE27BF80034E722 /* NUChainProgressViewController.m in Sources */,
 				6003F5A7195388D20070C39A /* NUChainAnimationsViewController.m in Sources */,
 				D432BC4F1C52E4AF005709FE /* NUSpringPlaygroundViewController.m in Sources */,
+				D44B29341CE69F0A008C8798 /* NUProgressAnimationViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				D45B60BD1C52B4A50074A7A0 /* NUBaseExampleViewController.m in Sources */,
 			);
