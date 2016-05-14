@@ -88,7 +88,9 @@ Like so:
 
 #### Progress-based explicit animations
 
-And also adds support for progress-based blocks, for properties that may not be directly animatable:
+And also adds support for progress-based blocks, for properties that may not be directly animatable.
+
+They can be animated alongside another UIView animation:
 
 ```objc
 [controller addAnimation:^{
@@ -97,6 +99,15 @@ And also adds support for progress-based blocks, for properties that may not be 
     progressLabel.text = [NSString stringWithFormat:@"%f", progress];
 });
 ```
+
+Or created entirely on their own:
+
+```objc
+[self.controller addProgressAnimations:^(CGFloat progress) {
+  progressLabel.text = [NSString stringWithFormat:@"%f", progress];
+}].withDuration(2);
+```
+
 Like setting a string value:
 
 <p align="center">
