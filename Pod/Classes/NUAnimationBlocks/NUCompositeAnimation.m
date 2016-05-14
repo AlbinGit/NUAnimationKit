@@ -47,8 +47,6 @@
 {
     self = [super init];
     if (self) {
-        _displayLink = [CADisplayLink displayLinkWithTarget:self
-                                                   selector:@selector(updateAnimationProgress)];
         self.completionBlock = nil;
     }
     return self;
@@ -58,8 +56,12 @@
 
 - (void)animationWillBegin {
     [super animationWillBegin];
-    [self.displayLink addToRunLoop:[NSRunLoop mainRunLoop]
-                           forMode:NSDefaultRunLoopMode];
+    if (self.progressBlock) {
+        _displayLink = [CADisplayLink displayLinkWithTarget:self
+                                                   selector:@selector(updateAnimationProgress)];
+        [self.displayLink addToRunLoop:[NSRunLoop mainRunLoop]
+                               forMode:NSDefaultRunLoopMode];
+    }
 }
 
 - (void)animationDidFinish {
@@ -210,7 +212,9 @@
 #pragma mark - Private methods
 
 - (void)cleanUp {
-    [self.displayLink removeFromRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+    [self.displayLink removeFromRunLoop:[NSRunLoop mainRunLoop]
+                                forMode:NSDefaultRunLoopMode];
+    self.lastTimestamp = 0;
     self.progress = 1;
 }
 

@@ -95,12 +95,13 @@
         //Due to float-point approximations, we must test if the difference is smaller than a certain established value.
         XCTAssertTrue(fabs(f - self.expectedPercentage) < FLT_EPSILON);
     }).withDuration(1);
+
+    [self.composite animationWillBegin];
     
     //First animation frame. Progress should be zero.
     self.expectedPercentage = 0;
     [self.composite updateAnimationProgress];
-    
-    
+
     //0.1 seconds passed.
     self.simulatedTimeInterval += 0.1;
     self.expectedPercentage = 0.1;
@@ -176,6 +177,41 @@
 
 - (void)testDampingShorthandNotationShouldThrowForNonSpringy {
     XCTAssertThrows(self.composite.withDamping(0.3));
+}
+
+- (void)testShouldOnlyCreateDisplayLinkIfAnimationHasProgressBlock {
+    id displayMock = OCMClassMock([CADisplayLink class]);
+    [[displayMock reject] displayLinkWithTarget:[OCMArg isEqual:self.composite]
+                                       selector:[OCMArg anySelector]];
+    [self.composite animationWillBegin];
+    OCMVerifyAll(displayMock);
+    [self.composite animationDidFinish];
+    [displayMock stopMocking];
+
+    displayMock = OCMClassMock([CADisplayLink class]);
+    OCMExpect([displayMock displayLinkWithTarget:[OCMArg isEqual:self.composite]
+                                        selector:[OCMArg anySelector]]);
+    self.composite.progressBlock = ^(CGFloat progress){};
+    [self.composite animationWillBegin];
+    OCMVerifyAll(displayMock);
+    [self.composite animationDidFinish];
+}
+
+- (void)testResetsDisplayLinkEveryTimeAnimationStarts {
+    id displayMock = OCMClassMock([CADisplayLink class]);
+    OCMExpect([displayMock displayLinkWithTarget:[OCMArg isEqual:self.composite]
+                                        selector:[OCMArg anySelector]]);
+    self.composite.progressBlock = ^(CGFloat progress){};
+    [self.composite animationWillBegin];
+    OCMVerifyAll(displayMock);
+    [self.composite animationDidFinish];
+
+    OCMExpect([displayMock displayLinkWithTarget:[OCMArg isEqual:self.composite]
+                                        selector:[OCMArg anySelector]]);
+    self.composite.progressBlock = ^(CGFloat progress){};
+    [self.composite animationWillBegin];
+    OCMVerifyAll(displayMock);
+    [self.composite animationDidFinish];
 }
 
 - (void)testDampingShorthandNotation {

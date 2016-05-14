@@ -74,7 +74,10 @@
 //Convenience methods
 
 ///Adds an animation block to the chain
-- (NUCompositeAnimation *)addAnimations: (NUSimpleAnimationBlock)animations;
+- (NUCompositeAnimation *)addAnimations:(NUSimpleAnimationBlock)animations;
+
+///Adds a progress-based animation block to the chain
+- (NUCompositeAnimation *)addProgressAnimations:(NUProgressAnimationBlock)animations;
 
 ///Finishes the current animation step and stops the animation chain
 - (void)cancelAnimations;

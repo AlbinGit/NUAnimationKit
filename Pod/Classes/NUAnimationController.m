@@ -72,6 +72,14 @@
     return result;
 }
 
+- (NUCompositeAnimation *)addProgressAnimations:(NUProgressAnimationBlock)animations {
+    NUCompositeAnimation *result = [[NUCompositeAnimation alloc] init];
+    result.animationBlock = nil;
+    result.progressBlock = animations;
+    [self addAnimation:result];
+    return result;
+}
+
 - (void)cancelAnimations {
     self.animationCancelled = true;
 }
@@ -173,6 +181,14 @@
    andChainToBlock:(void(^)(BOOL finished))continueBlock {
     if (!continueBlock) {
         continueBlock = ^(BOOL _){};
+    }
+
+    if (!block.animationBlock) {
+        //Void animation
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(block.options.duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            continueBlock(YES);
+        });
+        return;
     }
 
     if (block.type == NUAnimationTypeDefault) {
