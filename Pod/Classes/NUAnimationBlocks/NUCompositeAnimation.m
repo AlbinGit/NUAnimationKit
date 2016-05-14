@@ -56,10 +56,12 @@
 
 - (void)animationWillBegin {
     [super animationWillBegin];
-    _displayLink = [CADisplayLink displayLinkWithTarget:self
-                                               selector:@selector(updateAnimationProgress)];
-    [self.displayLink addToRunLoop:[NSRunLoop mainRunLoop]
-                           forMode:NSDefaultRunLoopMode];
+    if (self.progressBlock) {
+        _displayLink = [CADisplayLink displayLinkWithTarget:self
+                                                   selector:@selector(updateAnimationProgress)];
+        [self.displayLink addToRunLoop:[NSRunLoop mainRunLoop]
+                               forMode:NSDefaultRunLoopMode];
+    }
 }
 
 - (void)animationDidFinish {
