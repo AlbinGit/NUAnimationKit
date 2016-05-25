@@ -38,6 +38,34 @@
                             h);
 }
 
+-(void)addFrameX:(CGFloat)dx {
+    self.frame = CGRectMake(self.frame.origin.x + dx,
+                            self.frame.origin.y,
+                            self.frame.size.width,
+                            self.frame.size.height);
+}
+
+-(void)addFrameY:(CGFloat)dy {
+    self.frame = CGRectMake(self.frame.origin.x,
+                            self.frame.origin.y + dy,
+                            self.frame.size.width,
+                            self.frame.size.height);
+}
+
+-(void)addFrameWidth:(CGFloat)dw {
+    self.frame = CGRectMake(self.frame.origin.x,
+                            self.frame.origin.y,
+                            self.frame.size.width + dw,
+                            self.frame.size.height);
+}
+
+-(void)addFrameHeight:(CGFloat)dh {
+    self.frame = CGRectMake(self.frame.origin.x,
+                            self.frame.origin.y,
+                            self.frame.size.width,
+                            self.frame.size.height + dh);
+}
+
 //Layer settings
 - (void)setLayerX: (CGFloat)x {
     self.layer.frame = CGRectMake(x,
@@ -67,6 +95,34 @@
                                   self.layer.frame.size.width,
                                   h);
 
+}
+
+-(void)addLayerX:(CGFloat)dx {
+    self.frame = CGRectMake(self.frame.origin.x + dx,
+                            self.frame.origin.y,
+                            self.frame.size.width,
+                            self.frame.size.height);
+}
+
+-(void)addLayerY:(CGFloat)dy {
+    self.frame = CGRectMake(self.frame.origin.x,
+                            self.frame.origin.y + dy,
+                            self.frame.size.width,
+                            self.frame.size.height);
+}
+
+-(void)addLayerWidth:(CGFloat)dw {
+    self.frame = CGRectMake(self.frame.origin.x,
+                            self.frame.origin.y,
+                            self.frame.size.width + dw,
+                            self.frame.size.height);
+}
+
+-(void)addLayerHeight:(CGFloat)dh {
+    self.frame = CGRectMake(self.frame.origin.x,
+                            self.frame.origin.y,
+                            self.frame.size.width,
+                            self.frame.size.height + dh);
 }
 
 @end

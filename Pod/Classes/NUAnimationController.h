@@ -63,6 +63,9 @@
 ///Returns a block that calls all animation blocks synchronously
 - (NUNoArgumentsBlock)allAnimations;
 
+///Returns the total animation duration (combining all the steps)
+- (NSTimeInterval)totalAnimationTime;
+
 ///Starts the animation chain and calls @c completionBlock when done.
 - (void)startAnimationChainWithCompletionBlock:(NUNoArgumentsBlock)completionBlock;
 ///Starts the animation chain
