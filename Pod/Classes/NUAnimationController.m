@@ -200,6 +200,7 @@
 
                              if (self.synchronizesLayerAnimations) {
                                  [CATransaction begin];
+                                 [CATransaction setAnimationTimingFunction:[self timingFunctionForCurve:block.options.curve]];
                                  [CATransaction setAnimationDuration:block.options.duration];
                                  [CATransaction commit];
                              }
@@ -221,6 +222,8 @@
 
                              if (self.synchronizesLayerAnimations) {
                                  [CATransaction begin];
+                                 //Implicit CALayer animations cannot be translated to CASpringAnimation :/
+                                 [CATransaction setAnimationTimingFunction:[self timingFunctionForCurve:block.options.curve]];
                                  [CATransaction setAnimationDuration:block.options.duration];
                                  [CATransaction commit];
                              }
@@ -271,6 +274,28 @@
         result += animation.delay;
     }
     return result;
+}
+
+#pragma mark - Helper functions
+
+- (CAMediaTimingFunction *)timingFunctionForCurve:(UIViewAnimationCurve)curve {
+    switch (curve) {
+        case UIViewAnimationCurveEaseIn:
+            return [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+            break;
+        case UIViewAnimationCurveLinear:
+            return [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+            break;
+        case UIViewAnimationCurveEaseOut:
+            return [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+            break;
+        case UIViewAnimationCurveEaseInOut:
+            return [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+            break;
+        default:
+            return [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault];
+            break;
+    }
 }
 
 @end
