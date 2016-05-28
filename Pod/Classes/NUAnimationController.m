@@ -32,6 +32,7 @@
     self = [super init];
     if (self) {
         _animationSteps = [[NSMutableArray alloc] init];
+        _synchronizesLayerAnimations = YES;
     }
     return self;
 }
@@ -196,6 +197,13 @@
                               delay:block.delay
                             options:block.options.options
                          animations:^{
+
+                             if (self.synchronizesLayerAnimations) {
+                                 [CATransaction begin];
+                                 [CATransaction setAnimationDuration:block.options.duration];
+                                 [CATransaction commit];
+                             }
+
                              if (block.animationBlock) {
                                  block.animationBlock();
                              }
@@ -210,6 +218,13 @@
               initialSpringVelocity:springOptions.initialVelocity
                             options:block.options.options
                          animations:^{
+
+                             if (self.synchronizesLayerAnimations) {
+                                 [CATransaction begin];
+                                 [CATransaction setAnimationDuration:block.options.duration];
+                                 [CATransaction commit];
+                             }
+
                              if (block.animationBlock) {
                                  block.animationBlock();
                              }

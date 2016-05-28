@@ -27,6 +27,12 @@
  */
 @property (nonatomic, readwrite) BOOL shouldRunAllAnimationsIfCancelled;
 
+/**Sets wether pending CALayer animations will be synchronized with the UIView animations. Default is YES.
+ @discussion
+ If set to YES, the controller will force pending CALayer animations to be commited using the same duration as the current animation block.
+ */
+@property (nonatomic) BOOL synchronizesLayerAnimations;
+
 /**
  *  The NUAnimationController's completion block
  *
