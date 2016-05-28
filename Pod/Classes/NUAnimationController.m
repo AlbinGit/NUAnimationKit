@@ -202,11 +202,14 @@
                                  [CATransaction begin];
                                  [CATransaction setAnimationTimingFunction:[self timingFunctionForCurve:block.options.curve]];
                                  [CATransaction setAnimationDuration:block.options.duration];
-                                 [CATransaction commit];
                              }
 
                              if (block.animationBlock) {
                                  block.animationBlock();
+                             }
+
+                             if (self.synchronizesLayerAnimations) {
+                                 [CATransaction commit];
                              }
                          }
                          completion:continueBlock];
@@ -225,11 +228,14 @@
                                  //Implicit CALayer animations cannot be translated to CASpringAnimation :/
                                  [CATransaction setAnimationTimingFunction:[self timingFunctionForCurve:block.options.curve]];
                                  [CATransaction setAnimationDuration:block.options.duration];
-                                 [CATransaction commit];
                              }
 
                              if (block.animationBlock) {
                                  block.animationBlock();
+                             }
+
+                             if (self.synchronizesLayerAnimations) {
+                                 [CATransaction commit];
                              }
                          }
                          completion:continueBlock];
