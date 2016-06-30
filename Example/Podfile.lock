@@ -1,0 +1,22 @@
+PODS:
+  - Masonry (1.0.1)
+  - NUAnimationKit (0.2.4.6)
+  - OCMock (3.3)
+
+DEPENDENCIES:
+  - Masonry
+  - NUAnimationKit (from `../`)
+  - OCMock
+
+EXTERNAL SOURCES:
+  NUAnimationKit:
+    :path: ../
+
+SPEC CHECKSUMS:
+  Masonry: a1a931a0d08870ed8ae415a2ea5ea68ebcac77df
+  NUAnimationKit: bfe88e6580cdbc8228c4317805882642ea6128b0
+  OCMock: d68685bde31f69cb61d518dcb39269080c78b5ed
+
+PODFILE CHECKSUM: 8c8302e38aa304bb3421657d23c79dc35d8c22a6
+
+COCOAPODS: 1.0.0

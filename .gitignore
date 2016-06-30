@@ -31,7 +31,5 @@ Carthage
 # `pod install` in .travis.yml
 #
 # Pods/
-Example/Pods/Headers/Private/OCMock
-Example/Pods/OCMock
-Example/Pods
-*.lock
+Example/Pods/**
+
