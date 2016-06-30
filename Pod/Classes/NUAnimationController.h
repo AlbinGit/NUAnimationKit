@@ -9,6 +9,16 @@
 #import "NUCompositeAnimation.h"
 #import "UIView+NUAnimationAdditions.h"
 
+/**
+ Posted when an animation chain start.
+ */
+FOUNDATION_EXPORT NSString * const NUAnimationControllerDidStartAnimationChain;
+
+/**
+ Posted when an animation chain finish.
+ */
+FOUNDATION_EXPORT NSString * const NUAnimationControllerDidFinishAnimationChain;
+
 @interface NUAnimationController : NSObject
 
 ///Readonly boolean that reports whether animations have been canceled. It's value is reset to zero every time the animation begins.

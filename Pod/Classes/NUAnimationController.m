@@ -9,6 +9,10 @@
 #import "NUAnimationController.h"
 #import <QuartzCore/QuartzCore.h>
 
+NSString * const NUAnimationControllerDidStartAnimationChain = @"NUAnimationControllerDidStartAnimationChain";
+
+NSString * const NUAnimationControllerDidFinishAnimationChain = @"NUAnimationControllerDidFinishAnimationChain";
+
 @interface NUAnimationController ()
 
 @property (nonatomic, strong) NSMutableArray *animationSteps;
@@ -58,6 +62,8 @@
     }
 
     self.animationRunning = true;
+
+    [self.notificationCenter postNotificationName:NUAnimationControllerDidStartAnimationChain object:nil];
 
     if (self.initializationBlock) {
         self.initializationBlock();
@@ -262,6 +268,8 @@
     if (self.completionBlock) {
         self.completionBlock();
     }
+
+    [self.notificationCenter postNotificationName:NUAnimationControllerDidFinishAnimationChain object:nil];
 }
 
 - (NSTimeInterval)totalAnimationTime {
@@ -283,6 +291,11 @@
 }
 
 #pragma mark - Helper functions
+
+- (NSNotificationCenter *)notificationCenter
+{
+    return [NSNotificationCenter defaultCenter];
+}
 
 - (CAMediaTimingFunction *)timingFunctionForCurve:(UIViewAnimationCurve)curve {
     switch (curve) {
