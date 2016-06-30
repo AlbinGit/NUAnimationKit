@@ -63,7 +63,7 @@ NSString * const NUAnimationControllerDidFinishAnimationChain = @"NUAnimationCon
 
     self.animationRunning = true;
 
-    [self.notificationCenter postNotificationName:NUAnimationControllerDidStartAnimationChain object:nil];
+    [self.notificationCenter postNotificationName:NUAnimationControllerDidStartAnimationChain object:self];
 
     if (self.initializationBlock) {
         self.initializationBlock();
@@ -269,7 +269,7 @@ NSString * const NUAnimationControllerDidFinishAnimationChain = @"NUAnimationCon
         self.completionBlock();
     }
 
-    [self.notificationCenter postNotificationName:NUAnimationControllerDidFinishAnimationChain object:nil];
+    [self.notificationCenter postNotificationName:NUAnimationControllerDidFinishAnimationChain object:self];
 }
 
 - (NSTimeInterval)totalAnimationTime {
