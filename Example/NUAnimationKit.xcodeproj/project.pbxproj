@@ -301,12 +301,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "NUAnimationKit_Example" */;
 			buildPhases = (
-				82A1C25316E25397FB5EA136 /* 📦 Check Pods Manifest.lock */,
+				82A1C25316E25397FB5EA136 /* [CP] Check Pods Manifest.lock */,
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				CE2672A1D3A723388AE016F7 /* 📦 Embed Pods Frameworks */,
-				2505F35BB718AF5A25EF70CA /* 📦 Copy Pods Resources */,
+				CE2672A1D3A723388AE016F7 /* [CP] Embed Pods Frameworks */,
+				2505F35BB718AF5A25EF70CA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -321,12 +321,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D41B76931C53D0FF006F0701 /* Build configuration list for PBXNativeTarget "NUAnimationKit_Tests" */;
 			buildPhases = (
-				5DFA1A8CECC2F38A12492D44 /* 📦 Check Pods Manifest.lock */,
+				5DFA1A8CECC2F38A12492D44 /* [CP] Check Pods Manifest.lock */,
 				D41B76881C53D0FF006F0701 /* Sources */,
 				D41B76891C53D0FF006F0701 /* Frameworks */,
 				D41B768A1C53D0FF006F0701 /* Resources */,
-				434D433A1B95B10907E409F5 /* 📦 Embed Pods Frameworks */,
-				9C7322DE61360F32FE4233ED /* 📦 Copy Pods Resources */,
+				434D433A1B95B10907E409F5 /* [CP] Embed Pods Frameworks */,
+				9C7322DE61360F32FE4233ED /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -395,14 +395,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2505F35BB718AF5A25EF70CA /* 📦 Copy Pods Resources */ = {
+		2505F35BB718AF5A25EF70CA /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,14 +410,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NUAnimationKit_Example/Pods-NUAnimationKit_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		434D433A1B95B10907E409F5 /* 📦 Embed Pods Frameworks */ = {
+		434D433A1B95B10907E409F5 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,14 +425,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NUAnimationKit_Tests/Pods-NUAnimationKit_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5DFA1A8CECC2F38A12492D44 /* 📦 Check Pods Manifest.lock */ = {
+		5DFA1A8CECC2F38A12492D44 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,14 +440,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		82A1C25316E25397FB5EA136 /* 📦 Check Pods Manifest.lock */ = {
+		82A1C25316E25397FB5EA136 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -455,14 +455,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		9C7322DE61360F32FE4233ED /* 📦 Copy Pods Resources */ = {
+		9C7322DE61360F32FE4233ED /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -470,14 +470,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NUAnimationKit_Tests/Pods-NUAnimationKit_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CE2672A1D3A723388AE016F7 /* 📦 Embed Pods Frameworks */ = {
+		CE2672A1D3A723388AE016F7 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
