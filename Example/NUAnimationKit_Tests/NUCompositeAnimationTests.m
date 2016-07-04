@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import <NUAnimationKit/NUAnimationController.h>
-#import "OCMock.h"
+#import <OCMock/OCMock.h>
 
 @interface NUCompositeAnimationTests : XCTestCase
 
