@@ -75,7 +75,7 @@ NUAnimationKit also allows you to set animation options on creation:
 And spring-based animations:
 
 ```objc
-controller addAnimation:^{
+[controller addAnimation:^{
     //Springy
 }].withType(NUAnimationTypeSpringy).withDuration(NUSpringAnimationNaturalDuration)
 ```
