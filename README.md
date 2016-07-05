@@ -179,7 +179,7 @@ or
 
 ```objc
 [controller startAnimationChainWithCompletionBlock:^{
-//Optional completion block
+    //Optional completion block
 }];
 ```
 
