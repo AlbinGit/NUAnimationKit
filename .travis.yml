@@ -6,6 +6,7 @@ before_install:
   - brew update
   - brew outdated xctool || brew upgrade xctool
   - bundle install
+  - bundle exec pod repo update
   - bundle exec pod install --project-directory=Example
 
 script:
