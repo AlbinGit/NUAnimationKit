@@ -218,7 +218,7 @@
     self.composite.type = NUAnimationTypeSpringy;
     self.composite.withDamping(0.212);
     XCTAssert([self.composite.options isKindOfClass:[NUSpringAnimationOptions class]]);
-    XCTAssertEqual(((NUSpringAnimationOptions *)self.composite.options).damping, 0.212);
+    XCTAssertEqual(((NUSpringAnimationOptions *)self.composite.options).damping, (CGFloat)0.212);
 }
 
 - (void)testInitialVelocityShorthandNotationShouldThrowForNonSpringy {
@@ -229,7 +229,7 @@
     self.composite.type = NUAnimationTypeSpringy;
     self.composite.withInitialVelocity(0.212);
     XCTAssert([self.composite.options isKindOfClass:[NUSpringAnimationOptions class]]);
-    XCTAssertEqual(((NUSpringAnimationOptions *)self.composite.options).initialVelocity, 0.212);
+    XCTAssertEqual(((NUSpringAnimationOptions *)self.composite.options).initialVelocity, (CGFloat)0.212);
 }
 
 - (void)testAlongsideBlockShorthandNotation {
