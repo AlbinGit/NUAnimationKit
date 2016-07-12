@@ -49,11 +49,11 @@ NUAnimationController *controller = [[NUAnimationController alloc] init];
     [animationView1 setFrameY:400];
     animationView1.backgroundColor = [UIColor grayColor];
 }].withAnimationOption(UIViewAnimationOptionTransitionCrossDissolve);
-    
+
 [self.controller addAnimation:^{
     [animationView2 setFrameY:400];
 }].withDelay(0.1).withDuration(0.3).withCurve(UIViewAnimationCurveEaseInOut);
-    
+
 [self.controller addAnimation:^{
     [animationView3 setFrameY:400];
 }].withType(NUAnimationTypeSpringy).withDuration(NUSpringAnimationNaturalDuration);
@@ -75,7 +75,7 @@ NUAnimationKit also allows you to set animation options on creation:
 And spring-based animations:
 
 ```objc
-controller addAnimation:^{
+[controller addAnimation:^{
     //Springy
 }].withType(NUAnimationTypeSpringy).withDuration(NUSpringAnimationNaturalDuration)
 ```
@@ -158,7 +158,7 @@ To use the library, simply:
 
 - Install the pod by adding `pod "NUAnimationKit"` to your podfile
 - Import `NUAnimationController.h`
-- Create an animation controller: 
+- Create an animation controller:
 
 ```objc
 NUAnimationController *controller = [[NUAnimationController alloc] init];
@@ -170,7 +170,7 @@ NUAnimationController *controller = [[NUAnimationController alloc] init];
     //Springy
 }].withType(NUAnimationTypeSpringy).withDuration(NUSpringAnimationNaturalDuration)
 ```
-- Start the animation: 
+- Start the animation:
 
 ```objc
 [controller startAnimationChain]
@@ -179,7 +179,7 @@ or
 
 ```objc
 [controller startAnimationChainWithCompletionBlock:^{
-//Optional completion block
+    //Optional completion block
 }];
 ```
 
@@ -190,7 +190,7 @@ Built for iOS 8.0 and above.
 
 ## Author
 
-Victor Maraccini, 
+Victor Maraccini,
 victor.maraccini@nubank.com.br
 
 ## License
