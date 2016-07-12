@@ -1,5 +1,6 @@
 <img src="./Pod/Assets/logo.png"/>
 
+[![Build Status](https://travis-ci.org/nubank/NUAnimationKit.svg?branch=travis-config)](https://travis-ci.org/nubank/NUAnimationKit)
 ####UIView animation wrapper to facilitate chaining of animation commands.
 
 ###Problem
