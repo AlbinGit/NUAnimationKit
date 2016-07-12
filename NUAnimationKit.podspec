@@ -1,27 +1,20 @@
-#
-# Be sure to run `pod lib lint NUAnimationKit.podspec' to ensure this is a
-# valid spec before submitting.
-#
-# Any lines starting with a # are optional, but their use is encouraged
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
-
-Pod::Spec.new do |s|
-  s.name             = "NUAnimationKit"
-  s.version          = "0.2.4.7"
-  s.summary          = "DSL to wrap UIView animation chaining into a cleaner structure"
-
-  s.description      = <<-DESC
-UIView animation wrapper that simplifies chaining of multiple animation steps, each with their own completion blocks. Also supports progress-based animations using CADisplayKit synchronization
-                       DESC
-
-  s.homepage         = "https://github.com/nubank/NUAnimationKit.git"
-  s.license          = 'MIT'
-  s.author           = { "Victor Maraccini" => "vgm.maraccini@gmail.com" }
-  s.source           = { :git => "https://github.com/nubank/NUAnimationKit.git", :tag => s.version.to_s }
-
-  s.platform     = :ios, '8.0'
-  s.requires_arc = true
-
-  s.source_files = 'Pod/Classes/**/*'
-end
+{
+  "name": "NUAnimationKit",
+  "version": "0.2.4.7",
+  "summary": "DSL to wrap UIView animation chaining into a cleaner structure",
+  "description": "UIView animation wrapper that simplifies chaining of multiple animation steps, each with their own completion blocks. Also supports progress-based animations using CADisplayKit synchronization",
+  "homepage": "https://github.com/nubank/NUAnimationKit.git",
+  "license": "MIT",
+  "authors": {
+    "Victor Maraccini": "vgm.maraccini@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/nubank/NUAnimationKit.git",
+    "tag": "0.2.4.7"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "requires_arc": true,
+  "source_files": "Pod/Classes/**/*"
+}
