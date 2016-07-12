@@ -1,12 +1,10 @@
 language: objective-c
 osx_image: xcode7.3
-rvm: 2.2
+rvm: 2.3
 
 before_install:
-  - brew update
-  - brew outdated xctool || brew upgrade xctool
   - bundle install
-  - bundle exec pod repo update
+  - bundle exec pod repo update --silent
   - bundle exec pod install --project-directory=Example
 
 script:
